@@ -1,0 +1,70 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1000" rx="48" fill="#EEF3F8"/>
+  <rect x="36" y="36" width="1528" height="928" rx="40" fill="#F8FBFE" stroke="#D6E1EB" stroke-width="4"/>
+  <rect x="72" y="72" width="1456" height="72" rx="28" fill="#0F172A"/>
+  <text x="120" y="117" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="700">Aegis Grand Hotel</text>
+  <text x="1116" y="117" fill="#86EFAC" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Ground Floor</text>
+
+  <rect x="126" y="400" width="1348" height="210" rx="48" fill="#CAD6E2"/>
+  <rect x="150" y="455" width="1300" height="102" rx="30" fill="#EFF4F8"/>
+  <rect x="166" y="498" width="1268" height="16" rx="8" fill="#94A3B8"/>
+
+  <rect x="148" y="180" width="328" height="168" rx="32" fill="#FFFFFF" stroke="#D6DEE8" stroke-width="4"/>
+  <text x="312" y="246" text-anchor="middle" fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800">Main Lobby</text>
+  <text x="312" y="284" text-anchor="middle" fill="#64748B" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700">Check-in and guest waiting</text>
+
+  <rect x="514" y="180" width="250" height="168" rx="32" fill="#FFFFFF" stroke="#D6DEE8" stroke-width="4"/>
+  <text x="639" y="246" text-anchor="middle" fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800">Reception</text>
+  <text x="639" y="284" text-anchor="middle" fill="#64748B" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700">Front desk control</text>
+
+  <rect x="836" y="180" width="286" height="168" rx="32" fill="#FFFFFF" stroke="#D6DEE8" stroke-width="4"/>
+  <text x="979" y="246" text-anchor="middle" fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800">Cafe Lounge</text>
+  <text x="979" y="284" text-anchor="middle" fill="#64748B" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700">Public seating zone</text>
+
+  <rect x="1184" y="180" width="244" height="168" rx="32" fill="#F3F4F6" stroke="#D6DEE8" stroke-width="4"/>
+  <text x="1306" y="246" text-anchor="middle" fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800">Admin Hub</text>
+  <text x="1306" y="284" text-anchor="middle" fill="#64748B" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700">Security office</text>
+
+  <rect x="100" y="430" width="96" height="146" rx="28" fill="#DBEAFE" stroke="#93C5FD" stroke-width="4"/>
+  <text x="148" y="488" text-anchor="middle" fill="#1D4ED8" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800">STAIR A</text>
+  <text x="148" y="520" text-anchor="middle" fill="#1E3A8A" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700">Exit Core</text>
+
+  <rect x="1404" y="430" width="96" height="146" rx="28" fill="#DBEAFE" stroke="#93C5FD" stroke-width="4"/>
+  <text x="1452" y="488" text-anchor="middle" fill="#1D4ED8" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800">STAIR B</text>
+  <text x="1452" y="520" text-anchor="middle" fill="#1E3A8A" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700">Exit Core</text>
+
+  <rect x="723" y="416" width="154" height="176" rx="34" fill="#FFEDD5" stroke="#FDBA74" stroke-width="4"/>
+  <text x="800" y="486" text-anchor="middle" fill="#C2410C" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800">LIFT</text>
+  <text x="800" y="522" text-anchor="middle" fill="#9A3412" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700">Ground Lobby</text>
+
+  <rect x="98" y="760" width="188" height="112" rx="26" fill="#DCFCE7" stroke="#86EFAC" stroke-width="4"/>
+  <text x="192" y="812" text-anchor="middle" fill="#15803D" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800">Main Exit</text>
+  <text x="192" y="844" text-anchor="middle" fill="#166534" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700">Assembly route</text>
+
+  <rect x="1314" y="760" width="188" height="112" rx="26" fill="#DCFCE7" stroke="#86EFAC" stroke-width="4"/>
+  <text x="1408" y="812" text-anchor="middle" fill="#15803D" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800">Service Exit</text>
+  <text x="1408" y="844" text-anchor="middle" fill="#166534" font-family="Inter, Arial, sans-serif" font-size="17" font-weight="700">Back-of-house</text>
+
+  <g fill="#22D3EE" stroke="#FFFFFF" stroke-width="4">
+    <circle cx="205" cy="506" r="10"/>
+    <circle cx="295" cy="506" r="10"/>
+    <circle cx="385" cy="506" r="10"/>
+    <circle cx="475" cy="506" r="10"/>
+    <circle cx="565" cy="506" r="10"/>
+    <circle cx="655" cy="506" r="10"/>
+    <circle cx="745" cy="506" r="10"/>
+    <circle cx="855" cy="506" r="10"/>
+    <circle cx="945" cy="506" r="10"/>
+    <circle cx="1035" cy="506" r="10"/>
+    <circle cx="1125" cy="506" r="10"/>
+    <circle cx="1215" cy="506" r="10"/>
+    <circle cx="1305" cy="506" r="10"/>
+    <circle cx="1395" cy="506" r="10"/>
+  </g>
+
+  <circle cx="212" cy="158" r="18" fill="#A855F7" stroke="#FFFFFF" stroke-width="4"/>
+  <text x="245" y="165" fill="#6D28D9" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">Lobby Camera</text>
+
+  <path d="M148 575L148 760" stroke="#14B8A6" stroke-width="10" stroke-linecap="round"/>
+  <path d="M1452 575L1452 760" stroke="#14B8A6" stroke-width="10" stroke-linecap="round"/>
+</svg>

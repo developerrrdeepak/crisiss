@@ -1,0 +1,17 @@
+{$MEDIA_DOMAIN} {
+  encode zstd gzip
+
+  handle_path /api/* {
+    reverse_proxy mediamtx:9997
+  }
+
+  handle_path /webrtc/* {
+    reverse_proxy mediamtx:8889
+  }
+
+  handle_path /hls/* {
+    reverse_proxy mediamtx:8888
+  }
+
+  respond "MediaMTX edge is running." 200
+}

@@ -1,0 +1,402 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ============================================
+   AEGIS THEME SYSTEM - CSS VARIABLES
+   Default: Dark Mode
+   ============================================ */
+
+:root {
+  /* Core Colors - Light Mode (Clean & Professional) */
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f1f5f9;
+  --bg-card: #ffffff;
+  
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  
+  --border-color: #e2e8f0;
+  --border-light: #f1f5f9;
+  
+  /* Brand Colors - Lumana Inspired */
+  --primary: #0284c7; /* Professional Blue */
+  --primary-hover: #0ea5e9;
+  --secondary: #0ea5e9; /* Tech Cyan */
+  --secondary-hover: #38bdf8;
+  --accent: #0f172a;
+  
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #0284c7 0%, #06b6d4 100%);
+  --gradient-hero: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --gradient-tech: linear-gradient(135deg, #0ea5e9 0%, #22d3ee 100%);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+  
+  /* Glass Effect */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  --glass-shadow: rgba(0, 0, 0, 0.02);
+}
+
+/* Dark Mode (Default) */
+.dark {
+  /* Core Colors - Dark Mode (Deep & Immersive) */
+  --bg-primary: #000000; /* Pure Black for Hero sections */
+  --bg-secondary: #0a0a0a;
+  --bg-tertiary: #111111;
+  --bg-card: #0a0a0a;
+  
+  --text-primary: #ffffff;
+  --text-secondary: #e2e8f0; /* Much brighter for legibility over animation */
+  --text-muted: #cbd5e1;
+  
+  --border-color: rgba(255, 255, 255, 0.08);
+  --border-light: rgba(255, 255, 255, 0.04);
+  
+  --primary: #ffffff; /* High contrast primary */
+  --primary-hover: #f1f5f9;
+  --secondary: #0ea5e9; /* Tech Blue */
+  --secondary-hover: #38bdf8;
+  --accent: #22d3ee;
+  
+  --gradient-primary: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
+  --gradient-hero: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+  --gradient-tech: linear-gradient(135deg, #0ea5e9 0%, #22d3ee 100%);
+  
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.8);
+  
+  --glass-bg: rgba(10, 10, 10, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: rgba(0, 0, 0, 0.5);
+}
+
+/* Theme Classes for body */
+body.dark {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+body.light {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+@theme {
+  --color-primary: #bc000a;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #e2241f;
+  --color-on-primary-container: #fffbff;
+  --color-primary-fixed: #ffdad5;
+  --color-primary-fixed-dim: #ffb4aa;
+  --color-on-primary-fixed: #410001;
+  --color-on-primary-fixed-variant: #930005;
+  --color-inverse-primary: #ffb4aa;
+
+  --color-secondary: #175ead;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #72aafe;
+  --color-on-secondary-container: #003d79;
+  --color-secondary-fixed: #d5e3ff;
+  --color-secondary-fixed-dim: #a8c8ff;
+  --color-on-secondary-fixed: #001b3c;
+  --color-on-secondary-fixed-variant: #004689;
+
+  --color-tertiary: #874e00;
+  --color-on-tertiary: #ffffff;
+  --color-tertiary-container: #aa6400;
+  --color-on-tertiary-container: #fffbff;
+  --color-tertiary-fixed: #ffdcbe;
+  --color-tertiary-fixed-dim: #ffb870;
+  --color-on-tertiary-fixed: #2c1600;
+  --color-on-tertiary-fixed-variant: #693c00;
+
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+
+  --color-background: #f7f9ff;
+  --color-on-background: #081d2c;
+  --color-surface: #f7f9ff;
+  --color-on-surface: #081d2c;
+  --color-surface-variant: #d1e5fa;
+  --color-on-surface-variant: #414753;
+  --color-surface-dim: #c8dcf1;
+  --color-surface-bright: #f7f9ff;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #ecf4ff;
+  --color-surface-container: #e2efff;
+  --color-surface-container-high: #d7eaff;
+  --color-surface-container-highest: #d1e5fa;
+  --color-surface-tint: #c0000a;
+
+  --color-outline: #717785;
+  --color-outline-variant: #c1c6d5;
+  --color-inverse-surface: #1f3242;
+  --color-inverse-on-surface: #e7f2ff;
+
+  --font-headline: "Sora", sans-serif;
+  --font-body: "Sora", sans-serif;
+  --font-label: "Sora", sans-serif;
+  --font-display: "Sora", sans-serif;
+}
+
+/* Base */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Dashboard specific base styles */
+.dashboard-root {
+  font-family: var(--font-sora, "Sora"), sans-serif;
+  font-size: 15px;
+  background-image: 
+    linear-gradient(to bottom right, rgba(245, 246, 250, 0.94), rgba(245, 246, 250, 0.98)), 
+    url('/animation/ezgif-frame-072.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  transition: all 0.5s ease-in-out;
+}
+
+.dark .dashboard-root {
+  background-image: 
+    linear-gradient(to bottom right, rgba(15, 17, 23, 0.96), rgba(15, 17, 23, 0.99)), 
+    url('/animation/ezgif-frame-072.jpg');
+}
+
+/* Glassmorphic Cards */
+.dashboard-card {
+  background-color: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07) !important;
+  transition: all 0.3s ease;
+}
+
+.dark .dashboard-card {
+  background-color: rgba(19, 21, 43, 0.72) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.35) !important;
+}
+
+.dashboard-card:hover {
+  background-color: rgba(255, 255, 255, 0.7) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  transform: translateY(-2px);
+}
+
+.dark .dashboard-card:hover {
+  background-color: rgba(25, 28, 55, 0.8) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+}
+
+
+/* Smooth theme transitions */
+.theme-transition,
+.theme-transition * {
+  transition: background-color 0.3s ease, 
+              border-color 0.3s ease, 
+              color 0.3s ease, 
+              box-shadow 0.3s ease !important;
+}
+
+/* Preserve animations */
+.animate-blob,
+.animate-float,
+.animate-pulse,
+.animate-pulse-slow,
+.star {
+  transition: none !important;
+}
+
+/* Material Symbols */
+.material-symbols-outlined {
+  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+  font-style: normal;
+  user-select: none;
+}
+
+/* Aegis Custom Utilities */
+.hud-scanline {
+  background: linear-gradient(to bottom, transparent 50%, rgba(255, 180, 170, 0.05) 50%);
+  background-size: 100% 4px;
+}
+
+.emergency-glow {
+  box-shadow: 0px 0px 12px rgba(255, 180, 170, 0.2);
+}
+
+.tactical-grid {
+  background-image: radial-gradient(circle, #ffb4aa 0.5px, transparent 0.5px);
+  background-size: 20px 20px;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+.dark ::-webkit-scrollbar-track {
+  background: #131313;
+}
+::-webkit-scrollbar-thumb {
+  background: #c1c6d5;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #5d3f3b;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #bc000a;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #ffb4aa;
+}
+
+/* Animations */
+@keyframes pulse-slow {
+  0%, 100% { transform: scale(1); opacity: 0.5; }
+  50% { transform: scale(1.05); opacity: 0.8; }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.1; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2) drop-shadow(0 0 4px rgba(255,255,255,0.8)); }
+}
+
+@keyframes border-flow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes radar-sweep {
+  0% { transform: rotate(0deg); opacity: 0.16; }
+  50% { opacity: 0.28; }
+  100% { transform: rotate(360deg); opacity: 0.16; }
+}
+
+@keyframes signal-orbit {
+  0% { transform: scale(0.92); opacity: 0.25; }
+  60% { opacity: 0.5; }
+  100% { transform: scale(1.18); opacity: 0; }
+}
+
+@keyframes blob {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.1); }
+  66% { transform: translate(-20px, 20px) scale(0.9); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+.animate-blob {
+  animation: blob 7s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-30px) scale(1.05); }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.radar-sweep {
+  animation: radar-sweep 10s linear infinite;
+  transform-origin: center;
+}
+
+.signal-orbit {
+  animation: signal-orbit 2.8s ease-out infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-3000 {
+  animation-delay: 3s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Star styling for Dark Mode */
+.dark .star-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.dark .star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  animation: twinkle var(--duration, 3s) infinite ease-in-out;
+}
+
+/* Animated Glowing Border Hook */
+.magic-border {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid transparent;
+}
+.magic-border::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent 70%, #ffb4aa 85%, #72aafe 100%);
+  animation: border-flow 4s linear infinite;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: -1;
+}
+.dark .magic-border:hover::after {
+  opacity: 1;
+}
+.magic-border:hover::after {
+  opacity: 0.3; /* Less intense in light mode */
+}
+.magic-border-content {
+  background: inherit;
+  border-radius: inherit;
+  position: absolute;
+  inset: 1px; /* The thickness of the border */
+  z-index: 0;
+}

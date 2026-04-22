@@ -1,0 +1,13 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer Shield Frame -->
+  <path d="M256 48L80 112V240C80 348.8 154.4 449.6 256 480C357.6 449.6 432 348.8 432 240V112L256 48Z" fill="#bc000a"/>
+  
+  <!-- Inner Tactical Detail -->
+  <path d="M256 120L140 160V240C140 312 189.6 379.2 256 400C322.4 379.2 372 312 372 240V160L256 120Z" fill="white" fill-opacity="0.2"/>
+  
+  <!-- The "A" for Aegis -->
+  <path d="M256 180L190 320H220L235 285H277L292 320H322L256 180ZM245 260L256 235L267 260H245Z" fill="white"/>
+  
+  <!-- Bottom Accent -->
+  <rect x="246" y="420" width="20" height="4" rx="2" fill="white" fill-opacity="0.5"/>
+</svg>

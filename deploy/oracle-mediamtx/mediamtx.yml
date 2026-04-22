@@ -1,0 +1,43 @@
+logLevel: info
+
+authInternalUsers:
+  - user: any
+    pass:
+    ips: []
+    permissions:
+      - action: publish
+        path:
+      - action: read
+        path:
+      - action: playback
+        path:
+      - action: api
+        path:
+
+api: yes
+apiAddress: :9997
+apiAllowOrigins:
+  - https://YOUR_GCP_SITE_DOMAIN
+  - http://localhost:3000
+
+hls: yes
+hlsAddress: :8888
+hlsAllowOrigins:
+  - https://YOUR_GCP_SITE_DOMAIN
+  - http://localhost:3000
+
+webrtc: yes
+webrtcAddress: :8889
+webrtcAllowOrigins:
+  - https://YOUR_GCP_SITE_DOMAIN
+  - http://localhost:3000
+webrtcLocalUDPAddress: :8189
+webrtcLocalTCPAddress: :8189
+webrtcAdditionalHosts:
+  - YOUR_MEDIA_DOMAIN
+webrtcICEServers2:
+  - url: stun:stun.l.google.com:19302
+
+paths:
+  phone-cctv:
+    source: publisher

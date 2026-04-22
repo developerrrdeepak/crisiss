@@ -1,0 +1,111 @@
+<svg width="1600" height="1000" viewBox="0 0 1600 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1600" height="1000" rx="48" fill="#EEF3F8"/>
+  <rect x="36" y="36" width="1528" height="928" rx="40" fill="#F8FBFE" stroke="#D6E1EB" stroke-width="4"/>
+  <rect x="72" y="72" width="1456" height="72" rx="28" fill="#0F172A"/>
+  <text x="120" y="117" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="34" font-weight="700">Aegis Grand Hotel</text>
+  <text x="1098" y="117" fill="#93C5FD" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="700">Typical Guest Floor</text>
+
+  <rect x="150" y="380" width="1300" height="240" rx="52" fill="#CAD6E2"/>
+  <rect x="176" y="440" width="1248" height="120" rx="36" fill="#EEF4F8"/>
+  <rect x="190" y="492" width="1220" height="18" rx="9" fill="#94A3B8"/>
+  <rect x="190" y="470" width="1220" height="3" rx="1.5" fill="#FFFFFF" fill-opacity="0.78"/>
+  <rect x="190" y="529" width="1220" height="3" rx="1.5" fill="#FFFFFF" fill-opacity="0.48"/>
+
+  <rect x="105" y="430" width="96" height="136" rx="28" fill="#DBEAFE" stroke="#93C5FD" stroke-width="4"/>
+  <text x="153" y="485" text-anchor="middle" fill="#1D4ED8" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800">STAIR A</text>
+  <text x="153" y="515" text-anchor="middle" fill="#1E3A8A" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700">Fire Exit</text>
+
+  <rect x="1399" y="430" width="96" height="136" rx="28" fill="#DBEAFE" stroke="#93C5FD" stroke-width="4"/>
+  <text x="1447" y="485" text-anchor="middle" fill="#1D4ED8" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="800">STAIR B</text>
+  <text x="1447" y="515" text-anchor="middle" fill="#1E3A8A" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700">Fire Exit</text>
+
+  <rect x="726" y="414" width="148" height="168" rx="34" fill="#FFEDD5" stroke="#FDBA74" stroke-width="4"/>
+  <text x="800" y="484" text-anchor="middle" fill="#C2410C" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800">LIFT</text>
+  <text x="800" y="520" text-anchor="middle" fill="#9A3412" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="700">Lobby</text>
+
+  <g fill="#FFFFFF" stroke="#D6DEE8" stroke-width="4">
+    <rect x="250" y="180" width="130" height="170" rx="24"/>
+    <rect x="430" y="180" width="130" height="170" rx="24"/>
+    <rect x="610" y="180" width="130" height="170" rx="24"/>
+    <rect x="860" y="180" width="130" height="170" rx="24"/>
+    <rect x="1040" y="180" width="130" height="170" rx="24"/>
+    <rect x="1220" y="180" width="130" height="170" rx="24"/>
+
+    <rect x="250" y="650" width="130" height="170" rx="24"/>
+    <rect x="430" y="650" width="130" height="170" rx="24"/>
+    <rect x="610" y="650" width="130" height="170" rx="24"/>
+    <rect x="860" y="650" width="130" height="170" rx="24"/>
+    <rect x="1040" y="650" width="130" height="170" rx="24"/>
+    <rect x="1220" y="650" width="130" height="170" rx="24"/>
+  </g>
+
+  <g fill="#B7791F">
+    <rect x="296" y="343" width="38" height="10" rx="5"/>
+    <rect x="476" y="343" width="38" height="10" rx="5"/>
+    <rect x="656" y="343" width="38" height="10" rx="5"/>
+    <rect x="906" y="343" width="38" height="10" rx="5"/>
+    <rect x="1086" y="343" width="38" height="10" rx="5"/>
+    <rect x="1266" y="343" width="38" height="10" rx="5"/>
+
+    <rect x="296" y="650" width="38" height="10" rx="5"/>
+    <rect x="476" y="650" width="38" height="10" rx="5"/>
+    <rect x="656" y="650" width="38" height="10" rx="5"/>
+    <rect x="906" y="650" width="38" height="10" rx="5"/>
+    <rect x="1086" y="650" width="38" height="10" rx="5"/>
+    <rect x="1266" y="650" width="38" height="10" rx="5"/>
+  </g>
+
+  <g fill="#0F172A" font-family="Inter, Arial, sans-serif" font-size="24" font-weight="800">
+    <text x="315" y="260" text-anchor="middle">602</text>
+    <text x="495" y="260" text-anchor="middle">604</text>
+    <text x="675" y="260" text-anchor="middle">606</text>
+    <text x="925" y="260" text-anchor="middle">608</text>
+    <text x="1105" y="260" text-anchor="middle">610</text>
+    <text x="1285" y="260" text-anchor="middle">612</text>
+    <text x="315" y="735" text-anchor="middle">603</text>
+    <text x="495" y="735" text-anchor="middle">605</text>
+    <text x="675" y="735" text-anchor="middle">607</text>
+    <text x="925" y="735" text-anchor="middle">609</text>
+    <text x="1105" y="735" text-anchor="middle">611</text>
+    <text x="1285" y="735" text-anchor="middle">613</text>
+  </g>
+
+  <g fill="#64748B" font-family="Inter, Arial, sans-serif" font-size="16" font-weight="700">
+    <text x="315" y="298" text-anchor="middle">Deluxe Suite</text>
+    <text x="495" y="298" text-anchor="middle">King Room</text>
+    <text x="675" y="298" text-anchor="middle">Twin Room</text>
+    <text x="925" y="298" text-anchor="middle">Corner Suite</text>
+    <text x="1105" y="298" text-anchor="middle">Premium King</text>
+    <text x="1285" y="298" text-anchor="middle">Executive</text>
+    <text x="315" y="772" text-anchor="middle">Deluxe Suite</text>
+    <text x="495" y="772" text-anchor="middle">King Room</text>
+    <text x="675" y="772" text-anchor="middle">Twin Room</text>
+    <text x="925" y="772" text-anchor="middle">Corner Suite</text>
+    <text x="1105" y="772" text-anchor="middle">Premium King</text>
+    <text x="1285" y="772" text-anchor="middle">Executive</text>
+  </g>
+
+  <g fill="#22D3EE" stroke="#FFFFFF" stroke-width="4">
+    <circle cx="220" cy="501" r="10"/>
+    <circle cx="310" cy="501" r="10"/>
+    <circle cx="400" cy="501" r="10"/>
+    <circle cx="490" cy="501" r="10"/>
+    <circle cx="580" cy="501" r="10"/>
+    <circle cx="670" cy="501" r="10"/>
+    <circle cx="760" cy="501" r="10"/>
+    <circle cx="850" cy="501" r="10"/>
+    <circle cx="940" cy="501" r="10"/>
+    <circle cx="1030" cy="501" r="10"/>
+    <circle cx="1120" cy="501" r="10"/>
+    <circle cx="1210" cy="501" r="10"/>
+    <circle cx="1300" cy="501" r="10"/>
+    <circle cx="1390" cy="501" r="10"/>
+  </g>
+
+  <circle cx="1165" cy="138" r="18" fill="#A855F7" stroke="#FFFFFF" stroke-width="4"/>
+  <text x="1200" y="146" fill="#6D28D9" font-family="Inter, Arial, sans-serif" font-size="18" font-weight="800">Corridor Camera</text>
+
+  <rect x="1210" y="846" width="250" height="74" rx="24" fill="#0F172A"/>
+  <circle cx="1246" cy="883" r="10" fill="#14B8A6"/>
+  <text x="1270" y="890" fill="#F8FAFC" font-family="Inter, Arial, sans-serif" font-size="20" font-weight="700">Recommended Escape Path</text>
+</svg>

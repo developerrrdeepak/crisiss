@@ -1,0 +1,81 @@
+// Snapshot of the legacy Prisma schema from before the Data Connect migration.
+// Keep this file as the authoritative reference for the old table layout.
+// The active Firebase Data Connect schema in dataconnect/schema/schema.gql mirrors this model.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("LEGACY_PRISMA_DATABASE_URL")
+}
+
+model Incident {
+  id          String   @id @default(uuid())
+  title       String
+  severity    String
+  status      String   @default("Active")
+  timestamp   DateTime @default(now())
+  roomId      String?
+  description String?
+}
+
+model Guest {
+  id            String    @id @default(cuid())
+  name          String
+  roomNumber    String?
+  idNumber      String?
+  contact       String?
+  address       String?
+  status        String    @default("Booked")
+  checkIn       DateTime  @default(now())
+  checkOut      DateTime?
+  loginToken    String?   @unique
+  loginEmail    String?   @unique
+  loginPassword String?
+  qrPayload     String?
+  email         String?   @unique
+  firebaseUid   String?   @unique
+  createdAt     DateTime  @default(now())
+  roomId        String?
+  room          Room?     @relation(fields: [roomId], references: [id])
+}
+
+model Room {
+  id     String  @id @default(cuid())
+  number String  @unique
+  floor  Int
+  type   String
+  status String  @default("vacant")
+  guests Guest[]
+}
+
+model Staff {
+  id               String   @id @default(uuid())
+  employeeId       String?  @unique
+  name             String
+  email            String?  @unique
+  loginPassword    String?
+  firebaseUid      String?  @unique
+  role             String   @default("Staff")
+  department       String?
+  phone            String?
+  emergencyContact String?
+  bloodGroup       String?
+  joiningDate      DateTime @default(now())
+  validTill        DateTime?
+  photoUrl         String?
+  status           String   @default("Active")
+  createdAt        DateTime @default(now())
+}
+
+model UserLogin {
+  id          String   @id @default(uuid())
+  firebaseUid String   @unique
+  email       String
+  displayName String?
+  role        String   @default("guest")
+  lastLogin   DateTime @default(now())
+  createdAt   DateTime @default(now())
+}

@@ -1,0 +1,13 @@
+specVersion: v1alpha
+serviceId: hospitality-ai-data
+location: europe-west1
+schema:
+  source: ./schema
+  datasource:
+    postgresql:
+      database: hospitality
+      cloudSql:
+        instanceId: hospitality-ai-dataconnect
+        schemaValidation: COMPATIBLE
+connectorDirs:
+  - ./admin

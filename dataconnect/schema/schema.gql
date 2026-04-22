@@ -1,0 +1,82 @@
+# Mirrored from prisma/legacy-prisma-schema.prisma during the Data Connect migration.
+
+type Incident @table(key: "id") {
+  id: String!
+  title: String!
+  severity: String!
+  status: String! @default(value: "Active")
+  timestamp: Timestamp! @default(expr: "request.time")
+  roomId: String
+  description: String
+}
+
+type Room
+  @table(key: "id", singular: "room", plural: "rooms")
+  @unique(fields: ["number"]) {
+  id: String!
+  number: String!
+  floor: Int!
+  type: String!
+  status: String! @default(value: "vacant")
+}
+
+type Guest
+  @table(key: "id", singular: "guest", plural: "guests")
+  @unique(fields: ["loginToken"])
+  @unique(fields: ["loginEmail"])
+  @unique(fields: ["email"])
+  @unique(fields: ["firebaseUid"]) {
+  id: String!
+  name: String!
+  room: Room @ref(fields: ["roomId"], references: ["id"])
+  roomId: String
+  roomNumber: String
+  idNumber: String
+  contact: String
+  address: String
+  status: String! @default(value: "Booked")
+  checkIn: Timestamp! @default(expr: "request.time")
+  checkOut: Timestamp
+  loginToken: String
+  loginEmail: String
+  loginPassword: String
+  qrPayload: String
+  email: String
+  firebaseUid: String
+  createdAt: Timestamp! @default(expr: "request.time")
+}
+
+type Staff
+  @table(key: "id", singular: "staffMember", plural: "staffMembers")
+  @unique(fields: ["employeeId"])
+  @unique(fields: ["email"])
+  @unique(fields: ["firebaseUid"]) {
+  id: String!
+  employeeId: String
+  name: String!
+  email: String
+  loginPassword: String
+  firebaseUid: String
+  role: String! @default(value: "Staff")
+  department: String
+  phone: String
+  emergencyContact: String
+  bloodGroup: String
+  joiningDate: Timestamp! @default(expr: "request.time")
+  validTill: Timestamp
+  photoUrl: String
+  status: String! @default(value: "Active")
+  createdAt: Timestamp! @default(expr: "request.time")
+}
+
+type UserLogin
+  @table(key: "id", singular: "userLogin", plural: "userLogins")
+  @unique(fields: ["firebaseUid"]) {
+  id: String!
+  firebaseUid: String!
+  email: String!
+  displayName: String
+  role: String! @default(value: "guest")
+  lastLogin: Timestamp! @default(expr: "request.time")
+  createdAt: Timestamp! @default(expr: "request.time")
+}

@@ -1,0 +1,39 @@
+services:
+  mediamtx:
+    image: bluenviron/mediamtx:1
+    container_name: hospitality-mediamtx
+    restart: unless-stopped
+    volumes:
+      - ./mediamtx.yml:/mediamtx.yml:ro
+    ports:
+      - "9997:9997/tcp"
+      - "8189:8189/tcp"
+      - "8189:8189/udp"
+      - "8890:8890/udp"
+    networks:
+      - media
+
+  caddy:
+    image: caddy:2
+    container_name: hospitality-mediamtx-caddy
+    restart: unless-stopped
+    depends_on:
+      - mediamtx
+    environment:
+      MEDIA_DOMAIN: ${MEDIA_DOMAIN}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    networks:
+      - media
+
+networks:
+  media:
+
+volumes:
+  caddy_data:
+  caddy_config:

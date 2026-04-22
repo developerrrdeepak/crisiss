@@ -1,0 +1,15 @@
+query AdminHealthcheck {
+  rooms(limit: 1) {
+    id
+    number
+  }
+}
+
+query ListGuestsForAdmin {
+  guests {
+    id
+    name
+    roomNumber
+    status
+  }
+}
