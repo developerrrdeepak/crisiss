@@ -33,6 +33,7 @@ yarn-error.log*
 # env files (all env files are ignored for security)
 .env*
 .env.prod
+deploy/.cloudrun-runtime.yaml
 
 # project files
 project.txt
