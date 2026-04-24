@@ -44,5 +44,6 @@ code_base.py
 next-env.d.ts
 
 /aegis-socket-server/node_modules
+/socket-service/node_modules
 
 /src/generated/prisma

@@ -1,5 +1,4 @@
-const beaconModeEnv = process.env.NEXT_PUBLIC_BEACON_MODE?.trim().toLowerCase();
-const physicalBeaconToggleEnv = process.env.NEXT_PUBLIC_ENABLE_PHYSICAL_BEACONS?.trim().toLowerCase();
+import { getPublicEnv } from "@/lib/public-env";
 
 export type BeaconMode = "virtual" | "hardware";
 
@@ -60,6 +59,9 @@ function getStableAnchorIndex(node: AnchorNodeLike): number {
 }
 
 export function getBeaconMode(): BeaconMode {
+  const beaconModeEnv = getPublicEnv("NEXT_PUBLIC_BEACON_MODE")?.toLowerCase();
+  const physicalBeaconToggleEnv = getPublicEnv("NEXT_PUBLIC_ENABLE_PHYSICAL_BEACONS")?.toLowerCase();
+
   return beaconModeEnv === "hardware" || physicalBeaconToggleEnv === "true"
     ? "hardware"
     : "virtual";
