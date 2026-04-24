@@ -14,6 +14,7 @@ import {
   buildTransportChannels,
   getTransportLabel,
 } from "@/lib/sos-transport";
+import { persistIncident, updateIncidentStatus } from "@/lib/incident-client";
 
 export default function StaffSOSPage() {
   const [sidebarExpanded, setSidebarExpanded] = useState(false);
@@ -143,26 +144,27 @@ export default function StaffSOSPage() {
         originRole: "staff",
       });
     } catch {
-      console.log("Firestore bypassed for staff SOS. Continuing with realtime signaling.");
+      // Keep realtime SOS active even when Firestore is unavailable.
     }
 
-    socket?.emit("trigger-sos", {
-      incidentId,
-      guestId: employeeId,
-      guestName: staffName,
-      roomId: sector,
-      audioChannel,
-      activeTransport,
-      transportMode: "auto",
-      transportChannels,
-      originRole: "staff",
-      type: "Staff SOS",
-    });
+    try {
+      await persistIncident({
+        id: incidentId,
+        title: "Staff SOS",
+        description: `Staff member ${staffName} triggered an SOS alert from ${sector}. Active transport: ${activeTransport}. Channel: ${audioChannel}.`,
+        severity: "Critical",
+        roomId: sector,
+        status: "Active",
+      });
+    } catch (error) {
+      console.error("Failed to persist staff SOS incident:", error);
+    }
 
     await toggleMic();
   };
 
   const handleCancel = async () => {
+    const incidentId = activeIncidentId || "STAFF-CANCEL";
     setSosActive(false);
     setActiveIncidentId(null);
 
@@ -170,8 +172,16 @@ export default function StaffSOSPage() {
       await toggleMic();
     }
 
+    if (activeIncidentId) {
+      try {
+        await updateIncidentStatus(incidentId, "Resolved");
+      } catch (error) {
+        console.error("Failed to resolve staff SOS incident:", error);
+      }
+    }
+
     socket?.emit("resolve-alert", {
-      incidentId: activeIncidentId || "STAFF-CANCEL",
+      incidentId,
       roomId: sector,
     });
   };

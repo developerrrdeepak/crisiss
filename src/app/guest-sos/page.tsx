@@ -10,6 +10,7 @@ import {
   buildTransportChannels,
   getTransportLabel,
 } from "@/lib/sos-transport";
+import { persistIncident, updateIncidentStatus } from "@/lib/incident-client";
 
 import { GuestSidebar } from "@/components/GuestSidebar";
 import { useAuthSync } from "@/hooks/useAuthSync";
@@ -86,6 +87,13 @@ export default function GuestSOS() {
       if (isMicActive) {
           await toggleMic();
       }
+      if (activeIncidentId) {
+        try {
+          await updateIncidentStatus(incidentId, "Resolved");
+        } catch (error) {
+          console.error("Failed to resolve guest SOS incident:", error);
+        }
+      }
       socket?.emit('resolve-alert', { roomId: roomId, incidentId });
   };
 
@@ -112,22 +120,23 @@ export default function GuestSOS() {
         originRole: "guest",
       });
     } catch {
-      console.log("Firestore bypassed (likely using mock credentials), proceeding with realtime broadcast.");
+      // Keep realtime SOS active even when Firestore is unavailable.
     }
 
-    // 2. Broadcast via Socket.io to Admins & Staff
-    socket?.emit('trigger-sos', {
-      incidentId,
-      guestName: userName,
-      roomId: roomId,
-      audioChannel,
-      activeTransport,
-      transportMode: "auto",
-      transportChannels,
-      originRole: "guest",
-    });
+    try {
+      await persistIncident({
+        id: incidentId,
+        title: "SOS Distress",
+        description: `Guest ${userName} triggered an SOS alert from room ${roomId}. Active transport: ${activeTransport}. Channel: ${audioChannel}.`,
+        severity: "Critical",
+        roomId,
+        status: "Active",
+      });
+    } catch (error) {
+      console.error("Failed to persist guest SOS incident:", error);
+    }
 
-    // 3. Auto-open Mic to transmit audio to staff
+    // Auto-open Mic to transmit audio to staff
     await toggleMic();
   };
 

@@ -103,12 +103,14 @@ export default function GuestDashboard() {
   });
 
   useEffect(() => {
-    if (!dbUser?.id) return;
-    void fetch(`/api/guest/details?id=${dbUser.id}`, { cache: "no-store" })
+    const guestProfileId = dbUser?.profileId || dbUser?.id;
+    if (!guestProfileId) return;
+
+    void fetch(`/api/guest/details?id=${guestProfileId}`, { cache: "no-store" })
       .then(r => r.json())
       .then(data => { if (data.success && data.guest?.roomStatus) setRoomStatus(data.guest.roomStatus); })
       .catch(() => {});
-  }, [dbUser?.id]);
+  }, [dbUser?.id, dbUser?.profileId]);
 
   const roomStatusInfo = roomStatus ? getRoomStatusStyle(roomStatus) : null;
   const graph = useMemo(() => createGraphSnapshot(state.graphNodes, state.graphEdges), [state.graphEdges, state.graphNodes]);

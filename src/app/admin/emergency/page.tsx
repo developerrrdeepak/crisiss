@@ -6,11 +6,20 @@ import { useEffect, useState } from "react";
 import { useSocket } from "@/hooks/useSocket";
 import { useRadio } from "@/hooks/useRadio";
 import { useSosTransport } from "@/hooks/useSosTransport";
+import { useAuthSync } from "@/hooks/useAuthSync";
+import {
+  buildAllGuestsThread,
+  buildAllStaffThread,
+  ensureThreads,
+  sendThreadMessage,
+  type MessagingViewer,
+} from "@/lib/messaging";
 import {
   getTransportLabel,
   type SosTransport,
   type TransportChannels,
 } from "@/lib/sos-transport";
+import { persistIncident, updateIncidentStatus } from "@/lib/incident-client";
 
 interface Alert {
   incidentId: string;
@@ -32,9 +41,12 @@ export default function AdminEmergency() {
   const [activeAlerts, setActiveAlerts] = useState<Alert[]>([]);
   const [activeRadioChannel, setActiveRadioChannel] = useState<string | null>(null);
   const [selectedAlertId, setSelectedAlertId] = useState<string | null>(null);
+  const [commandFeedback, setCommandFeedback] = useState<string | null>(null);
+  const [commandBusy, setCommandBusy] = useState<"evacuation" | "seal" | "dispatch" | null>(null);
   const [transportSelections, setTransportSelections] = useState<
     Record<string, SosTransport>
   >({});
+  const { dbUser } = useAuthSync("admin");
 
   const socket = useSocket("admin");
   const { isMicActive, toggleMic } = useRadio(socket, activeRadioChannel || "");
@@ -146,6 +158,12 @@ export default function AdminEmergency() {
       setSelectedAlertId(null);
     }
 
+    try {
+      await updateIncidentStatus(alert.incidentId, "Resolved");
+    } catch (error) {
+      console.error("Failed to resolve emergency incident:", error);
+    }
+
     socket?.emit("resolve-alert", alert);
     setActiveAlerts((prev) =>
       prev.filter((item) => item.incidentId !== alert.incidentId)
@@ -155,6 +173,87 @@ export default function AdminEmergency() {
       delete next[alert.incidentId];
       return next;
     });
+  };
+
+  const adminViewer: MessagingViewer | null = dbUser
+    ? {
+        role: "admin",
+        userId: dbUser.profileId || dbUser.id || dbUser.firebaseUid,
+        aliasIds: [dbUser.id, dbUser.loginId ?? null, dbUser.firebaseUid].filter(
+          (value): value is string => Boolean(value)
+        ),
+        name: dbUser.name || "Administrator",
+      }
+    : null;
+
+  const handleProtocolAction = async (action: "evacuation" | "seal" | "dispatch") => {
+    if (!adminViewer) {
+      setCommandFeedback("Admin session is still loading. Retry in a moment.");
+      return;
+    }
+
+    setCommandBusy(action);
+    setCommandFeedback(null);
+
+    const guestThread = buildAllGuestsThread(adminViewer);
+    const staffThread = buildAllStaffThread(adminViewer);
+    const activeAlert = activeAlerts[0] ?? null;
+
+    try {
+      if (action === "evacuation") {
+        await ensureThreads([guestThread, staffThread]);
+        await Promise.all([
+          sendThreadMessage({
+            thread: guestThread,
+            sender: adminViewer,
+            text: "Emergency evacuation is now active. Follow your live route guidance immediately and keep the radio channel open.",
+          }),
+          sendThreadMessage({
+            thread: staffThread,
+            sender: adminViewer,
+            text: "Emergency evacuation protocol is active. Sweep your assigned zones, guide occupants to exits, and confirm clearance on comms.",
+          }),
+        ]);
+        setCommandFeedback("Evacuation broadcast sent to guest and staff channels.");
+      }
+
+      if (action === "seal") {
+        await ensureThreads([staffThread]);
+        await sendThreadMessage({
+          thread: staffThread,
+          sender: adminViewer,
+          text: "Command center order: seal Sector 3 immediately, lock all access points, and report once the perimeter is secure.",
+        });
+        setCommandFeedback("Sector 3 lockdown order sent to the staff channel.");
+      }
+
+      if (action === "dispatch") {
+        await ensureThreads([staffThread]);
+        await Promise.all([
+          sendThreadMessage({
+            thread: staffThread,
+            sender: adminViewer,
+            text: "External authorities have been dispatched. Keep the access corridor clear, maintain incident comms, and prepare a status handoff.",
+          }),
+          persistIncident({
+            id: `CMD-${Date.now()}`,
+            title: "Authorities Dispatched",
+            description: activeAlert
+              ? `Admin dispatched authorities for ${activeAlert.originRole === "staff" ? activeAlert.roomId : `Room ${activeAlert.roomId}`}.`
+              : "Admin dispatched authorities from the emergency control panel.",
+            severity: "High",
+            roomId: activeAlert?.roomId ?? null,
+            status: "Active",
+          }),
+        ]);
+        setCommandFeedback("Authority dispatch logged and staff notified.");
+      }
+    } catch (error) {
+      console.error("Failed to execute emergency protocol action:", error);
+      setCommandFeedback("Emergency command failed. Check Firebase connectivity and retry.");
+    } finally {
+      setCommandBusy(null);
+    }
   };
 
   return (
@@ -322,6 +421,11 @@ export default function AdminEmergency() {
                 >
                   Protocol Execution
                 </h3>
+                {commandFeedback && (
+                  <div className="mb-4 rounded-2xl border border-[#175ead]/15 bg-[#e2efff]/40 px-4 py-3 text-xs font-semibold text-[#175ead] dark:border-white/10 dark:bg-[#121212] dark:text-[#72aafe]">
+                    {commandFeedback}
+                  </div>
+                )}
                 <div className="space-y-4">
                   <div className="rounded-2xl border border-[#175ead]/20 bg-[#e2efff]/40 p-4 dark:border-white/10 dark:bg-[#121212]">
                     <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#175ead] dark:text-[#72aafe]">
@@ -353,17 +457,32 @@ export default function AdminEmergency() {
                     </div>
                   </div>
 
-                  <button className="flex w-full items-center justify-center gap-3 rounded-xl bg-red-600 py-4 font-semibold text-white shadow-sm transition-colors hover:bg-red-700">
+                  <button
+                    type="button"
+                    onClick={() => void handleProtocolAction("evacuation")}
+                    disabled={commandBusy !== null}
+                    className="flex w-full items-center justify-center gap-3 rounded-xl bg-red-600 py-4 font-semibold text-white shadow-sm transition-colors hover:bg-red-700 disabled:opacity-60"
+                  >
                     <span className="material-symbols-outlined">campaign</span>
-                    Broadcast Evacuation
+                    {commandBusy === "evacuation" ? "Broadcasting..." : "Broadcast Evacuation"}
                   </button>
-                  <button className="flex w-full items-center justify-center gap-3 rounded-xl bg-[#f4f4f5] py-4 font-semibold text-[#09090b] shadow-sm transition-colors hover:bg-[#e4e4e7] dark:bg-[#1a1a1a] dark:text-white dark:hover:bg-[#252525]">
+                  <button
+                    type="button"
+                    onClick={() => void handleProtocolAction("seal")}
+                    disabled={commandBusy !== null}
+                    className="flex w-full items-center justify-center gap-3 rounded-xl bg-[#f4f4f5] py-4 font-semibold text-[#09090b] shadow-sm transition-colors hover:bg-[#e4e4e7] dark:bg-[#1a1a1a] dark:text-white dark:hover:bg-[#252525] disabled:opacity-60"
+                  >
                     <span className="material-symbols-outlined">lock</span>
-                    Seal Sector 3
+                    {commandBusy === "seal" ? "Sealing..." : "Seal Sector 3"}
                   </button>
-                  <button className="flex w-full items-center justify-center gap-3 rounded-xl border border-transparent bg-[#f4f4f5] py-4 font-semibold text-[#09090b] shadow-sm transition-colors hover:border-blue-500 hover:bg-[#e4e4e7] dark:bg-[#27272a] dark:text-white dark:hover:bg-[#3f3f46]">
+                  <button
+                    type="button"
+                    onClick={() => void handleProtocolAction("dispatch")}
+                    disabled={commandBusy !== null}
+                    className="flex w-full items-center justify-center gap-3 rounded-xl border border-transparent bg-[#f4f4f5] py-4 font-semibold text-[#09090b] shadow-sm transition-colors hover:border-blue-500 hover:bg-[#e4e4e7] dark:bg-[#27272a] dark:text-white dark:hover:bg-[#3f3f46] disabled:opacity-60"
+                  >
                     <span className="material-symbols-outlined text-blue-500">local_police</span>
-                    Dispatch Authorities
+                    {commandBusy === "dispatch" ? "Dispatching..." : "Dispatch Authorities"}
                   </button>
                 </div>
               </div>
