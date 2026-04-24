@@ -49,19 +49,12 @@ export function ManualInstallButton() {
     return (
         <button
             onClick={handleInstall}
-            className="flex items-center gap-3 p-3 mt-4 w-full rounded-xl bg-[#bc000a]/10 hover:bg-[#bc000a] text-[#bc000a] hover:text-white border border-[#bc000a]/20 transition-all group shadow-sm"
+            className="flex w-full items-center justify-center gap-2 rounded-2xl border border-[var(--border-color)] bg-[var(--bg-secondary)] px-4 py-3 text-[11px] font-bold uppercase tracking-[0.18em] text-[var(--text-primary)] transition-all hover:border-[color:var(--primary)]"
         >
-            <span className="material-symbols-outlined text-[20px] group-hover:scale-110 transition-transform">
+            <span className="material-symbols-outlined text-[18px]">
                 download_for_offline
             </span>
-            <div className="text-left">
-                <p className="text-[10px] font-black uppercase tracking-widest leading-none">
-                    Install App
-                </p>
-                <p className="text-[8px] opacity-70 font-bold uppercase tracking-tighter mt-1">
-                    Offline Tactical Link
-                </p>
-            </div>
+            Install
         </button>
     );
 }

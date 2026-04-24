@@ -270,35 +270,35 @@ export default function AdminDashboard() {
 
   const stats = [
     {
-      label: "TOTAL GUESTS",
+      label: "GUESTS",
       val: summary.totalGuests,
       icon: "groups",
       change:
         summary.totalGuests > 0
-          ? `${summary.occupiedRooms} rooms actively occupied`
-          : "No guest records yet",
+          ? `${summary.occupiedRooms} active rooms`
+          : "No records",
     },
     {
-      label: "ACTIVE STAFF",
+      label: "STAFF",
       val: summary.activeStaff,
       icon: "badge",
       change:
-        summary.activeStaff > 0 ? "Operational coverage live" : "No staff roster found",
+        summary.activeStaff > 0 ? "On shift" : "No roster",
     },
     {
-      label: "ROOMS AVAILABLE",
+      label: "ROOMS",
       val: summary.roomsAvailable,
       icon: "meeting_room",
       change:
         summary.totalRooms > 0
-          ? `${summary.occupancyRate}% occupancy`
-          : "No room inventory found",
+          ? `${summary.occupancyRate}% full`
+          : "No inventory",
     },
     {
-      label: "SYSTEM ALERTS",
+      label: "ALERTS",
       val: summary.systemAlerts,
       icon: "notification_important",
-      change: summary.systemAlerts > 0 ? "Requires attention" : "All clear",
+      change: summary.systemAlerts > 0 ? "Needs review" : "Clear",
     },
   ];
 
@@ -358,7 +358,7 @@ export default function AdminDashboard() {
                 <div key={i} className="w-1 h-1 rounded-full bg-indigo-500" style={{ animation: `pulse 1.2s ease-in-out ${i * 0.2}s infinite` }} />
               ))}
             </div>
-            <p className="text-xs text-[#71717a] dark:text-[#52525b] font-medium mt-1">Loading Command Center…</p>
+            <p className="text-xs text-[#71717a] dark:text-[#52525b] font-medium mt-1">Loading Command Center...</p>
           </div>
         </div>
       </div>
@@ -411,7 +411,7 @@ export default function AdminDashboard() {
             <h1 className="text-3xl font-light tracking-tight">
               Command Center
             </h1>
-            <p className="text-sm text-[#71717a] dark:text-[#a1a1aa] mt-2">Real-time administration and operational telemetry.</p>
+            <p className="text-sm text-[#71717a] dark:text-[#a1a1aa] mt-2">Live operations.</p>
           </motion.div>
 
           <motion.div
@@ -441,7 +441,7 @@ export default function AdminDashboard() {
                 <DashboardMessagingCard
                   eyebrow="Integrated Messaging"
                   title="Communications Hub"
-                  description="Admin messaging is now surfaced directly inside the command dashboard with live thread activity across staff and guests, plus one-click jumps into the right inbox channel."
+                  description="Staff and guest channels."
                   recentThreads={recentMessageThreads}
                   totalThreads={totalMessageThreads}
                   activeThreads={activeMessageThreads}
@@ -474,9 +474,9 @@ export default function AdminDashboard() {
                 {/* LIVE ACTIVITY FEED */}
                 <div className="rounded-2xl border border-[#e4e4e7] dark:border-[#27272a] bg-white dark:bg-[#0f0f0f] p-6 lg:p-8 flex flex-col shadow-sm">
                   <div className="flex justify-between items-center mb-6 pb-6 border-b border-[#e4e4e7] dark:border-[#27272a]">
-                    <h3 className="text-lg font-semibold tracking-tight">Live Activity Feed</h3>
+                    <h3 className="text-lg font-semibold tracking-tight">Live Feed</h3>
                     <Link href="/admin/cameras" className="text-[11px] font-bold tracking-widest uppercase text-[#4F46E5] dark:text-[#818CF8] hover:text-[#4338ca] dark:hover:text-[#a5b4fc] flex items-center gap-2 transition-colors px-4 py-2 bg-[#4F46E5]/5 dark:bg-[#818CF8]/10 rounded-full hover:bg-[#4F46E5]/10">
-                      View Cameras <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
+                      Cameras <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
                     </Link>
                   </div>
 
@@ -517,7 +517,7 @@ export default function AdminDashboard() {
                 <div className="rounded-2xl border border-[#e4e4e7] dark:border-[#27272a] bg-white dark:bg-[#0f0f0f] p-6 lg:p-8 flex flex-col shadow-sm">
                   <div className="flex justify-between items-center mb-6 pb-6 border-b border-[#e4e4e7] dark:border-[#27272a]">
                     <h3 className="text-lg font-semibold tracking-tight flex items-center gap-3">
-                      Security Incidents
+                      Incidents
                       <span className="relative flex h-3 w-3">
                         {incidents.filter(i => i.status === 'Active').length > 0 && (
                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -586,7 +586,7 @@ export default function AdminDashboard() {
 
                   <h3 className="text-lg font-semibold tracking-tight flex items-center gap-2 mb-6">
                     <span className="material-symbols-outlined text-red-500">warning</span>
-                    System Overrides
+                    Overrides
                   </h3>
 
                   <div className="flex flex-col gap-4 relative z-10">
@@ -623,7 +623,7 @@ export default function AdminDashboard() {
                 {/* GUEST WATCHLIST */}
                 <div className="rounded-2xl border border-[#e4e4e7] dark:border-[#27272a] bg-white dark:bg-[#0f0f0f] p-6 lg:p-8 shadow-sm flex-1 flex flex-col">
                   <div className="flex justify-between items-center mb-6 pb-6 border-b border-[#e4e4e7] dark:border-[#27272a]">
-                    <h3 className="text-lg font-semibold tracking-tight">Guest Watchlist</h3>
+                    <h3 className="text-lg font-semibold tracking-tight">Guests</h3>
                     <Link href="/admin/guests" className="text-[11px] font-bold tracking-widest uppercase text-gray-500 hover:text-gray-900 dark:hover:text-white flex items-center gap-2 transition-colors">
                       View All <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
                     </Link>

@@ -77,7 +77,7 @@ function buildChecklist(entry: {
     },
     {
       title: "Duty assignment",
-      detail: `${entry.role} • ${entry.department}`,
+      detail: `${entry.role} | ${entry.department}`,
       ready: Boolean(entry.role && entry.department),
       icon: "assignment_ind",
     },
@@ -285,11 +285,11 @@ export default function StaffDashboard() {
         <main className="mx-auto flex w-full max-w-[1600px] flex-1 overflow-y-auto p-4 md:p-10 lg:p-12">
           <div className="w-full">
             <div className="mb-10 flex flex-col gap-2">
-              <h1 className="text-3xl font-light tracking-tight">Live Shift Overview</h1>
+              <h1 className="text-3xl font-light tracking-tight">Shift Overview</h1>
               <p className="text-sm text-[#71717a] dark:text-[#a1a1aa]">
                 {loading
                   ? "Loading your staff profile..."
-                  : `${profile.role} • ${profile.department} • ${profile.sector}`}
+                  : `${profile.role} | ${profile.department} | ${profile.sector}`}
               </p>
             </div>
 
@@ -341,7 +341,7 @@ export default function StaffDashboard() {
                   <div className="flex items-center justify-between border-b border-[#f4f4f5] p-6 dark:border-[#27272a]">
                     <div>
                       <h3 className="text-sm font-medium text-[#09090b] dark:text-[#fafafa]">
-                        Operational Snapshot
+                        Snapshot
                       </h3>
                       <p className="mt-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">
                         Real-time view from the authenticated staff profile.
@@ -386,7 +386,7 @@ export default function StaffDashboard() {
                 <div className="rounded-2xl border border-[#e4e4e7] bg-white p-6 shadow-sm dark:border-[#27272a] dark:bg-[#09090b]">
                   <div className="mb-6 flex items-center justify-between">
                     <h3 className="text-sm font-medium text-[#09090b] dark:text-[#fafafa]">
-                      Profile Readiness Checklist
+                      Profile
                     </h3>
                     <Link
                       href="/staff-profile"
@@ -433,7 +433,7 @@ export default function StaffDashboard() {
                 <div className="rounded-2xl border border-[#e4e4e7] bg-white p-6 shadow-sm dark:border-[#27272a] dark:bg-[#09090b]">
                   <div className="mb-6 flex items-center justify-between">
                     <h3 className="text-sm font-medium text-[#09090b] dark:text-[#fafafa]">
-                      Department Roster
+                      Team
                     </h3>
                     <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#71717a] dark:text-[#a1a1aa]">
                       {sameDepartmentStaff.length} listed
@@ -462,13 +462,13 @@ export default function StaffDashboard() {
 
                     {!loadingRoster && sameDepartmentStaff.length === 0 && (
                       <div className="rounded-xl border border-dashed border-[#d4d4d8] p-4 text-sm text-[#71717a] dark:border-[#27272a] dark:text-[#a1a1aa]">
-                        No department roster entries found yet.
+                        No team entries yet.
                       </div>
                     )}
 
                     {loadingRoster && (
                       <div className="rounded-xl border border-dashed border-[#d4d4d8] p-4 text-sm text-[#71717a] dark:border-[#27272a] dark:text-[#a1a1aa]">
-                        Loading department roster...
+                        Loading team...
                       </div>
                     )}
                   </div>
@@ -480,7 +480,7 @@ export default function StaffDashboard() {
                       contacts
                     </span>
                     <h3 className="text-sm font-medium text-[#09090b] dark:text-[#fafafa]">
-                      Direct Contacts
+                      Contacts
                     </h3>
                   </div>
                   <div className="space-y-4">
@@ -511,7 +511,7 @@ export default function StaffDashboard() {
                 <DashboardMessagingCard
                   eyebrow="Shift Messaging"
                   title="Command Bridge"
-                  description="Staff messaging is now wired into the dashboard with live previews for your direct admin line, department room, and staff-wide operational feed."
+                  description="Admin line, department room, staff feed."
                   recentThreads={recentMessageThreads}
                   totalThreads={totalMessageThreads}
                   activeThreads={activeMessageThreads}
@@ -586,7 +586,7 @@ export default function StaffDashboard() {
                       </p>
                       <p className="mt-2 text-xs text-[#71717a] dark:text-[#a1a1aa]">
                         {selectedStaffTrackingStatus
-                          ? `${selectedStaffTrackingStatus.trackingMode} • confidence ${Math.round(selectedStaffTrackingStatus.confidence * 100)}%`
+                          ? `${selectedStaffTrackingStatus.trackingMode} | confidence ${Math.round(selectedStaffTrackingStatus.confidence * 100)}%`
                           : "Routing telemetry will appear after the admin map is generated."}
                       </p>
                     </div>

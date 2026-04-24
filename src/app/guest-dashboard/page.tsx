@@ -174,10 +174,10 @@ export default function GuestDashboard() {
 
           <div className="mb-8 flex flex-col gap-1">
             <h1 className="text-3xl sm:text-4xl font-light tracking-tight text-gray-900 dark:text-white">
-              Welcome back, {firstName}.
+              Hi, {firstName}.
             </h1>
             <p className="text-sm text-gray-500 dark:text-[#a1a1aa]">
-              Your stay is confirmed through {checkoutLabel}.
+              Checkout {checkoutLabel}.
             </p>
           </div>
 
@@ -222,7 +222,7 @@ export default function GuestDashboard() {
                 <span className="font-['Space_Grotesk'] font-bold text-[10px] tracking-[0.2em] mb-0.5">SOS</span>
                 <span className="font-['Space_Grotesk'] font-black text-2xl tracking-[0.1em]">SOS</span>
               </Link>
-              <p className="text-[10px] text-gray-400 uppercase tracking-widest mt-8 relative z-10 font-bold">Press for immediate assistance</p>
+              <p className="text-[10px] text-gray-400 uppercase tracking-widest mt-8 relative z-10 font-bold">Emergency only</p>
             </div>
 
             {/* SERVICES BLOCK */}
@@ -260,8 +260,8 @@ export default function GuestDashboard() {
                     <span className="material-symbols-outlined" style={{ fontVariationSettings: '"FILL" 1' }}>check_circle</span>
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-gray-900 dark:text-white mb-1">Active Room Monitoring</p>
-                    <p className="text-xs text-gray-500 dark:text-[#a1a1aa] leading-relaxed">Your stay is secured by Aegis AI. Environmental sensors are fully operational.</p>
+                    <p className="text-sm font-bold text-gray-900 dark:text-white mb-1">Room Monitoring</p>
+                    <p className="text-xs text-gray-500 dark:text-[#a1a1aa] leading-relaxed">Sensors live and stable.</p>
                   </div>
                 </div>
               </div>
@@ -271,7 +271,7 @@ export default function GuestDashboard() {
               <DashboardMessagingCard
                 eyebrow="Guest Messaging"
                 title="Concierge Channel"
-                description="Your direct admin line and hotel announcements now surface inside the guest dashboard so you can jump into the right conversation without leaving this view."
+                description="Direct line and announcements."
                 recentThreads={recentMessageThreads}
                 totalThreads={totalMessageThreads}
                 activeThreads={activeMessageThreads}
@@ -343,7 +343,7 @@ export default function GuestDashboard() {
                     </p>
                     <p className="mt-2 text-xs leading-relaxed text-gray-500 dark:text-[#a1a1aa]">
                       {guestTrackingStatus
-                        ? `${guestTrackingStatus.trackingMode} • confidence ${Math.round(guestTrackingStatus.confidence * 100)}%`
+                        ? `${guestTrackingStatus.trackingMode} | confidence ${Math.round(guestTrackingStatus.confidence * 100)}%`
                         : "Build the admin tactical map first to unlock live guest routing."}
                     </p>
                   </div>
@@ -356,7 +356,7 @@ export default function GuestDashboard() {
                       {guestOccupant?.lastBeaconSignal?.address ?? beaconCopy.pendingLockLabel}
                     </p>
                     <p className="mt-2 text-xs leading-relaxed text-gray-500 dark:text-[#a1a1aa]">
-                      Channel: {activeCommandChannel || "No guest bridge assigned yet"} • Confidence {Math.round((guestOccupant?.trackingConfidence ?? 0) * 100)}%
+                      Channel: {activeCommandChannel || "No guest bridge assigned yet"} | Confidence {Math.round((guestOccupant?.trackingConfidence ?? 0) * 100)}%
                     </p>
                     <button
                       type="button"
