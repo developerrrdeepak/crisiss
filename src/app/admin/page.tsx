@@ -270,35 +270,35 @@ export default function AdminDashboard() {
 
   const stats = [
     {
-      label: "GUESTS",
+      label: "TOTAL GUESTS",
       val: summary.totalGuests,
       icon: "groups",
       change:
         summary.totalGuests > 0
-          ? `${summary.occupiedRooms} active rooms`
-          : "No records",
+          ? `${summary.occupiedRooms} rooms actively occupied`
+          : "No guest records yet",
     },
     {
-      label: "STAFF",
+      label: "ACTIVE STAFF",
       val: summary.activeStaff,
       icon: "badge",
       change:
-        summary.activeStaff > 0 ? "On shift" : "No roster",
+        summary.activeStaff > 0 ? "Operational coverage live" : "No staff roster found",
     },
     {
-      label: "ROOMS",
+      label: "ROOMS AVAILABLE",
       val: summary.roomsAvailable,
       icon: "meeting_room",
       change:
         summary.totalRooms > 0
-          ? `${summary.occupancyRate}% full`
-          : "No inventory",
+          ? `${summary.occupancyRate}% occupancy`
+          : "No room inventory found",
     },
     {
-      label: "ALERTS",
+      label: "SYSTEM ALERTS",
       val: summary.systemAlerts,
       icon: "notification_important",
-      change: summary.systemAlerts > 0 ? "Needs review" : "Clear",
+      change: summary.systemAlerts > 0 ? "Requires attention" : "All clear",
     },
   ];
 
@@ -321,12 +321,9 @@ export default function AdminDashboard() {
 
   if (loading || isLoading) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center bg-[#fafafa] dark:bg-[#0a0a0a] relative overflow-hidden">
+      <div className="min-h-screen flex flex-col items-center justify-center bg-slate-50 dark:bg-zinc-950 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-gradient-to-br from-indigo-500/8 to-violet-500/5 blur-3xl" />
-          <div className="absolute -bottom-32 -right-32 w-96 h-96 rounded-full bg-gradient-to-tl from-blue-500/8 to-cyan-500/5 blur-3xl" />
-          <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, rgba(150,150,150,0.06) 1px, transparent 0)", backgroundSize: "40px 40px" }} />
-        </div>
+          
         <div className="relative flex flex-col items-center gap-8">
           <div className="relative w-20 h-20">
             <svg className="absolute inset-0 w-full h-full animate-spin" style={{ animationDuration: "2.4s" }} viewBox="0 0 80 80">
@@ -352,13 +349,13 @@ export default function AdminDashboard() {
             </div>
           </div>
           <div className="flex flex-col items-center gap-2">
-            <span className="text-[11px] font-black uppercase tracking-[0.4em] text-[#a1a1aa]">Aegis</span>
+            <span className="text-[11px] font-black uppercase tracking-[0.4em] text-zinc-400">Aegis</span>
             <div className="flex items-center gap-1.5">
               {[0, 1, 2].map(i => (
                 <div key={i} className="w-1 h-1 rounded-full bg-indigo-500" style={{ animation: `pulse 1.2s ease-in-out ${i * 0.2}s infinite` }} />
               ))}
             </div>
-            <p className="text-xs text-[#71717a] dark:text-[#52525b] font-medium mt-1">Loading Command Center...</p>
+            <p className="text-xs text-slate-500 dark:text-zinc-500 font-medium mt-1">Loading Command Center…</p>
           </div>
         </div>
       </div>
@@ -371,7 +368,7 @@ export default function AdminDashboard() {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="bg-[#fafafa] dark:bg-[#0a0a0a] text-[#09090b] dark:text-[#e5e2e1] h-screen overflow-hidden flex flex-col font-['Sora'] relative"
+      className="bg-slate-50 dark:bg-zinc-950 text-slate-900 dark:text-zinc-50 h-screen overflow-hidden flex flex-col font-['Sora'] relative"
     >
       <div
         className="absolute inset-0 pointer-events-none z-0"
@@ -411,7 +408,7 @@ export default function AdminDashboard() {
             <h1 className="text-3xl font-light tracking-tight">
               Command Center
             </h1>
-            <p className="text-sm text-[#71717a] dark:text-[#a1a1aa] mt-2">Live operations.</p>
+            <p className="text-sm text-slate-500 dark:text-zinc-400 mt-2">Real-time administration and operational telemetry.</p>
           </motion.div>
 
           <motion.div
@@ -425,11 +422,11 @@ export default function AdminDashboard() {
               {stats.map((stat, i) => (
                 <div
                   key={i}
-                  className="rounded-2xl border border-[#e4e4e7] dark:border-[#27272a] bg-white dark:bg-[#0f0f0f] p-5"
+                  className="rounded-2xl border border-slate-200 dark:border-zinc-800/80 bg-white dark:bg-zinc-900 p-5"
                 >
-                  <p className="text-[10px] font-bold tracking-[0.24em] uppercase text-[#a1a1aa]">{stat.label}</p>
+                  <p className="text-[10px] font-bold tracking-[0.24em] uppercase text-zinc-400">{stat.label}</p>
                   <p className="text-3xl font-light tracking-tight mt-3">{stat.val}</p>
-                  <p className="text-xs text-[#71717a] dark:text-[#a1a1aa] mt-2">{stat.change}</p>
+                  <p className="text-xs text-slate-500 dark:text-zinc-400 mt-2">{stat.change}</p>
                 </div>
               ))}
             </motion.div>
@@ -441,7 +438,7 @@ export default function AdminDashboard() {
                 <DashboardMessagingCard
                   eyebrow="Integrated Messaging"
                   title="Communications Hub"
-                  description="Staff and guest channels."
+                  description="Admin messaging is now surfaced directly inside the command dashboard with live thread activity across staff and guests, plus one-click jumps into the right inbox channel."
                   recentThreads={recentMessageThreads}
                   totalThreads={totalMessageThreads}
                   activeThreads={activeMessageThreads}
@@ -472,11 +469,11 @@ export default function AdminDashboard() {
                 />
 
                 {/* LIVE ACTIVITY FEED */}
-                <div className="rounded-2xl border border-[#e4e4e7] dark:border-[#27272a] bg-white dark:bg-[#0f0f0f] p-6 lg:p-8 flex flex-col shadow-sm">
-                  <div className="flex justify-between items-center mb-6 pb-6 border-b border-[#e4e4e7] dark:border-[#27272a]">
-                    <h3 className="text-lg font-semibold tracking-tight">Live Feed</h3>
+                <div className="rounded-2xl border border-slate-200 dark:border-zinc-800/80 bg-white dark:bg-zinc-900 p-6 lg:p-8 flex flex-col shadow-sm">
+                  <div className="flex justify-between items-center mb-6 pb-6 border-b border-slate-200 dark:border-zinc-800/80">
+                    <h3 className="text-lg font-semibold tracking-tight">Live Activity Feed</h3>
                     <Link href="/admin/cameras" className="text-[11px] font-bold tracking-widest uppercase text-[#4F46E5] dark:text-[#818CF8] hover:text-[#4338ca] dark:hover:text-[#a5b4fc] flex items-center gap-2 transition-colors px-4 py-2 bg-[#4F46E5]/5 dark:bg-[#818CF8]/10 rounded-full hover:bg-[#4F46E5]/10">
-                      Cameras <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
+                      View Cameras <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
                     </Link>
                   </div>
 
@@ -490,7 +487,7 @@ export default function AdminDashboard() {
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: 10 }}
                           transition={{ delay: i * 0.1 }}
-                          className="flex gap-4 p-4 lg:p-5 hover:bg-white dark:hover:bg-[#121215] rounded-2xl border border-transparent hover:border-gray-100 dark:hover:border-[#27272a] hover:shadow-sm transition-all group"
+                          className="flex gap-4 p-4 lg:p-5 hover:bg-white dark:hover:bg-[#121215] rounded-2xl border border-transparent hover:border-gray-100 dark:hover:border-zinc-800/80 hover:shadow-sm transition-all group"
                         >
                           <div className="flex-shrink-0 mt-1">
                             {getNotificationIcon(notif.type)}
@@ -498,15 +495,15 @@ export default function AdminDashboard() {
                           <div className="flex-1 min-w-0">
                             <div className="flex justify-between items-start mb-1.5">
                               <p className="text-sm font-bold text-gray-900 dark:text-gray-100 truncate group-hover:text-[#dc2626] dark:group-hover:text-[#ffb4aa] transition-colors">{notif.title}</p>
-                              <span className="text-[10px] uppercase font-semibold tracking-wider text-gray-400 dark:text-[#52525b] shrink-0 bg-gray-50 dark:bg-[#121215] px-2 py-1 rounded-md">{notif.time}</span>
+                              <span className="text-[10px] uppercase font-semibold tracking-wider text-gray-400 dark:text-zinc-500 shrink-0 bg-gray-50 dark:bg-[#121215] px-2 py-1 rounded-md">{notif.time}</span>
                             </div>
-                            <p className="text-xs text-gray-500 dark:text-[#a1a1aa] leading-relaxed font-medium">{notif.message}</p>
+                            <p className="text-xs text-gray-500 dark:text-zinc-400 leading-relaxed font-medium">{notif.message}</p>
                           </div>
                         </motion.div>
                       ))}
                     </AnimatePresence>
                     {notifications.length === 0 && (
-                      <div className="p-4 text-xs text-gray-500 dark:text-[#71717a]">
+                      <div className="p-4 text-xs text-gray-500 dark:text-slate-500">
                         No live notifications available.
                       </div>
                     )}
@@ -514,10 +511,10 @@ export default function AdminDashboard() {
                 </div>
 
                 {/* SECURITY INCIDENTS */}
-                <div className="rounded-2xl border border-[#e4e4e7] dark:border-[#27272a] bg-white dark:bg-[#0f0f0f] p-6 lg:p-8 flex flex-col shadow-sm">
-                  <div className="flex justify-between items-center mb-6 pb-6 border-b border-[#e4e4e7] dark:border-[#27272a]">
+                <div className="rounded-2xl border border-slate-200 dark:border-zinc-800/80 bg-white dark:bg-zinc-900 p-6 lg:p-8 flex flex-col shadow-sm">
+                  <div className="flex justify-between items-center mb-6 pb-6 border-b border-slate-200 dark:border-zinc-800/80">
                     <h3 className="text-lg font-semibold tracking-tight flex items-center gap-3">
-                      Incidents
+                      Security Incidents
                       <span className="relative flex h-3 w-3">
                         {incidents.filter(i => i.status === 'Active').length > 0 && (
                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
@@ -549,7 +546,7 @@ export default function AdminDashboard() {
                           </div>
                           <div>
                             <p className="text-sm font-bold text-gray-900 dark:text-gray-100 mb-1">{inc.title}</p>
-                            <p className="text-[11px] font-medium text-gray-500 dark:text-[#a1a1aa]">{inc.description || inc.type}</p>
+                            <p className="text-[11px] font-medium text-gray-500 dark:text-zinc-400">{inc.description || inc.type}</p>
                           </div>
                         </div>
                         <div className="flex items-center gap-3 ml-[56px] sm:ml-0">
@@ -570,7 +567,7 @@ export default function AdminDashboard() {
                       </motion.div>
                     ))}
                     {incidents.length === 0 && (
-                      <div className="p-4 text-xs text-gray-500 dark:text-[#71717a]">
+                      <div className="p-4 text-xs text-gray-500 dark:text-slate-500">
                         No incidents recorded.
                       </div>
                     )}
@@ -581,25 +578,25 @@ export default function AdminDashboard() {
               <motion.div variants={itemVariants} className="xl:col-span-4 flex flex-col gap-8">
 
                 {/* SYSTEM OVERRIDES */}
-                <div className="rounded-2xl border border-[#e4e4e7] dark:border-[#27272a] bg-white dark:bg-[#0f0f0f] p-6 lg:p-8 flex flex-col shadow-sm relative overflow-hidden group">
+                <div className="rounded-2xl border border-slate-200 dark:border-zinc-800/80 bg-white dark:bg-zinc-900 p-6 lg:p-8 flex flex-col shadow-sm relative overflow-hidden group">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/10 dark:bg-red-500/5 blur-[50px] pointer-events-none transition-all group-hover:bg-red-500/20"></div>
 
                   <h3 className="text-lg font-semibold tracking-tight flex items-center gap-2 mb-6">
                     <span className="material-symbols-outlined text-red-500">warning</span>
-                    Overrides
+                    System Overrides
                   </h3>
 
                   <div className="flex flex-col gap-4 relative z-10">
                     <button
                       onClick={() => void handleOverride("lockdown")}
                       disabled={activeAction === "override-lockdown"}
-                      className="flex items-center justify-between p-5 rounded-2xl border border-gray-200 dark:border-[#27272a] hover:border-red-300 dark:hover:border-red-800 hover:bg-red-50 dark:hover:bg-red-950 transition-all duration-200 group/btn shadow-sm disabled:opacity-60 hover:shadow-md hover:-translate-y-0.5"
+                      className="flex items-center justify-between p-5 rounded-2xl border border-gray-200 dark:border-zinc-800/80 hover:border-red-300 dark:hover:border-red-800 hover:bg-red-50 dark:hover:bg-red-950 transition-all duration-200 group/btn shadow-sm disabled:opacity-60 hover:shadow-md hover:-translate-y-0.5"
                     >
       <div className="flex flex-col items-start gap-1">
         <span className="text-[14px] font-bold text-slate-900 dark:text-[#f0f2ff] group-hover/btn:text-red-600 dark:group-hover/btn:text-red-400 transition-colors uppercase tracking-wider">Lockdown Protocol</span>
         <span className="text-[11px] font-medium text-slate-500 dark:text-[#8892b0]">Seals all perimeter doors instantly</span>
       </div>
-      <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-[#1a1a1a] flex items-center justify-center group-hover/btn:bg-red-500 group-hover/btn:text-white transition-all duration-200 border border-gray-200 dark:border-[#27272a] group-hover/btn:border-red-500 text-slate-400 dark:text-slate-500 group-hover/btn:scale-110 group-hover/btn:shadow-lg group-hover/btn:shadow-red-500/30">
+      <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-zinc-900 flex items-center justify-center group-hover/btn:bg-red-500 group-hover/btn:text-white transition-all duration-200 border border-gray-200 dark:border-zinc-800/80 group-hover/btn:border-red-500 text-slate-400 dark:text-slate-500 group-hover/btn:scale-110 group-hover/btn:shadow-lg group-hover/btn:shadow-red-500/30">
         <span className="material-symbols-outlined">lock</span>
       </div>
     </button>
@@ -607,13 +604,13 @@ export default function AdminDashboard() {
                     <button
                       onClick={() => void handleOverride("fire")}
                       disabled={activeAction === "override-fire"}
-                      className="flex items-center justify-between p-5 rounded-2xl border border-gray-200 dark:border-[#27272a] hover:border-orange-300 dark:hover:border-orange-800 hover:bg-orange-50 dark:hover:bg-orange-950 transition-all duration-200 group/btn shadow-sm disabled:opacity-60 hover:shadow-md hover:-translate-y-0.5"
+                      className="flex items-center justify-between p-5 rounded-2xl border border-gray-200 dark:border-zinc-800/80 hover:border-orange-300 dark:hover:border-orange-800 hover:bg-orange-50 dark:hover:bg-orange-950 transition-all duration-200 group/btn shadow-sm disabled:opacity-60 hover:shadow-md hover:-translate-y-0.5"
                     >
       <div className="flex flex-col items-start gap-1">
         <span className="text-[14px] font-bold text-slate-900 dark:text-[#f0f2ff] group-hover/btn:text-orange-600 dark:group-hover/btn:text-orange-400 transition-colors uppercase tracking-wider">Fire Evacuation</span>
         <span className="text-[11px] font-medium text-slate-500 dark:text-[#8892b0]">Unlocks all emergency exits</span>
       </div>
-      <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-[#1a1a1a] flex items-center justify-center group-hover/btn:bg-orange-500 group-hover/btn:text-white transition-all duration-200 border border-gray-200 dark:border-[#27272a] group-hover/btn:border-orange-500 text-slate-400 dark:text-slate-500 group-hover/btn:scale-110 group-hover/btn:shadow-lg group-hover/btn:shadow-orange-500/30">
+      <div className="w-10 h-10 rounded-xl bg-gray-100 dark:bg-zinc-900 flex items-center justify-center group-hover/btn:bg-orange-500 group-hover/btn:text-white transition-all duration-200 border border-gray-200 dark:border-zinc-800/80 group-hover/btn:border-orange-500 text-slate-400 dark:text-slate-500 group-hover/btn:scale-110 group-hover/btn:shadow-lg group-hover/btn:shadow-orange-500/30">
         <span className="material-symbols-outlined">local_fire_department</span>
       </div>
     </button>
@@ -621,9 +618,9 @@ export default function AdminDashboard() {
                 </div>
 
                 {/* GUEST WATCHLIST */}
-                <div className="rounded-2xl border border-[#e4e4e7] dark:border-[#27272a] bg-white dark:bg-[#0f0f0f] p-6 lg:p-8 shadow-sm flex-1 flex flex-col">
-                  <div className="flex justify-between items-center mb-6 pb-6 border-b border-[#e4e4e7] dark:border-[#27272a]">
-                    <h3 className="text-lg font-semibold tracking-tight">Guests</h3>
+                <div className="rounded-2xl border border-slate-200 dark:border-zinc-800/80 bg-white dark:bg-zinc-900 p-6 lg:p-8 shadow-sm flex-1 flex flex-col">
+                  <div className="flex justify-between items-center mb-6 pb-6 border-b border-slate-200 dark:border-zinc-800/80">
+                    <h3 className="text-lg font-semibold tracking-tight">Guest Watchlist</h3>
                     <Link href="/admin/guests" className="text-[11px] font-bold tracking-widest uppercase text-gray-500 hover:text-gray-900 dark:hover:text-white flex items-center gap-2 transition-colors">
                       View All <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
                     </Link>
@@ -647,7 +644,7 @@ export default function AdminDashboard() {
                             </div>
                             <div className="flex flex-col gap-0.5">
                               <p className="text-[14px] font-bold text-slate-900 dark:text-[#f0f2ff] group-hover:text-amber-600 dark:group-hover:text-[#a5b4fc] transition-colors">{g.name}</p>
-                              <div className="flex items-center gap-1.5 text-[10px] font-medium text-gray-500 dark:text-[#71717a]">
+                              <div className="flex items-center gap-1.5 text-[10px] font-medium text-gray-500 dark:text-slate-500">
                                 <span className="material-symbols-outlined text-[12px]">meeting_room</span>
                                 Room {g.room || 'N/A'}
                               </div>

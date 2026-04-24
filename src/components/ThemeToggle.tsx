@@ -35,7 +35,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
   return (
     <button
       onClick={toggleTheme}
-      className={`p-2 rounded-full hover:bg-[#e2efff] dark:hover:bg-[#1a1a1a] text-[#475569] dark:text-[#c1c6d5] transition-all flex items-center justify-center ${className}`}
+      className={`p-2 rounded-full hover:bg-[#e2efff] dark:hover:bg-zinc-900 text-[#475569] dark:text-[#c1c6d5] transition-all flex items-center justify-center ${className}`}
       aria-label="Toggle theme"
     >
       <span className="material-symbols-outlined text-xl">

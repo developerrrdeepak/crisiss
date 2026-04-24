@@ -13,7 +13,7 @@ export default function StaffAssignments() {
   ];
 
   return (
-    <div className="bg-[#f5f6fa] dark:bg-[#151824] text-[#081d2c] dark:text-[#e5e2e1] min-h-screen flex flex-col font-['Outfit'] transition-colors relative overflow-hidden">
+    <div className="bg-[#f5f6fa] dark:bg-[#151824] text-[#081d2c] dark:text-zinc-50 min-h-screen flex flex-col font-['Outfit'] transition-colors relative overflow-hidden">
       
       {/* Background Ambient Animation */}
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
@@ -39,7 +39,7 @@ export default function StaffAssignments() {
 
         <main className="flex-1 overflow-auto p-4 lg:p-8 w-full max-w-[1600px] mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
           {/* Top Info Bar */}
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 bg-white/80 dark:bg-[#0f0f0f]/80 backdrop-blur-xl border border-white/50 dark:border-white/5 p-6 md:p-8 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-2xl w-full font-['Space_Grotesk'] group">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl border border-white/50 dark:border-white/5 p-6 md:p-8 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-2xl w-full font-['Space_Grotesk'] group">
             <div>
               <h1 className="font-black text-3xl tracking-tighter text-[#081d2c] dark:text-white uppercase mb-1">Active Staff Operations</h1>
               <p className="text-[#414753] dark:text-[#c1c6d5] text-sm mt-1 font-['Outfit'] font-bold">You have 3 active tasks assigned today.</p>
@@ -58,15 +58,15 @@ export default function StaffAssignments() {
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start font-['Space_Grotesk']">
             {/* Task List */}
-            <div className="lg:col-span-8 bg-white/80 dark:bg-[#0f0f0f]/80 backdrop-blur-xl border border-white/50 dark:border-white/5 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700">
-               <div className="p-6 border-b border-[#c1c6d5]/30 dark:border-white/5 bg-[#f7f9ff]/50 dark:bg-[#1a1a1a]/50 flex justify-between items-center">
-                <h3 className="font-black text-xs uppercase tracking-widest flex items-center gap-2 text-[#081d2c] dark:text-[#e5e2e1]">
+            <div className="lg:col-span-8 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl border border-white/50 dark:border-white/5 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700">
+               <div className="p-6 border-b border-[#c1c6d5]/30 dark:border-white/5 bg-[#f7f9ff]/50 dark:bg-zinc-900/50 flex justify-between items-center">
+                <h3 className="font-black text-xs uppercase tracking-widest flex items-center gap-2 text-[#081d2c] dark:text-zinc-50">
                    <span className="w-1.5 h-4 bg-[#175ead]" /> Service Log
                 </h3>
                </div>
               <div className="divide-y divide-[#c1c6d5]/30 dark:divide-white/5 font-['Outfit']">
                 {tasks.map((task) => (
-                  <div key={task.id} className="p-6 hover:bg-[#f7f9ff] dark:hover:bg-[#1a1a1a] transition-colors cursor-pointer group flex flex-col md:flex-row justify-between md:items-center gap-4">
+                  <div key={task.id} className="p-6 hover:bg-[#f7f9ff] dark:hover:bg-zinc-900 transition-colors cursor-pointer group flex flex-col md:flex-row justify-between md:items-center gap-4">
                     <div>
                       <div className="flex items-center gap-3 mb-3">
                         <span className="text-[10px] font-black text-[#717785] group-hover:text-[#175ead] dark:group-hover:text-[#72aafe] transition-colors font-mono tracking-widest">{task.id}</span>
@@ -88,7 +88,7 @@ export default function StaffAssignments() {
                        <span className={`text-[10px] font-black px-4 py-2 rounded-lg flex items-center gap-2 tracking-widest uppercase shadow-sm border ${
                           task.status === "Completed" ? "bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-400 border-green-200 dark:border-green-400/20" :
                           task.status === "En Route" ? "bg-[#e2efff] dark:bg-[#175ead]/30 text-[#003d79] dark:text-[#72aafe] border-[#175ead]/20 dark:border-[#72aafe]/20" :
-                          "bg-white dark:bg-[#131313] text-[#414753] dark:text-[#e5e2e1] border-[#c1c6d5]/50 dark:border-white/10"
+                          "bg-white dark:bg-[#131313] text-[#414753] dark:text-zinc-50 border-[#c1c6d5]/50 dark:border-white/10"
                        }`}>
                          {task.status === "En Route" && <span className="w-2 h-2 bg-current rounded-full animate-pulse shadow-sm" />}
                          {task.status}
@@ -101,9 +101,9 @@ export default function StaffAssignments() {
 
             {/* Sidebar Stats */}
             <div className="lg:col-span-4 space-y-6 animate-in fade-in slide-in-from-bottom-12 duration-1000">
-              <div className="bg-white/80 dark:bg-[#0f0f0f]/80 backdrop-blur-xl border border-white/50 dark:border-white/5 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-2xl overflow-hidden">
-                 <div className="p-6 border-b border-[#c1c6d5]/30 dark:border-white/5 bg-[#f7f9ff]/50 dark:bg-[#1a1a1a]/50">
-                  <h3 className="font-black text-xs uppercase tracking-widest flex items-center gap-2 text-[#081d2c] dark:text-[#e5e2e1]">
+              <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl border border-white/50 dark:border-white/5 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-2xl overflow-hidden">
+                 <div className="p-6 border-b border-[#c1c6d5]/30 dark:border-white/5 bg-[#f7f9ff]/50 dark:bg-zinc-900/50">
+                  <h3 className="font-black text-xs uppercase tracking-widest flex items-center gap-2 text-[#081d2c] dark:text-zinc-50">
                      <span className="w-1.5 h-4 bg-[#175ead]" /> Hotel Amenities Status
                   </h3>
                  </div>
@@ -112,7 +112,7 @@ export default function StaffAssignments() {
                       { l: "Staff Comms", v: "Connected", c: "text-green-600 dark:text-green-400" },
                       { l: "Maintenance Carts", v: "Available", c: "text-[#175ead] dark:text-[#72aafe]" },
                       { l: "Elevator Banks", v: "Operational", c: "text-green-600 dark:text-green-400" },
-                      { l: "Wifi Network", v: "Optimal", c: "text-[#081d2c] dark:text-[#e5e2e1]" },
+                      { l: "Wifi Network", v: "Optimal", c: "text-[#081d2c] dark:text-zinc-50" },
                     ].map(eq => (
                        <div key={eq.l} className="flex justify-between items-center border-b border-[#c1c6d5]/30 dark:border-white/5 pb-4 mb-4 last:border-0 last:pb-0 last:mb-0">
                          <span className="font-bold text-[#414753] dark:text-[#c1c6d5] text-xs uppercase tracking-widest font-['Space_Grotesk']">{eq.l}</span>

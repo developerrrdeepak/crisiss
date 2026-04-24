@@ -54,7 +54,7 @@ export default function GuestMap() {
       : [];
 
   return (
-    <div className="flex h-screen flex-col overflow-hidden bg-[#f7f9ff] font-['Outfit'] text-[#081d2c] transition-colors dark:bg-[#0a0a0a] dark:text-[#e5e2e1]">
+    <div className="flex h-screen flex-col overflow-hidden bg-[#f7f9ff] font-['Outfit'] text-[#081d2c] transition-colors dark:bg-zinc-950 dark:text-zinc-50">
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div className="absolute -top-40 right-1/4 h-96 w-96 rounded-full bg-[#175ead]/5 blur-[100px] dark:bg-[#175ead]/10" />
       </div>
@@ -87,7 +87,7 @@ export default function GuestMap() {
                     className={`rounded-full px-4 py-2 text-xs font-black uppercase tracking-[0.18em] ${
                       activeFloorId === floor.id
                         ? "bg-[#081d2c] text-white dark:bg-white dark:text-[#081d2c]"
-                        : "border border-[#d5dbe6] bg-white/70 text-[#414753] dark:border-[#27272a] dark:bg-[#111827] dark:text-[#c1c6d5]"
+                        : "border border-[#d5dbe6] bg-white/70 text-[#414753] dark:border-zinc-800/80 dark:bg-[#111827] dark:text-[#c1c6d5]"
                     }`}
                   >
                     {floor.label}
@@ -122,7 +122,7 @@ export default function GuestMap() {
                 <select
                   value={state.selectedGuestId || ""}
                   onChange={(event) => setSelectedGuest(event.target.value)}
-                  className="mt-4 w-full rounded-2xl border border-[#d5dbe6] bg-white px-4 py-3 text-sm dark:border-[#27272a] dark:bg-[#0f1720]"
+                  className="mt-4 w-full rounded-2xl border border-[#d5dbe6] bg-white px-4 py-3 text-sm dark:border-zinc-800/80 dark:bg-[#0f1720]"
                 >
                   {state.occupants.filter((occupant) => occupant.role === "guest").length === 0 ? (
                     <option value="">Build demo from admin map first</option>
@@ -138,7 +138,7 @@ export default function GuestMap() {
                 <select
                   value={guest?.startNodeId ?? ""}
                   onChange={(event) => guest && moveOccupant(guest.id, event.target.value)}
-                  className="mt-3 w-full rounded-2xl border border-[#d5dbe6] bg-white px-4 py-3 text-sm dark:border-[#27272a] dark:bg-[#0f1720]"
+                  className="mt-3 w-full rounded-2xl border border-[#d5dbe6] bg-white px-4 py-3 text-sm dark:border-zinc-800/80 dark:bg-[#0f1720]"
                 >
                   {!hasDemoGraph ? <option value="">No active demo graph yet</option> : null}
                   {Object.values(graphNodesById)
@@ -161,7 +161,7 @@ export default function GuestMap() {
                 </p>
                 {trackingStatus ? (
                   <>
-                    <div className="mt-4 rounded-2xl bg-white px-4 py-4 dark:bg-[#0a0a0a]">
+                    <div className="mt-4 rounded-2xl bg-white px-4 py-4 dark:bg-zinc-950">
                       <p className="text-sm font-bold">
                         {trackingStatus.currentNodeLabel} | {trackingStatus.currentFloorLabel}
                       </p>
@@ -187,7 +187,7 @@ export default function GuestMap() {
                       {guestTrackingEvents.map((event) => (
                         <div
                           key={event.id}
-                          className="rounded-2xl bg-white px-4 py-3 text-sm dark:bg-[#0a0a0a]"
+                          className="rounded-2xl bg-white px-4 py-3 text-sm dark:bg-zinc-950"
                         >
                           <p className="font-bold">{event.message}</p>
                           <p className="mt-1 text-xs text-[#717785] dark:text-[#c1c6d5]">
@@ -233,7 +233,7 @@ export default function GuestMap() {
                 <div className="mt-4 space-y-2">
                   {steps.length > 0 ? (
                     steps.map((step) => (
-                      <div key={step} className="rounded-2xl bg-white px-4 py-3 text-sm dark:bg-[#0a0a0a]">
+                      <div key={step} className="rounded-2xl bg-white px-4 py-3 text-sm dark:bg-zinc-950">
                         {step}
                       </div>
                     ))

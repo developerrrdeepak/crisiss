@@ -39,7 +39,7 @@ export function MessageTimeline({
 
   if (visibleMessages.length === 0) {
     return (
-      <div className="flex h-full items-center justify-center px-6 text-sm text-[#71717a] dark:text-[#a1a1aa]">
+      <div className="flex h-full items-center justify-center px-6 text-sm text-slate-500 dark:text-zinc-400">
         {emptyLabel}
       </div>
     );
@@ -60,7 +60,7 @@ export function MessageTimeline({
             className={`flex items-start gap-4 ${isOwnMessage ? "justify-end" : ""}`}
           >
             {!isOwnMessage && (
-              <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#f4f4f5] text-[10px] font-bold uppercase text-[#09090b] dark:bg-[#1a1a1a] dark:text-white">
+              <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#f4f4f5] text-[10px] font-bold uppercase text-slate-900 dark:bg-zinc-900 dark:text-white">
                 {message.senderRole === "system" ? "SYS" : message.senderName.slice(0, 2)}
               </div>
             )}
@@ -69,7 +69,7 @@ export function MessageTimeline({
               className={`max-w-[85%] rounded-2xl px-4 py-3 text-sm shadow-sm ${
                 isOwnMessage
                   ? "rounded-tr-sm bg-black text-white dark:bg-white dark:text-black"
-                  : "rounded-tl-sm bg-[#f4f4f5] text-[#09090b] dark:bg-[#1a1a1a] dark:text-white"
+                  : "rounded-tl-sm bg-[#f4f4f5] text-slate-900 dark:bg-zinc-900 dark:text-white"
               }`}
             >
               <div className="mb-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.18em] opacity-70">

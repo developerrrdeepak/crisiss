@@ -110,7 +110,7 @@ export default function StaffProfile() {
   ];
 
   return (
-    <div className="relative flex h-screen flex-col overflow-hidden bg-[#fafafa] font-['Sora'] text-gray-900 transition-colors selection:bg-black selection:text-white dark:bg-[#050505] dark:text-white dark:selection:bg-white dark:selection:text-black">
+    <div className="relative flex h-screen flex-col overflow-hidden bg-slate-50 font-['Sora'] text-gray-900 transition-colors selection:bg-black selection:text-white dark:bg-[#050505] dark:text-white dark:selection:bg-white dark:selection:text-black">
       <div
         className="absolute inset-0 z-0 pointer-events-none opacity-40 dark:opacity-100"
         style={{
@@ -144,12 +144,12 @@ export default function StaffProfile() {
           >
             <motion.div
               variants={itemVariants}
-              className="overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm dark:border-[#27272a] dark:bg-[#0a0a0a]"
+              className="overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm dark:border-zinc-800/80 dark:bg-zinc-950"
             >
               <div className="flex flex-col gap-6 px-6 py-8 sm:flex-row sm:items-center sm:justify-between md:px-8">
                 <div className="flex flex-col items-center gap-5 text-center sm:flex-row sm:items-center sm:text-left">
                   <div
-                    className="relative flex h-24 w-24 items-center justify-center overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 text-2xl font-bold text-gray-900 shadow-sm dark:border-[#27272a] dark:bg-[#121215] dark:text-white"
+                    className="relative flex h-24 w-24 items-center justify-center overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 text-2xl font-bold text-gray-900 shadow-sm dark:border-zinc-800/80 dark:bg-[#121215] dark:text-white"
                     style={
                       staffInfo.photoUrl
                         ? {
@@ -169,21 +169,21 @@ export default function StaffProfile() {
                       <h1 className="text-3xl font-light tracking-tight sm:text-4xl">
                         {staffInfo.name}
                       </h1>
-                      <span className="rounded border border-gray-200 bg-gray-100 px-2.5 py-1 font-mono text-[10px] text-gray-600 dark:border-[#27272a] dark:bg-[#1a1a1a] dark:text-[#a1a1aa]">
+                      <span className="rounded border border-gray-200 bg-gray-100 px-2.5 py-1 font-mono text-[10px] text-gray-600 dark:border-zinc-800/80 dark:bg-zinc-900 dark:text-zinc-400">
                         ID: {staffInfo.employeeId}
                       </span>
                     </div>
-                    <p className="mt-2 text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-[#a1a1aa]">
+                    <p className="mt-2 text-sm font-semibold uppercase tracking-wider text-gray-500 dark:text-zinc-400">
                       {staffInfo.role}
                     </p>
-                    <p className="mt-1 text-xs text-gray-400 dark:text-[#71717a]">
+                    <p className="mt-1 text-xs text-gray-400 dark:text-slate-500">
                       {staffInfo.department}
                     </p>
                   </div>
                 </div>
 
                 <div className="flex flex-col items-center gap-3 sm:items-end">
-                  <p className="hidden text-[10px] font-bold uppercase tracking-widest text-gray-500 dark:text-[#71717a] sm:block">
+                  <p className="hidden text-[10px] font-bold uppercase tracking-widest text-gray-500 dark:text-slate-500 sm:block">
                     Profile Status
                   </p>
                   <span
@@ -192,7 +192,7 @@ export default function StaffProfile() {
                     {staffInfo.status}
                   </span>
                   {staffInfo.lastLogin && (
-                    <p className="text-xs text-gray-500 dark:text-[#71717a]">
+                    <p className="text-xs text-gray-500 dark:text-slate-500">
                       Last sync {formatStaffDisplayDate(staffInfo.lastLogin)}
                     </p>
                   )}
@@ -203,7 +203,7 @@ export default function StaffProfile() {
             {loading && (
               <motion.div
                 variants={itemVariants}
-                className="rounded-2xl border border-gray-200 bg-white px-5 py-4 text-sm text-gray-600 shadow-sm dark:border-[#27272a] dark:bg-[#0a0a0a] dark:text-[#a1a1aa]"
+                className="rounded-2xl border border-gray-200 bg-white px-5 py-4 text-sm text-gray-600 shadow-sm dark:border-zinc-800/80 dark:bg-zinc-950 dark:text-zinc-400"
               >
                 Loading staff profile...
               </motion.div>
@@ -212,10 +212,10 @@ export default function StaffProfile() {
             <div className="grid grid-cols-1 gap-6 xl:grid-cols-[1.1fr_0.9fr]">
               <motion.div
                 variants={itemVariants}
-                className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm dark:border-[#27272a] dark:bg-[#0a0a0a]"
+                className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm dark:border-zinc-800/80 dark:bg-zinc-950"
               >
-                <div className="mb-6 flex items-center gap-3 border-b border-gray-100 pb-4 dark:border-[#27272a]/50">
-                  <span className="material-symbols-outlined text-[18px] text-gray-400 dark:text-[#52525b]">
+                <div className="mb-6 flex items-center gap-3 border-b border-gray-100 pb-4 dark:border-zinc-800/80/50">
+                  <span className="material-symbols-outlined text-[18px] text-gray-400 dark:text-zinc-500">
                     assignment_ind
                   </span>
                   <h2 className="text-sm font-semibold">Personnel Records</h2>
@@ -224,7 +224,7 @@ export default function StaffProfile() {
                 <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                   {recordCards.map((field) => (
                     <div key={field.label} className="group">
-                      <p className="mb-1.5 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-gray-500 transition-colors group-hover:text-gray-900 dark:text-[#71717a] dark:group-hover:text-gray-300">
+                      <p className="mb-1.5 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-gray-500 transition-colors group-hover:text-gray-900 dark:text-slate-500 dark:group-hover:text-gray-300">
                         <span className="material-symbols-outlined text-[14px]">{field.icon}</span>
                         {field.label}
                       </p>
@@ -235,8 +235,8 @@ export default function StaffProfile() {
                   ))}
                 </div>
 
-                <div className="mt-8 border-t border-gray-100 pt-6 dark:border-[#27272a]/50">
-                  <p className="mb-3 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-gray-500 dark:text-[#71717a]">
+                <div className="mt-8 border-t border-gray-100 pt-6 dark:border-zinc-800/80/50">
+                  <p className="mb-3 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-gray-500 dark:text-slate-500">
                     <span className="material-symbols-outlined text-[14px]">badge</span>
                     Access Snapshot
                   </p>
@@ -244,9 +244,9 @@ export default function StaffProfile() {
                     {accessCards.map((field) => (
                       <div
                         key={field.label}
-                        className="rounded-xl border border-gray-100 bg-gray-50 p-4 dark:border-[#27272a] dark:bg-[#121215]"
+                        className="rounded-xl border border-gray-100 bg-gray-50 p-4 dark:border-zinc-800/80 dark:bg-[#121215]"
                       >
-                        <p className="mb-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-gray-500 dark:text-[#71717a]">
+                        <p className="mb-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-gray-500 dark:text-slate-500">
                           <span className="material-symbols-outlined text-[14px]">{field.icon}</span>
                           {field.label}
                         </p>
@@ -260,9 +260,9 @@ export default function StaffProfile() {
               </motion.div>
 
               <motion.div variants={itemVariants} className="space-y-6">
-                <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm dark:border-[#27272a] dark:bg-[#0a0a0a]">
-                  <div className="mb-5 flex items-center gap-3 border-b border-gray-100 pb-4 dark:border-[#27272a]/50">
-                    <span className="material-symbols-outlined text-[18px] text-gray-400 dark:text-[#52525b]">
+                <div className="rounded-3xl border border-gray-200 bg-white p-6 shadow-sm dark:border-zinc-800/80 dark:bg-zinc-950">
+                  <div className="mb-5 flex items-center gap-3 border-b border-gray-100 pb-4 dark:border-zinc-800/80/50">
+                    <span className="material-symbols-outlined text-[18px] text-gray-400 dark:text-zinc-500">
                       badge
                     </span>
                     <h2 className="text-sm font-semibold">Issued ID Card</h2>

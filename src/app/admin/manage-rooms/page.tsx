@@ -221,7 +221,7 @@ export default function ManageRooms() {
     }
   };
   return (
-    <div className="bg-[#fafafa] dark:bg-[#0a0a0a] text-[#09090b] dark:text-[#e5e2e1] min-h-screen flex flex-col font-['Sora'] relative">
+    <div className="bg-slate-50 dark:bg-zinc-950 text-slate-900 dark:text-zinc-50 min-h-screen flex flex-col font-['Sora'] relative">
       <div
         className="absolute inset-0 pointer-events-none z-0"
         style={{
@@ -249,13 +249,13 @@ export default function ManageRooms() {
           <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between mb-8">
             <div>
               <h1 className="text-3xl font-light tracking-tight">Manage Rooms</h1>
-              <p className="text-sm text-[#71717a] dark:text-[#a1a1aa] mt-2">
+              <p className="text-sm text-slate-500 dark:text-zinc-400 mt-2">
                 Create rooms, update inventory details, and control operational status from one panel.
               </p>
             </div>
             <Link
               href="/admin/rooms"
-              className="inline-flex items-center gap-2 rounded-xl border border-[#e4e4e7] dark:border-[#27272a] px-4 py-3 text-xs font-bold uppercase tracking-[0.2em] text-[#09090b] dark:text-white hover:bg-white dark:hover:bg-[#121212] transition-colors"
+              className="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-zinc-800/80 px-4 py-3 text-xs font-bold uppercase tracking-[0.2em] text-slate-900 dark:text-white hover:bg-white dark:hover:bg-[#121212] transition-colors"
             >
               <span className="material-symbols-outlined text-base">meeting_room</span>
               Open Allocation
@@ -263,36 +263,36 @@ export default function ManageRooms() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 xl:grid-cols-4 gap-4 mb-8">
-            <div className="rounded-2xl border border-[#e4e4e7] dark:border-[#27272a] bg-white dark:bg-[#0f0f0f] p-5">
-              <p className="text-[10px] font-bold tracking-[0.24em] uppercase text-[#a1a1aa]">Total Rooms</p>
+            <div className="rounded-2xl border border-slate-200 dark:border-zinc-800/80 bg-white dark:bg-zinc-900 p-5">
+              <p className="text-[10px] font-bold tracking-[0.24em] uppercase text-zinc-400">Total Rooms</p>
               <p className="text-3xl font-light tracking-tight mt-3">{rooms.length}</p>
             </div>
-            <div className="rounded-2xl border border-[#e4e4e7] dark:border-[#27272a] bg-white dark:bg-[#0f0f0f] p-5">
-              <p className="text-[10px] font-bold tracking-[0.24em] uppercase text-[#a1a1aa]">Vacant</p>
+            <div className="rounded-2xl border border-slate-200 dark:border-zinc-800/80 bg-white dark:bg-zinc-900 p-5">
+              <p className="text-[10px] font-bold tracking-[0.24em] uppercase text-zinc-400">Vacant</p>
               <p className="text-3xl font-light tracking-tight mt-3">{vacantRooms}</p>
             </div>
-            <div className="rounded-2xl border border-[#e4e4e7] dark:border-[#27272a] bg-white dark:bg-[#0f0f0f] p-5">
-              <p className="text-[10px] font-bold tracking-[0.24em] uppercase text-[#a1a1aa]">Occupied</p>
+            <div className="rounded-2xl border border-slate-200 dark:border-zinc-800/80 bg-white dark:bg-zinc-900 p-5">
+              <p className="text-[10px] font-bold tracking-[0.24em] uppercase text-zinc-400">Occupied</p>
               <p className="text-3xl font-light tracking-tight mt-3">{occupiedRooms}</p>
             </div>
-            <div className="rounded-2xl border border-[#e4e4e7] dark:border-[#27272a] bg-white dark:bg-[#0f0f0f] p-5">
-              <p className="text-[10px] font-bold tracking-[0.24em] uppercase text-[#a1a1aa]">Service States</p>
+            <div className="rounded-2xl border border-slate-200 dark:border-zinc-800/80 bg-white dark:bg-zinc-900 p-5">
+              <p className="text-[10px] font-bold tracking-[0.24em] uppercase text-zinc-400">Service States</p>
               <p className="text-3xl font-light tracking-tight mt-3">{serviceRooms}</p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 xl:grid-cols-[minmax(0,2fr)_420px] gap-8">
-            <section className="bg-white dark:bg-[#0f0f0f] border border-[#e4e4e7] dark:border-white/5 rounded-2xl p-6 md:p-8 shadow-sm">
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-[#e4e4e7] dark:border-[#27272a]">
+            <section className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-white/5 rounded-2xl p-6 md:p-8 shadow-sm">
+              <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-200 dark:border-zinc-800/80">
                 <div>
                   <h2 className="text-lg font-semibold tracking-tight">Property Room List</h2>
-                  <p className="text-xs text-[#71717a] dark:text-[#a1a1aa] mt-1">
+                  <p className="text-xs text-slate-500 dark:text-zinc-400 mt-1">
                     Inventory edits update the allocation board automatically.
                   </p>
                 </div>
                 <button
                   onClick={() => void fetchRooms()}
-                  className="rounded-lg border border-[#e4e4e7] dark:border-[#27272a] px-3 py-2 text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-[#fafafa] dark:hover:bg-[#18181b] transition-colors"
+                  className="rounded-lg border border-slate-200 dark:border-zinc-800/80 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-slate-50 dark:hover:bg-[#18181b] transition-colors"
                 >
                   Refresh
                 </button>
@@ -313,7 +313,7 @@ export default function ManageRooms() {
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-sm whitespace-nowrap">
                   <thead>
-                    <tr className="border-b border-[#e4e4e7] dark:border-[#27272a] text-[#a1a1aa] text-[10px] uppercase tracking-[0.24em]">
+                    <tr className="border-b border-slate-200 dark:border-zinc-800/80 text-zinc-400 text-[10px] uppercase tracking-[0.24em]">
                       <th className="font-medium pb-4 pl-4">Room</th>
                       <th className="font-medium pb-4">Floor</th>
                       <th className="font-medium pb-4">Type</th>
@@ -325,13 +325,13 @@ export default function ManageRooms() {
                   <tbody className="divide-y divide-[#f4f4f5] dark:divide-[#27272a]">
                     {isLoading ? (
                       <tr>
-                        <td colSpan={6} className="py-6 text-center text-xs text-[#71717a]">
+                        <td colSpan={6} className="py-6 text-center text-xs text-slate-500">
                           Loading room inventory...
                         </td>
                       </tr>
                     ) : rooms.length === 0 ? (
                       <tr>
-                        <td colSpan={6} className="py-8 text-center text-sm text-[#71717a] dark:text-[#a1a1aa]">
+                        <td colSpan={6} className="py-8 text-center text-sm text-slate-500 dark:text-zinc-400">
                           No rooms in inventory yet. Add the first room from the panel on the right.
                         </td>
                       </tr>
@@ -341,16 +341,16 @@ export default function ManageRooms() {
 
                         return (
                           <tr key={room.id}>
-                            <td className="py-4 pl-4 font-semibold text-[#09090b] dark:text-white">
+                            <td className="py-4 pl-4 font-semibold text-slate-900 dark:text-white">
                               {room.num}
                             </td>
-                            <td className="py-4 text-[#71717a] dark:text-[#a1a1aa]">{room.floor}</td>
-                            <td className="py-4 text-[#71717a] dark:text-[#a1a1aa]">{room.type}</td>
+                            <td className="py-4 text-slate-500 dark:text-zinc-400">{room.floor}</td>
+                            <td className="py-4 text-slate-500 dark:text-zinc-400">{room.type}</td>
                             <td className="py-4">
                               {room.guestName ? (
-                                <span className="font-medium text-[#09090b] dark:text-white">{room.guestName}</span>
+                                <span className="font-medium text-slate-900 dark:text-white">{room.guestName}</span>
                               ) : (
-                                <span className="text-[#71717a] dark:text-[#a1a1aa]">Unassigned</span>
+                                <span className="text-slate-500 dark:text-zinc-400">Unassigned</span>
                               )}
                             </td>
                             <td className="py-4">
@@ -361,7 +361,7 @@ export default function ManageRooms() {
                                   >
                                     {room.state}
                                   </span>
-                                  <span className="text-[9px] text-[#a1a1aa] tracking-wide">visible to guest</span>
+                                  <span className="text-[9px] text-zinc-400 tracking-wide">visible to guest</span>
                                 </div>
                                 <select
                                   value={room.state}
@@ -369,7 +369,7 @@ export default function ManageRooms() {
                                   onChange={(event) =>
                                     void handleStatusChange(room.id, event.target.value as RoomState)
                                   }
-                                  className="rounded-lg border border-[#e4e4e7] dark:border-[#27272a] bg-white dark:bg-[#121212] px-2 py-1.5 text-xs text-[#09090b] dark:text-white outline-none disabled:opacity-60"
+                                  className="rounded-lg border border-slate-200 dark:border-zinc-800/80 bg-white dark:bg-[#121212] px-2 py-1.5 text-xs text-slate-900 dark:text-white outline-none disabled:opacity-60"
                                 >
                                   {ROOM_STATE_OPTIONS.map((state) => (
                                     <option
@@ -388,7 +388,7 @@ export default function ManageRooms() {
                                 <button
                                   onClick={() => handleEdit(room)}
                                   disabled={roomBusy}
-                                  className="rounded-lg border border-[#e4e4e7] dark:border-[#27272a] px-3 py-2 text-[11px] font-bold uppercase tracking-[0.16em] hover:bg-[#fafafa] dark:hover:bg-[#18181b] transition-colors disabled:opacity-60"
+                                  className="rounded-lg border border-slate-200 dark:border-zinc-800/80 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.16em] hover:bg-slate-50 dark:hover:bg-[#18181b] transition-colors disabled:opacity-60"
                                 >
                                   Edit
                                 </button>
@@ -410,12 +410,12 @@ export default function ManageRooms() {
               </div>
             </section>
 
-            <aside className="bg-white dark:bg-[#0f0f0f] border border-[#e4e4e7] dark:border-white/5 rounded-2xl p-6 md:p-8 shadow-sm h-fit">
-              <div className="mb-6 pb-4 border-b border-[#e4e4e7] dark:border-[#27272a]">
+            <aside className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-white/5 rounded-2xl p-6 md:p-8 shadow-sm h-fit">
+              <div className="mb-6 pb-4 border-b border-slate-200 dark:border-zinc-800/80">
                 <h2 className="text-lg font-semibold tracking-tight">
                   {isEditing ? "Edit Room" : "Add New Room"}
                 </h2>
-                <p className="text-xs text-[#71717a] dark:text-[#a1a1aa] mt-1">
+                <p className="text-xs text-slate-500 dark:text-zinc-400 mt-1">
                   {isEditing
                     ? "Update the room metadata below. Status changes stay available in the inventory table."
                     : "New rooms enter the inventory as vacant and immediately appear in room allocation."}
@@ -424,7 +424,7 @@ export default function ManageRooms() {
 
               <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
-                  <label className="text-[10px] font-bold text-[#a1a1aa] uppercase tracking-[0.24em]">
+                  <label className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.24em]">
                     Room Number
                   </label>
                   <input
@@ -435,12 +435,12 @@ export default function ManageRooms() {
                     }
                     required
                     placeholder="201"
-                    className="mt-2 w-full rounded-xl bg-[#fafafa] dark:bg-[#1a1a1a] border border-transparent focus:border-[#175ead] px-4 py-3 text-sm outline-none transition-colors"
+                    className="mt-2 w-full rounded-xl bg-slate-50 dark:bg-zinc-900 border border-transparent focus:border-[#175ead] px-4 py-3 text-sm outline-none transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="text-[10px] font-bold text-[#a1a1aa] uppercase tracking-[0.24em]">
+                  <label className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.24em]">
                     Floor
                   </label>
                   <input
@@ -451,12 +451,12 @@ export default function ManageRooms() {
                       setForm((current) => ({ ...current, floor: event.target.value }))
                     }
                     required
-                    className="mt-2 w-full rounded-xl bg-[#fafafa] dark:bg-[#1a1a1a] border border-transparent focus:border-[#175ead] px-4 py-3 text-sm outline-none transition-colors"
+                    className="mt-2 w-full rounded-xl bg-slate-50 dark:bg-zinc-900 border border-transparent focus:border-[#175ead] px-4 py-3 text-sm outline-none transition-colors"
                   />
                 </div>
 
                 <div>
-                  <label className="text-[10px] font-bold text-[#a1a1aa] uppercase tracking-[0.24em]">
+                  <label className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.24em]">
                     Room Type
                   </label>
                   <input
@@ -466,11 +466,11 @@ export default function ManageRooms() {
                       setForm((current) => ({ ...current, type: event.target.value }))
                     }
                     required
-                    className="mt-2 w-full rounded-xl bg-[#fafafa] dark:bg-[#1a1a1a] border border-transparent focus:border-[#175ead] px-4 py-3 text-sm outline-none transition-colors"
+                    className="mt-2 w-full rounded-xl bg-slate-50 dark:bg-zinc-900 border border-transparent focus:border-[#175ead] px-4 py-3 text-sm outline-none transition-colors"
                   />
                 </div>
 
-                <div className="rounded-xl border border-dashed border-[#e4e4e7] dark:border-[#27272a] p-4 text-xs text-[#71717a] dark:text-[#a1a1aa] leading-6">
+                <div className="rounded-xl border border-dashed border-slate-200 dark:border-zinc-800/80 p-4 text-xs text-slate-500 dark:text-zinc-400 leading-6">
                   Use Room Allocation to assign guests. Inventory status changes here are best for vacant,
                   cleaning, and maintenance control.
                 </div>
@@ -479,7 +479,7 @@ export default function ManageRooms() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="flex-1 rounded-xl bg-[#09090b] dark:bg-white text-white dark:text-[#09090b] font-bold py-3 text-xs uppercase tracking-[0.2em] disabled:opacity-60"
+                    className="flex-1 rounded-xl bg-[#09090b] dark:bg-white text-white dark:text-slate-900 font-bold py-3 text-xs uppercase tracking-[0.2em] disabled:opacity-60"
                   >
                     {isSubmitting
                       ? "Saving..."
@@ -492,7 +492,7 @@ export default function ManageRooms() {
                     <button
                       type="button"
                       onClick={resetForm}
-                      className="rounded-xl border border-[#e4e4e7] dark:border-[#27272a] px-4 py-3 text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#fafafa] dark:hover:bg-[#18181b] transition-colors"
+                      className="rounded-xl border border-slate-200 dark:border-zinc-800/80 px-4 py-3 text-xs font-bold uppercase tracking-[0.2em] hover:bg-slate-50 dark:hover:bg-[#18181b] transition-colors"
                     >
                       Cancel
                     </button>

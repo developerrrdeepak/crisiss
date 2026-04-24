@@ -23,7 +23,7 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
-    const { id, title, description, severity, roomId, status } = await req.json();
+    const { title, description, severity, roomId, status } = await req.json();
 
     if (!title || !severity) {
       return NextResponse.json(
@@ -33,7 +33,6 @@ export async function POST(req: NextRequest) {
     }
 
     const incident = await createIncident({
-      id: typeof id === "string" && id.trim() ? id.trim() : undefined,
       title,
       description: description ?? null,
       severity,

@@ -135,14 +135,14 @@ function GuestRow({ g, onView }: { g: Guest; onView: () => void }) {
             {g.name ? g.name.charAt(0).toUpperCase() : "?"}
           </div>
           <div>
-            <p style={{ color: hovered ? "#7c3aed" : undefined }} className="font-semibold text-[#09090b] dark:text-white transition-colors duration-150">{g.name}</p>
-            <p className="text-[11px] text-[#71717a] dark:text-[#a1a1aa]">{g.email || "—"}</p>
+            <p style={{ color: hovered ? "#7c3aed" : undefined }} className="font-semibold text-slate-900 dark:text-white transition-colors duration-150">{g.name}</p>
+            <p className="text-[11px] text-slate-500 dark:text-zinc-400">{g.email || "—"}</p>
           </div>
         </div>
       </td>
-      <td className="py-4 font-semibold text-[#09090b] dark:text-white">{g.room || "—"}</td>
-      <td className="py-4 text-[#71717a] dark:text-[#a1a1aa] text-xs">{g.contact || "—"}</td>
-      <td className="py-4 font-mono text-xs text-[#71717a] dark:text-[#a1a1aa]">{g.checkOut ? new Date(g.checkOut).toLocaleDateString() : "N/A"}</td>
+      <td className="py-4 font-semibold text-slate-900 dark:text-white">{g.room || "—"}</td>
+      <td className="py-4 text-slate-500 dark:text-zinc-400 text-xs">{g.contact || "—"}</td>
+      <td className="py-4 font-mono text-xs text-slate-500 dark:text-zinc-400">{g.checkOut ? new Date(g.checkOut).toLocaleDateString() : "N/A"}</td>
       <td className="py-4">
         <span className={`text-[10px] px-2.5 py-1 rounded-full font-bold uppercase tracking-widest ${getGuestStatusBadge(g.status)}`}>
           {g.status || "Booked"}
@@ -157,7 +157,7 @@ function GuestRow({ g, onView }: { g: Guest; onView: () => void }) {
             color: hovered ? "#7c3aed" : undefined,
             transition: "all 0.15s ease",
           }}
-          className="rounded-lg border border-[#e4e4e7] dark:border-[#27272a] px-3 py-2 text-[11px] font-bold uppercase tracking-[0.16em]"
+          className="rounded-lg border border-slate-200 dark:border-zinc-800/80 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.16em]"
         >
           View
         </button>
@@ -261,7 +261,7 @@ export default function AdminGuests() {
   ];
 
   return (
-    <div className="bg-[#fafafa] dark:bg-[#0a0a0a] text-[#09090b] dark:text-[#e5e2e1] min-h-screen flex flex-col font-['Sora'] relative overflow-hidden">
+    <div className="bg-slate-50 dark:bg-zinc-950 text-slate-900 dark:text-zinc-50 min-h-screen flex flex-col font-['Sora'] relative overflow-hidden">
       {/* Ambient gradient blobs */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div className="absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-violet-500/6 via-purple-500/4 to-transparent blur-3xl" />
@@ -280,11 +280,11 @@ export default function AdminGuests() {
           <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div>
               <h1 className="text-3xl font-light tracking-tight">Guest Details</h1>
-              <p className="text-sm text-[#71717a] dark:text-[#a1a1aa] mt-2">Manage guest profiles, credentials, and room assignments.</p>
+              <p className="text-sm text-slate-500 dark:text-zinc-400 mt-2">Manage guest profiles, credentials, and room assignments.</p>
             </div>
             <button
               onClick={() => { setErrorMessage(null); setForm(DEFAULT_FORM); setShowAddModal(true); }}
-              className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#09090b] to-[#1a1a1a] dark:from-white dark:to-slate-100 text-white dark:text-[#09090b] px-5 py-3 text-xs font-bold uppercase tracking-[0.2em] shadow-lg shadow-black/10 hover:shadow-xl hover:shadow-black/20 hover:-translate-y-0.5 transition-all duration-200"
+              className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#09090b] to-[#1a1a1a] dark:from-white dark:to-slate-100 text-white dark:text-slate-900 px-5 py-3 text-xs font-bold uppercase tracking-[0.2em] shadow-lg shadow-black/10 hover:shadow-xl hover:shadow-black/20 hover:-translate-y-0.5 transition-all duration-200"
             >
               <span className="material-symbols-outlined text-base transition-transform duration-200 group-hover:scale-110">person_add</span>
               Add Guest
@@ -301,30 +301,30 @@ export default function AdminGuests() {
           {/* Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             {stats.map((s) => (
-              <div key={s.label} className={`group relative rounded-2xl border border-[#e4e4e7] dark:border-[#27272a] bg-gradient-to-br ${s.gradient} bg-white dark:bg-[#0f0f0f] p-5 overflow-hidden hover:border-[#d4d4d8] dark:hover:border-[#3f3f46] hover:shadow-lg hover:shadow-black/5 hover:-translate-y-0.5 transition-all duration-200 cursor-default`}>
+              <div key={s.label} className={`group relative rounded-2xl border border-slate-200 dark:border-zinc-800/80 bg-gradient-to-br ${s.gradient} bg-white dark:bg-zinc-900 p-5 overflow-hidden hover:border-[#d4d4d8] dark:hover:border-[#3f3f46] hover:shadow-lg hover:shadow-black/5 hover:-translate-y-0.5 transition-all duration-200 cursor-default`}>
                 <div className="absolute top-3 right-3 opacity-20 group-hover:opacity-40 transition-opacity duration-200">
                   <span className="material-symbols-outlined text-2xl">{s.icon}</span>
                 </div>
-                <p className="text-[10px] font-bold tracking-[0.24em] uppercase text-[#a1a1aa]">{s.label}</p>
+                <p className="text-[10px] font-bold tracking-[0.24em] uppercase text-zinc-400">{s.label}</p>
                 <p className="text-3xl font-light tracking-tight mt-3">{s.val}</p>
               </div>
             ))}
           </div>
 
           {/* Table card */}
-          <div className="bg-white dark:bg-[#0f0f0f] border border-[#e4e4e7] dark:border-[#27272a] rounded-2xl shadow-sm overflow-hidden">
+          <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 rounded-2xl shadow-sm overflow-hidden">
             {/* Table header with search */}
-            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between px-6 py-5 border-b border-[#e4e4e7] dark:border-[#27272a] bg-gradient-to-r from-white to-[#fafafa] dark:from-[#0f0f0f] dark:to-[#111111]">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between px-6 py-5 border-b border-slate-200 dark:border-zinc-800/80 bg-gradient-to-r from-white to-[#fafafa] dark:from-[#0f0f0f] dark:to-[#111111]">
               <div>
                 <h2 className="text-lg font-semibold tracking-tight">Guest Registry</h2>
-                <p className="text-xs text-[#71717a] dark:text-[#a1a1aa] mt-0.5">
+                <p className="text-xs text-slate-500 dark:text-zinc-400 mt-0.5">
                   {filteredGuests.length} of {guests.length} guests
                 </p>
               </div>
               <div className="flex items-center gap-3">
                 {/* Search — trie-powered */}
                 <div className={`relative flex items-center transition-all duration-300 ${searchFocused ? "w-72" : "w-52"}`}>
-                  <span className={`absolute left-3 material-symbols-outlined text-[18px] transition-colors duration-200 ${searchFocused ? "text-[#09090b] dark:text-white" : "text-[#a1a1aa]"}`}>
+                  <span className={`absolute left-3 material-symbols-outlined text-[18px] transition-colors duration-200 ${searchFocused ? "text-slate-900 dark:text-white" : "text-zinc-400"}`}>
                     search
                   </span>
                   <input
@@ -335,15 +335,15 @@ export default function AdminGuests() {
                     onFocus={() => setSearchFocused(true)}
                     onBlur={() => setSearchFocused(false)}
                     placeholder="Search name, room, ID…"
-                    className="w-full rounded-xl border border-[#e4e4e7] dark:border-[#27272a] bg-[#fafafa] dark:bg-[#1a1a1a] pl-9 pr-4 py-2.5 text-xs outline-none focus:border-[#09090b] dark:focus:border-white transition-all duration-200 placeholder:text-[#a1a1aa]"
+                    className="w-full rounded-xl border border-slate-200 dark:border-zinc-800/80 bg-slate-50 dark:bg-zinc-900 pl-9 pr-4 py-2.5 text-xs outline-none focus:border-[#09090b] dark:focus:border-white transition-all duration-200 placeholder:text-zinc-400"
                   />
                   {searchQuery && (
-                    <button onClick={() => setSearchQuery("")} className="absolute right-3 text-[#a1a1aa] hover:text-[#09090b] dark:hover:text-white transition-colors">
+                    <button onClick={() => setSearchQuery("")} className="absolute right-3 text-zinc-400 hover:text-slate-900 dark:hover:text-white transition-colors">
                       <span className="material-symbols-outlined text-[16px]">close</span>
                     </button>
                   )}
                 </div>
-                <button onClick={() => void fetchData()} className="rounded-xl border border-[#e4e4e7] dark:border-[#27272a] px-3 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-[#fafafa] dark:hover:bg-[#18181b] hover:border-[#d4d4d8] dark:hover:border-[#3f3f46] transition-all duration-200">
+                <button onClick={() => void fetchData()} className="rounded-xl border border-slate-200 dark:border-zinc-800/80 px-3 py-2.5 text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-slate-50 dark:hover:bg-[#18181b] hover:border-[#d4d4d8] dark:hover:border-[#3f3f46] transition-all duration-200">
                   Refresh
                 </button>
               </div>
@@ -352,7 +352,7 @@ export default function AdminGuests() {
             <div className="overflow-x-auto">
               <table className="w-full text-left text-sm whitespace-nowrap">
                 <thead>
-                  <tr className="border-b border-[#e4e4e7] dark:border-[#27272a] text-[#a1a1aa] text-[10px] uppercase tracking-[0.24em] bg-[#fafafa]/50 dark:bg-[#111111]/50">
+                  <tr className="border-b border-slate-200 dark:border-zinc-800/80 text-zinc-400 text-[10px] uppercase tracking-[0.24em] bg-slate-50/50 dark:bg-zinc-900/50/50">
                     <th className="font-medium pb-3 pt-3 pl-6">Guest</th>
                     <th className="font-medium pb-3 pt-3">Room</th>
                     <th className="font-medium pb-3 pt-3">Contact</th>
@@ -363,13 +363,13 @@ export default function AdminGuests() {
                 </thead>
                 <tbody className="divide-y divide-[#f4f4f5] dark:divide-[#1a1a1a]">
                   {loading ? (
-                    <tr><td colSpan={6} className="py-12 text-center text-xs text-[#71717a]">
-                      <span className="inline-flex items-center gap-2"><span className="w-4 h-4 border-2 border-[#e4e4e7] border-t-[#09090b] dark:border-t-white rounded-full animate-spin" />Loading guests...</span>
+                    <tr><td colSpan={6} className="py-12 text-center text-xs text-slate-500">
+                      <span className="inline-flex items-center gap-2"><span className="w-4 h-4 border-2 border-slate-200 border-t-[#09090b] dark:border-t-white rounded-full animate-spin" />Loading guests...</span>
                     </td></tr>
                   ) : filteredGuests.length === 0 ? (
                     <tr><td colSpan={6} className="py-14 text-center">
                       <span className="material-symbols-outlined text-4xl text-[#e4e4e7] dark:text-[#27272a] block mb-3">person_search</span>
-                      <p className="text-sm text-[#71717a] dark:text-[#a1a1aa]">{searchQuery ? `No guests match "${searchQuery}"` : "No guests yet. Add the first guest above."}</p>
+                      <p className="text-sm text-slate-500 dark:text-zinc-400">{searchQuery ? `No guests match "${searchQuery}"` : "No guests yet. Add the first guest above."}</p>
                     </td></tr>
                   ) : (
                     filteredGuests.map((g) => (
@@ -386,13 +386,13 @@ export default function AdminGuests() {
       {/* ADD GUEST MODAL */}
       {showAddModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-          <div className="w-full max-w-2xl max-h-[92vh] overflow-auto rounded-2xl bg-white dark:bg-[#0f0f0f] border border-[#e4e4e7] dark:border-[#27272a] shadow-2xl">
-            <div className="flex items-start justify-between p-6 border-b border-[#e4e4e7] dark:border-[#27272a] bg-gradient-to-r from-white to-[#fafafa] dark:from-[#0f0f0f] dark:to-[#111111]">
+          <div className="w-full max-w-2xl max-h-[92vh] overflow-auto rounded-2xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 shadow-2xl">
+            <div className="flex items-start justify-between p-6 border-b border-slate-200 dark:border-zinc-800/80 bg-gradient-to-r from-white to-[#fafafa] dark:from-[#0f0f0f] dark:to-[#111111]">
               <div>
                 <h3 className="text-lg font-semibold tracking-tight">Add Guest</h3>
-                <p className="text-xs text-[#71717a] dark:text-[#a1a1aa] mt-1">Fill in guest details. Login credentials will be auto-generated.</p>
+                <p className="text-xs text-slate-500 dark:text-zinc-400 mt-1">Fill in guest details. Login credentials will be auto-generated.</p>
               </div>
-              <button onClick={() => setShowAddModal(false)} className="rounded-full border border-[#e4e4e7] dark:border-[#27272a] p-2 text-[#71717a] hover:bg-[#f4f4f5] dark:hover:bg-[#1a1a1a] hover:text-[#09090b] dark:hover:text-white transition-all duration-200">
+              <button onClick={() => setShowAddModal(false)} className="rounded-full border border-slate-200 dark:border-zinc-800/80 p-2 text-slate-500 hover:bg-[#f4f4f5] dark:hover:bg-zinc-900 hover:text-slate-900 dark:hover:text-white transition-all duration-200">
                 <span className="material-symbols-outlined text-[18px]">close</span>
               </button>
             </div>
@@ -410,44 +410,44 @@ export default function AdminGuests() {
                   { label: "Stay Duration (nights) *", key: "nights", placeholder: "1", type: "number", required: true },
                 ].map(field => (
                   <div key={field.key}>
-                    <label className="text-[10px] font-bold text-[#a1a1aa] uppercase tracking-[0.24em]">{field.label}</label>
+                    <label className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.24em]">{field.label}</label>
                     <input
                       required={field.required} type={field.type}
                       value={form[field.key as keyof typeof form]}
                       onChange={e => setForm(f => ({ ...f, [field.key]: e.target.value }))}
                       placeholder={field.placeholder}
                       min={field.type === "number" ? "1" : undefined}
-                      className="mt-2 w-full rounded-xl bg-[#fafafa] dark:bg-[#1a1a1a] border border-transparent focus:border-[#09090b] dark:focus:border-white px-4 py-3 text-sm outline-none transition-all duration-200 hover:bg-white dark:hover:bg-[#222]"
+                      className="mt-2 w-full rounded-xl bg-slate-50 dark:bg-zinc-900 border border-transparent focus:border-[#09090b] dark:focus:border-white px-4 py-3 text-sm outline-none transition-all duration-200 hover:bg-white dark:hover:bg-[#222]"
                     />
                   </div>
                 ))}
               </div>
               <div>
-                <label className="text-[10px] font-bold text-[#a1a1aa] uppercase tracking-[0.24em]">Address</label>
+                <label className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.24em]">Address</label>
                 <textarea value={form.address} onChange={e => setForm(f => ({ ...f, address: e.target.value }))}
                   placeholder="Guest home address" rows={2}
-                  className="mt-2 w-full rounded-xl bg-[#fafafa] dark:bg-[#1a1a1a] border border-transparent focus:border-[#09090b] dark:focus:border-white px-4 py-3 text-sm outline-none transition-all duration-200 resize-none hover:bg-white dark:hover:bg-[#222]" />
+                  className="mt-2 w-full rounded-xl bg-slate-50 dark:bg-zinc-900 border border-transparent focus:border-[#09090b] dark:focus:border-white px-4 py-3 text-sm outline-none transition-all duration-200 resize-none hover:bg-white dark:hover:bg-[#222]" />
               </div>
               <div>
-                <label className="text-[10px] font-bold text-[#a1a1aa] uppercase tracking-[0.24em]">Assign Room *</label>
+                <label className="text-[10px] font-bold text-zinc-400 uppercase tracking-[0.24em]">Assign Room *</label>
                 <select required value={form.roomId} onChange={e => setForm(f => ({ ...f, roomId: e.target.value }))}
-                  className="mt-2 w-full rounded-xl bg-[#fafafa] dark:bg-[#1a1a1a] border border-transparent focus:border-[#09090b] dark:focus:border-white px-4 py-3 text-sm outline-none transition-all duration-200">
+                  className="mt-2 w-full rounded-xl bg-slate-50 dark:bg-zinc-900 border border-transparent focus:border-[#09090b] dark:focus:border-white px-4 py-3 text-sm outline-none transition-all duration-200">
                   <option value="">Select a vacant room</option>
                   {vacantRooms.map(r => <option key={r.id} value={r.id}>Room {r.num} — Floor {r.floor} — {r.type}</option>)}
                 </select>
-                {vacantRooms.length === 0 && <p className="mt-2 text-xs text-[#71717a] dark:text-[#a1a1aa]">No vacant rooms available. Update room status in Manage Rooms first.</p>}
+                {vacantRooms.length === 0 && <p className="mt-2 text-xs text-slate-500 dark:text-zinc-400">No vacant rooms available. Update room status in Manage Rooms first.</p>}
               </div>
-              <div className="rounded-xl border border-dashed border-[#e4e4e7] dark:border-[#27272a] bg-gradient-to-r from-[#fafafa] to-white dark:from-[#111111] dark:to-[#0f0f0f] p-4 text-xs text-[#71717a] dark:text-[#a1a1aa] flex items-start gap-2">
-                <span className="material-symbols-outlined text-[16px] mt-0.5 text-[#a1a1aa]">info</span>
+              <div className="rounded-xl border border-dashed border-slate-200 dark:border-zinc-800/80 bg-gradient-to-r from-[#fafafa] to-white dark:from-[#111111] dark:to-[#0f0f0f] p-4 text-xs text-slate-500 dark:text-zinc-400 flex items-start gap-2">
+                <span className="material-symbols-outlined text-[16px] mt-0.5 text-zinc-400">info</span>
                 A unique login ID and password will be auto-generated for the guest portal.
               </div>
               <div className="flex gap-3 pt-2">
                 <button type="submit" disabled={isSubmitting}
-                  className="flex-1 rounded-xl bg-gradient-to-r from-[#09090b] to-[#1a1a1a] dark:from-white dark:to-slate-100 text-white dark:text-[#09090b] font-bold py-3 text-xs uppercase tracking-[0.2em] disabled:opacity-60 hover:shadow-lg hover:shadow-black/10 hover:-translate-y-0.5 transition-all duration-200">
+                  className="flex-1 rounded-xl bg-gradient-to-r from-[#09090b] to-[#1a1a1a] dark:from-white dark:to-slate-100 text-white dark:text-slate-900 font-bold py-3 text-xs uppercase tracking-[0.2em] disabled:opacity-60 hover:shadow-lg hover:shadow-black/10 hover:-translate-y-0.5 transition-all duration-200">
                   {isSubmitting ? "Creating..." : "Create Guest & Generate Credentials"}
                 </button>
                 <button type="button" onClick={() => setShowAddModal(false)}
-                  className="rounded-xl border border-[#e4e4e7] dark:border-[#27272a] px-5 py-3 text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#fafafa] dark:hover:bg-[#18181b] transition-all duration-200">
+                  className="rounded-xl border border-slate-200 dark:border-zinc-800/80 px-5 py-3 text-xs font-bold uppercase tracking-[0.2em] hover:bg-slate-50 dark:hover:bg-[#18181b] transition-all duration-200">
                   Cancel
                 </button>
               </div>
@@ -459,17 +459,17 @@ export default function AdminGuests() {
       {/* SUCCESS MODAL */}
       {showSuccessModal && bookingResult && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
-          <div className="w-full max-w-md max-h-[92vh] overflow-auto rounded-2xl bg-white dark:bg-[#0f0f0f] border border-[#e4e4e7] dark:border-[#27272a] shadow-2xl p-6">
+          <div className="w-full max-w-md max-h-[92vh] overflow-auto rounded-2xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 shadow-2xl p-6">
             <div className="flex flex-col items-center mb-6">
               <div className="w-16 h-16 rounded-full bg-gradient-to-br from-emerald-500/20 to-green-500/10 border border-emerald-200/50 dark:border-emerald-800/30 flex items-center justify-center mb-3">
                 <span className="material-symbols-outlined text-3xl text-emerald-500" style={{ fontVariationSettings: '"FILL" 1' }}>check_circle</span>
               </div>
               <h3 className="text-xl font-semibold tracking-tight">Guest Access Ready</h3>
-              <p className="text-xs text-[#71717a] dark:text-[#a1a1aa] mt-1">Room {bookingResult.roomNumber}</p>
+              <p className="text-xs text-slate-500 dark:text-zinc-400 mt-1">Room {bookingResult.roomNumber}</p>
             </div>
             {qrCodeUrl && (
               <div className="flex justify-center mb-5">
-                <div className="rounded-xl border border-[#e4e4e7] dark:border-[#27272a] p-3 bg-white shadow-sm">
+                <div className="rounded-xl border border-slate-200 dark:border-zinc-800/80 p-3 bg-white shadow-sm">
                   <Image src={qrCodeUrl} alt="Guest QR Code" width={180} height={180} className="rounded-lg" />
                 </div>
               </div>
@@ -482,19 +482,19 @@ export default function AdminGuests() {
                 { label: "ID Number", val: bookingResult.idNumber ?? "—" },
                 { label: "Contact", val: bookingResult.contact ?? "—" },
               ].map(item => (
-                <div key={item.label} className="rounded-xl bg-gradient-to-r from-[#fafafa] to-white dark:from-[#1a1a1a] dark:to-[#111111] border border-[#e4e4e7] dark:border-[#27272a] px-4 py-3 hover:border-[#d4d4d8] dark:hover:border-[#3f3f46] transition-colors duration-150">
-                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#a1a1aa]">{item.label}</p>
+                <div key={item.label} className="rounded-xl bg-gradient-to-r from-[#fafafa] to-white dark:from-[#1a1a1a] dark:to-[#111111] border border-slate-200 dark:border-zinc-800/80 px-4 py-3 hover:border-[#d4d4d8] dark:hover:border-[#3f3f46] transition-colors duration-150">
+                  <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">{item.label}</p>
                   <p className="text-sm font-semibold mt-1 break-all">{item.val}</p>
                 </div>
               ))}
             </div>
             <div className="flex gap-3">
               <button onClick={() => navigator.clipboard.writeText(`Login ID: ${bookingResult.loginId}\nPassword: ${bookingResult.password}`)}
-                className="flex-1 rounded-xl border border-[#e4e4e7] dark:border-[#27272a] px-4 py-3 text-xs font-bold uppercase tracking-[0.2em] hover:bg-[#fafafa] dark:hover:bg-[#18181b] transition-all duration-200 flex items-center justify-center gap-2">
+                className="flex-1 rounded-xl border border-slate-200 dark:border-zinc-800/80 px-4 py-3 text-xs font-bold uppercase tracking-[0.2em] hover:bg-slate-50 dark:hover:bg-[#18181b] transition-all duration-200 flex items-center justify-center gap-2">
                 <span className="material-symbols-outlined text-base">content_copy</span>Copy Credentials
               </button>
               <button onClick={() => setShowSuccessModal(false)}
-                className="flex-1 rounded-xl bg-gradient-to-r from-[#09090b] to-[#1a1a1a] dark:from-white dark:to-slate-100 text-white dark:text-[#09090b] px-4 py-3 text-xs font-bold uppercase tracking-[0.2em] hover:shadow-lg hover:shadow-black/10 hover:-translate-y-0.5 transition-all duration-200">
+                className="flex-1 rounded-xl bg-gradient-to-r from-[#09090b] to-[#1a1a1a] dark:from-white dark:to-slate-100 text-white dark:text-slate-900 px-4 py-3 text-xs font-bold uppercase tracking-[0.2em] hover:shadow-lg hover:shadow-black/10 hover:-translate-y-0.5 transition-all duration-200">
                 Done
               </button>
             </div>
@@ -505,8 +505,8 @@ export default function AdminGuests() {
       {/* GUEST DETAIL MODAL */}
       {showDetailModal && selectedGuest && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
-          <div className="w-full max-w-lg max-h-[92vh] overflow-auto rounded-2xl bg-white dark:bg-[#0f0f0f] border border-[#e4e4e7] dark:border-[#27272a] shadow-2xl">
-            <div className="flex items-start justify-between p-6 border-b border-[#e4e4e7] dark:border-[#27272a] bg-gradient-to-r from-white to-[#fafafa] dark:from-[#0f0f0f] dark:to-[#111111]">
+          <div className="w-full max-w-lg max-h-[92vh] overflow-auto rounded-2xl bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 shadow-2xl">
+            <div className="flex items-start justify-between p-6 border-b border-slate-200 dark:border-zinc-800/80 bg-gradient-to-r from-white to-[#fafafa] dark:from-[#0f0f0f] dark:to-[#111111]">
               <div className="flex items-center gap-3">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-violet-500/20 to-purple-500/10 border border-violet-200/50 dark:border-violet-800/30 flex items-center justify-center font-bold text-sm text-violet-700 dark:text-violet-300">
                   {selectedGuest.name.charAt(0).toUpperCase()}
@@ -518,7 +518,7 @@ export default function AdminGuests() {
                   </span>
                 </div>
               </div>
-              <button onClick={() => setShowDetailModal(false)} className="rounded-full border border-[#e4e4e7] dark:border-[#27272a] p-2 text-[#71717a] hover:bg-[#f4f4f5] dark:hover:bg-[#1a1a1a] hover:text-[#09090b] dark:hover:text-white transition-all duration-200">
+              <button onClick={() => setShowDetailModal(false)} className="rounded-full border border-slate-200 dark:border-zinc-800/80 p-2 text-slate-500 hover:bg-[#f4f4f5] dark:hover:bg-zinc-900 hover:text-slate-900 dark:hover:text-white transition-all duration-200">
                 <span className="material-symbols-outlined text-[18px]">close</span>
               </button>
             </div>
@@ -526,11 +526,11 @@ export default function AdminGuests() {
               {selectedGuest.room && (() => {
                 const assignedRoom = rooms.find(r => r.num === selectedGuest.room);
                 return assignedRoom ? (
-                  <div className="flex items-center justify-between rounded-xl border border-[#e4e4e7] dark:border-[#27272a] bg-gradient-to-r from-[#fafafa] to-white dark:from-[#1a1a1a] dark:to-[#111111] px-4 py-3 hover:border-[#d4d4d8] dark:hover:border-[#3f3f46] transition-all duration-200">
+                  <div className="flex items-center justify-between rounded-xl border border-slate-200 dark:border-zinc-800/80 bg-gradient-to-r from-[#fafafa] to-white dark:from-[#1a1a1a] dark:to-[#111111] px-4 py-3 hover:border-[#d4d4d8] dark:hover:border-[#3f3f46] transition-all duration-200">
                     <div className="flex items-center gap-2">
-                      <span className="material-symbols-outlined text-[18px] text-[#71717a]">meeting_room</span>
+                      <span className="material-symbols-outlined text-[18px] text-slate-500">meeting_room</span>
                       <span className="text-sm font-semibold">Room {assignedRoom.num}</span>
-                      <span className="text-xs text-[#71717a] dark:text-[#a1a1aa]">— {assignedRoom.type}</span>
+                      <span className="text-xs text-slate-500 dark:text-zinc-400">— {assignedRoom.type}</span>
                     </div>
                     <span className={`text-[10px] px-2.5 py-1 rounded-full border font-bold uppercase tracking-widest ${getRoomStatusBadge(assignedRoom.state)}`}>
                       {assignedRoom.state}
@@ -546,10 +546,10 @@ export default function AdminGuests() {
                 { label: "Check-In", val: selectedGuest.checkIn ? new Date(selectedGuest.checkIn).toLocaleDateString() : "—", icon: "login" },
                 { label: "Check-Out", val: selectedGuest.checkOut ? new Date(selectedGuest.checkOut).toLocaleDateString() : "—", icon: "logout" },
               ].map(item => (
-                <div key={item.label} className="flex items-start gap-3 rounded-xl bg-gradient-to-r from-[#fafafa] to-white dark:from-[#1a1a1a] dark:to-[#111111] border border-[#e4e4e7] dark:border-[#27272a] px-4 py-3 hover:border-[#d4d4d8] dark:hover:border-[#3f3f46] hover:shadow-sm transition-all duration-200">
-                  <span className="material-symbols-outlined text-[18px] text-[#a1a1aa] mt-0.5">{item.icon}</span>
+                <div key={item.label} className="flex items-start gap-3 rounded-xl bg-gradient-to-r from-[#fafafa] to-white dark:from-[#1a1a1a] dark:to-[#111111] border border-slate-200 dark:border-zinc-800/80 px-4 py-3 hover:border-[#d4d4d8] dark:hover:border-[#3f3f46] hover:shadow-sm transition-all duration-200">
+                  <span className="material-symbols-outlined text-[18px] text-zinc-400 mt-0.5">{item.icon}</span>
                   <div>
-                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#a1a1aa]">{item.label}</p>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.2em] text-zinc-400">{item.label}</p>
                     <p className="text-sm font-medium mt-0.5 break-all">{item.val}</p>
                   </div>
                 </div>
@@ -561,13 +561,13 @@ export default function AdminGuests() {
                   </p>
                   {selectedGuest.loginEmail && (
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-[#71717a] dark:text-[#a1a1aa]">Login ID</span>
+                      <span className="text-xs text-slate-500 dark:text-zinc-400">Login ID</span>
                       <span className="text-xs font-semibold font-mono">{selectedGuest.loginEmail}</span>
                     </div>
                   )}
                   {selectedGuest.loginPassword && (
                     <div className="flex items-center justify-between">
-                      <span className="text-xs text-[#71717a] dark:text-[#a1a1aa]">Password</span>
+                      <span className="text-xs text-slate-500 dark:text-zinc-400">Password</span>
                       <span className="text-xs font-semibold font-mono tracking-widest">{selectedGuest.loginPassword}</span>
                     </div>
                   )}

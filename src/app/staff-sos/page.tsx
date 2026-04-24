@@ -14,7 +14,6 @@ import {
   buildTransportChannels,
   getTransportLabel,
 } from "@/lib/sos-transport";
-import { persistIncident, updateIncidentStatus } from "@/lib/incident-client";
 
 export default function StaffSOSPage() {
   const [sidebarExpanded, setSidebarExpanded] = useState(false);
@@ -144,27 +143,26 @@ export default function StaffSOSPage() {
         originRole: "staff",
       });
     } catch {
-      // Keep realtime SOS active even when Firestore is unavailable.
+      console.log("Firestore bypassed for staff SOS. Continuing with realtime signaling.");
     }
 
-    try {
-      await persistIncident({
-        id: incidentId,
-        title: "Staff SOS",
-        description: `Staff member ${staffName} triggered an SOS alert from ${sector}. Active transport: ${activeTransport}. Channel: ${audioChannel}.`,
-        severity: "Critical",
-        roomId: sector,
-        status: "Active",
-      });
-    } catch (error) {
-      console.error("Failed to persist staff SOS incident:", error);
-    }
+    socket?.emit("trigger-sos", {
+      incidentId,
+      guestId: employeeId,
+      guestName: staffName,
+      roomId: sector,
+      audioChannel,
+      activeTransport,
+      transportMode: "auto",
+      transportChannels,
+      originRole: "staff",
+      type: "Staff SOS",
+    });
 
     await toggleMic();
   };
 
   const handleCancel = async () => {
-    const incidentId = activeIncidentId || "STAFF-CANCEL";
     setSosActive(false);
     setActiveIncidentId(null);
 
@@ -172,22 +170,14 @@ export default function StaffSOSPage() {
       await toggleMic();
     }
 
-    if (activeIncidentId) {
-      try {
-        await updateIncidentStatus(incidentId, "Resolved");
-      } catch (error) {
-        console.error("Failed to resolve staff SOS incident:", error);
-      }
-    }
-
     socket?.emit("resolve-alert", {
-      incidentId,
+      incidentId: activeIncidentId || "STAFF-CANCEL",
       roomId: sector,
     });
   };
 
   return (
-    <div className="min-h-screen bg-[#f7f9ff] font-['Outfit'] text-[#081d2c] transition-colors dark:bg-[#0a0a0a] dark:text-[#e5e2e1]">
+    <div className="min-h-screen bg-[#f7f9ff] font-['Outfit'] text-[#081d2c] transition-colors dark:bg-zinc-950 dark:text-zinc-50">
       <DashboardHeader
         title="Staff Emergency SOS"
         subtitle="Operational fallback routing"
@@ -241,7 +231,7 @@ export default function StaffSOSPage() {
                     className={`rounded-2xl border px-5 py-4 ${
                       active
                         ? "border-[#175ead] bg-[#175ead]/10 dark:border-[#72aafe] dark:bg-[#72aafe]/10"
-                        : "border-[#c1c6d5]/40 bg-[#f7f9ff]/70 dark:border-white/10 dark:bg-[#111111]"
+                        : "border-[#c1c6d5]/40 bg-[#f7f9ff]/70 dark:border-white/10 dark:bg-zinc-900/50"
                     }`}
                   >
                     <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#717785] dark:text-[#8e95a8]">

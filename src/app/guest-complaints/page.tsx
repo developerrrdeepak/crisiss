@@ -165,7 +165,7 @@ export default function GuestComplaints() {
       : "Guest";
 
   return (
-    <div className="bg-[#fafafa] dark:bg-[#0a0a0a] text-[#09090b] dark:text-[#e5e2e1] min-h-screen flex flex-col font-['Sora'] relative">
+    <div className="bg-slate-50 dark:bg-zinc-950 text-slate-900 dark:text-zinc-50 min-h-screen flex flex-col font-['Sora'] relative">
       <div
         className="absolute inset-0 pointer-events-none z-0"
         style={{
@@ -203,7 +203,7 @@ export default function GuestComplaints() {
         )}
 
         <main className="flex-1 overflow-auto p-4 lg:p-8 w-full max-w-[1600px] mx-auto animate-in fade-in slide-in-from-bottom-4 duration-500">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 bg-white/80 dark:bg-[#0f0f0f]/80 backdrop-blur-xl border border-white/50 dark:border-white/5 p-6 md:p-8 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-2xl w-full font-['Space_Grotesk'] group">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8 bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl border border-white/50 dark:border-white/5 p-6 md:p-8 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-2xl w-full font-['Space_Grotesk'] group">
             <div>
               <h1 className="font-black text-3xl tracking-tighter text-[#081d2c] dark:text-white uppercase mb-1">
                 Guest Requests & Issues
@@ -225,9 +225,9 @@ export default function GuestComplaints() {
           </div>
 
           <div className="grid grid-cols-1 gap-6">
-            <div className="bg-white/80 dark:bg-[#0f0f0f]/80 backdrop-blur-xl border border-white/50 dark:border-white/5 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700">
-              <div className="p-6 border-b border-[#c1c6d5]/30 dark:border-white/5 bg-[#f7f9ff]/50 dark:bg-[#1a1a1a]/50 flex justify-between items-center">
-                <h3 className="font-black text-xs uppercase tracking-widest flex items-center gap-2 text-[#081d2c] dark:text-[#e5e2e1]">
+            <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl border border-white/50 dark:border-white/5 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-2xl overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700">
+              <div className="p-6 border-b border-[#c1c6d5]/30 dark:border-white/5 bg-[#f7f9ff]/50 dark:bg-zinc-900/50 flex justify-between items-center">
+                <h3 className="font-black text-xs uppercase tracking-widest flex items-center gap-2 text-[#081d2c] dark:text-zinc-50">
                   <span className="w-1.5 h-4 bg-[#175ead]" /> Active Guest Log
                 </h3>
               </div>
@@ -264,7 +264,7 @@ export default function GuestComplaints() {
                     return (
                       <div
                         key={incident.id}
-                        className="p-6 hover:bg-[#f7f9ff] dark:hover:bg-[#1a1a1a] transition-colors cursor-pointer group flex flex-col lg:flex-row gap-6 lg:items-center"
+                        className="p-6 hover:bg-[#f7f9ff] dark:hover:bg-zinc-900 transition-colors cursor-pointer group flex flex-col lg:flex-row gap-6 lg:items-center"
                       >
                         <div className="flex flex-col gap-2 min-w-[200px]">
                           <div className="flex items-center gap-3">
@@ -289,7 +289,7 @@ export default function GuestComplaints() {
                           </p>
                         </div>
 
-                        <div className="flex-1 bg-[#f7f9ff]/50 dark:bg-[#1a1a1a]/50 border border-[#c1c6d5]/30 dark:border-white/5 p-5 rounded-2xl shadow-inner group-hover:bg-white dark:group-hover:bg-[#131313] transition-colors">
+                        <div className="flex-1 bg-[#f7f9ff]/50 dark:bg-zinc-900/50 border border-[#c1c6d5]/30 dark:border-white/5 p-5 rounded-2xl shadow-inner group-hover:bg-white dark:group-hover:bg-[#131313] transition-colors">
                           <p className="text-[10px] font-black tracking-widest uppercase text-[#717785] mb-2">
                             {incident.severity}
                           </p>
@@ -325,7 +325,7 @@ export default function GuestComplaints() {
                             type="button"
                             onClick={() => void handleStatusToggle(incident)}
                             disabled={!isStaffView || activeActionId === incident.id}
-                            className="bg-white dark:bg-[#1a1a1a] border border-[#c1c6d5]/50 dark:border-white/10 hover:border-[#175ead]/50 dark:hover:border-[#72aafe]/50 text-[#081d2c] dark:text-white hover:text-[#175ead] dark:hover:text-[#72aafe] font-black py-2.5 rounded-lg text-xs uppercase tracking-widest transition-all shadow-sm active:scale-95 w-full text-center hover:-translate-y-0.5 disabled:opacity-60 disabled:hover:translate-y-0 disabled:cursor-not-allowed"
+                            className="bg-white dark:bg-zinc-900 border border-[#c1c6d5]/50 dark:border-white/10 hover:border-[#175ead]/50 dark:hover:border-[#72aafe]/50 text-[#081d2c] dark:text-white hover:text-[#175ead] dark:hover:text-[#72aafe] font-black py-2.5 rounded-lg text-xs uppercase tracking-widest transition-all shadow-sm active:scale-95 w-full text-center hover:-translate-y-0.5 disabled:opacity-60 disabled:hover:translate-y-0 disabled:cursor-not-allowed"
                           >
                             {isStaffView
                               ? activeActionId === incident.id

@@ -1,5 +1,3 @@
-import { getClientPublicEnv } from "@/lib/public-env";
-
 export type MediaMtxClientTarget = {
   id: "primary" | "fallback" | "local";
   label: string;
@@ -86,8 +84,7 @@ export function getConfiguredClientMediaTargets(env: EnvMap = process.env): Medi
 }
 
 export function getClientMediaTargets(): MediaMtxClientTarget[] {
-  const env = typeof window !== "undefined" ? getClientPublicEnv() : process.env;
-  const targets = getConfiguredClientMediaTargets(env);
+  const targets = getConfiguredClientMediaTargets();
 
   const localWebrtc = buildLocalDevBaseUrl("8889");
   const localHls = buildLocalDevBaseUrl("8888");

@@ -105,7 +105,7 @@ export default function RapidReporting() {
   };
 
   return (
-    <div className="bg-[#f7f9ff] dark:bg-[#0a0a0a] text-[#081d2c] dark:text-[#e5e2e1] min-h-screen font-['Outfit'] transition-colors flex flex-col">
+    <div className="bg-[#f7f9ff] dark:bg-zinc-950 text-[#081d2c] dark:text-zinc-50 min-h-screen font-['Outfit'] transition-colors flex flex-col">
       <DashboardHeader
         title="Rapid Incident Report"
         subtitle="Sector 7 / Hotel Alpha"
@@ -127,39 +127,39 @@ export default function RapidReporting() {
             <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-[#175ead]/5 dark:bg-[#175ead]/10 rounded-full blur-[100px] animate-blob" />
           </div>
 
-          <div className="mb-6 flex items-center justify-between bg-white/80 dark:bg-[#0f0f0f]/80 backdrop-blur-xl border border-[#c1c6d5]/50 dark:border-white/5 px-5 py-4 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] w-full">
+          <div className="mb-6 flex items-center justify-between bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl border border-[#c1c6d5]/50 dark:border-white/5 px-5 py-4 rounded-2xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] w-full">
             <div className="flex items-center gap-3">
               <span className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.5)]" />
               <span className="text-[#081d2c] dark:text-white font-black text-xs uppercase tracking-[0.2em] font-['Space_Grotesk']">
                 Secure Connection Active
               </span>
             </div>
-            <span className="text-[10px] bg-[#f7f9ff] dark:bg-[#1a1a1a] text-[#717785] px-3 py-1 font-black rounded-lg tracking-widest uppercase border border-[#c1c6d5]/50 dark:border-white/5">
+            <span className="text-[10px] bg-[#f7f9ff] dark:bg-zinc-900 text-[#717785] px-3 py-1 font-black rounded-lg tracking-widest uppercase border border-[#c1c6d5]/50 dark:border-white/5">
               Session Verified
             </span>
           </div>
 
           <form
             onSubmit={handleSubmit}
-            className="bg-white/80 dark:bg-[#0f0f0f]/80 backdrop-blur-xl border border-white/50 dark:border-white/5 p-6 lg:p-10 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-2xl space-y-10 font-['Space_Grotesk'] w-full relative overflow-hidden"
+            className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl border border-white/50 dark:border-white/5 p-6 lg:p-10 rounded-3xl shadow-[0_8px_30px_rgba(0,0,0,0.04)] dark:shadow-2xl space-y-10 font-['Space_Grotesk'] w-full relative overflow-hidden"
           >
             <div className="space-y-4">
               <div className="flex items-center gap-2 border-b border-[#c1c6d5]/30 dark:border-white/5 pb-3">
                 <div className="bg-[#e2efff] dark:bg-[#1e1e1e] p-2 rounded-xl text-[#175ead] dark:text-[#72aafe]">
                   <span className="material-symbols-outlined text-sm block">person</span>
                 </div>
-                <h2 className="font-black text-xs text-[#081d2c] dark:text-[#e5e2e1] uppercase tracking-[0.2em]">
+                <h2 className="font-black text-xs text-[#081d2c] dark:text-zinc-50 uppercase tracking-[0.2em]">
                   Guest Information
                 </h2>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="bg-[#f7f9ff]/50 dark:bg-[#1a1a1a]/50 border border-[#c1c6d5]/30 dark:border-white/5 p-5 rounded-2xl flex justify-between items-center group hover:bg-[#e2efff]/30 dark:hover:bg-[#1e1e1e]/50 transition-colors">
+                <div className="bg-[#f7f9ff]/50 dark:bg-zinc-900/50 border border-[#c1c6d5]/30 dark:border-white/5 p-5 rounded-2xl flex justify-between items-center group hover:bg-[#e2efff]/30 dark:hover:bg-[#1e1e1e]/50 transition-colors">
                   <div>
                     <p className="text-[10px] text-[#717785] font-black uppercase tracking-[0.2em] mb-1">
                       Your Location
                     </p>
-                    <p className="font-black text-lg text-[#081d2c] dark:text-[#e5e2e1] tracking-tight">
+                    <p className="font-black text-lg text-[#081d2c] dark:text-zinc-50 tracking-tight">
                       Room {roomNumber}
                     </p>
                   </div>
@@ -167,7 +167,7 @@ export default function RapidReporting() {
                     pin_drop
                   </span>
                 </div>
-                <div className="bg-[#f7f9ff]/50 dark:bg-[#1a1a1a]/50 border border-[#c1c6d5]/30 dark:border-white/5 p-5 rounded-2xl flex justify-between items-center group hover:bg-green-50/50 dark:hover:bg-green-900/10 transition-colors">
+                <div className="bg-[#f7f9ff]/50 dark:bg-zinc-900/50 border border-[#c1c6d5]/30 dark:border-white/5 p-5 rounded-2xl flex justify-between items-center group hover:bg-green-50/50 dark:hover:bg-green-900/10 transition-colors">
                   <div>
                     <p className="text-[10px] text-[#717785] font-black uppercase tracking-[0.2em] mb-1">
                       Status
@@ -188,7 +188,7 @@ export default function RapidReporting() {
                 <div className="bg-[#ffdad6] dark:bg-[#ba1a1a]/20 p-2 rounded-xl text-[#bc000a] dark:text-[#ffb4aa]">
                   <span className="material-symbols-outlined text-sm block">category</span>
                 </div>
-                <h2 className="font-black text-xs text-[#081d2c] dark:text-[#e5e2e1] uppercase tracking-[0.2em]">
+                <h2 className="font-black text-xs text-[#081d2c] dark:text-zinc-50 uppercase tracking-[0.2em]">
                   Request Category
                 </h2>
               </div>
@@ -206,7 +206,7 @@ export default function RapidReporting() {
                       className={`relative overflow-hidden p-6 flex flex-col items-center gap-4 transition-all duration-300 rounded-3xl group ${
                         isSelected
                           ? `${type.activeColor} border-2 scale-105`
-                          : "bg-[#f7f9ff]/50 dark:bg-[#1a1a1a]/50 border border-[#c1c6d5]/50 dark:border-white/5 text-[#081d2c] dark:text-white hover:border-[#175ead]/50 dark:hover:border-[#72aafe]/50 hover:-translate-y-1 hover:shadow-lg"
+                          : "bg-[#f7f9ff]/50 dark:bg-zinc-900/50 border border-[#c1c6d5]/50 dark:border-white/5 text-[#081d2c] dark:text-white hover:border-[#175ead]/50 dark:hover:border-[#72aafe]/50 hover:-translate-y-1 hover:shadow-lg"
                       }`}
                     >
                       <span
@@ -237,7 +237,7 @@ export default function RapidReporting() {
                 <div className="bg-[#fff0c8] dark:bg-[#f59e0b]/20 p-2 rounded-xl text-[#d97706] dark:text-[#fcd34d]">
                   <span className="material-symbols-outlined text-sm block">speed</span>
                 </div>
-                <h2 className="font-black text-xs text-[#081d2c] dark:text-[#e5e2e1] uppercase tracking-[0.2em]">
+                <h2 className="font-black text-xs text-[#081d2c] dark:text-zinc-50 uppercase tracking-[0.2em]">
                   Priority Level
                 </h2>
               </div>
@@ -256,7 +256,7 @@ export default function RapidReporting() {
                           : level === "High"
                             ? "bg-[#d97706] text-white border-[#d97706] shadow-[0_5px_15px_rgba(217,119,6,0.4)]"
                             : "bg-[#175ead] text-white border-[#175ead] shadow-[0_5px_15px_rgba(23,94,173,0.4)]"
-                        : "bg-[#f7f9ff] dark:bg-[#1a1a1a] border-[#c1c6d5]/50 dark:border-white/10 text-[#414753] dark:text-[#717785] hover:border-[#175ead] dark:hover:border-[#72aafe] hover:text-[#081d2c] dark:hover:text-white"
+                        : "bg-[#f7f9ff] dark:bg-zinc-900 border-[#c1c6d5]/50 dark:border-white/10 text-[#414753] dark:text-[#717785] hover:border-[#175ead] dark:hover:border-[#72aafe] hover:text-[#081d2c] dark:hover:text-white"
                     }`}
                   >
                     {level}
@@ -270,7 +270,7 @@ export default function RapidReporting() {
                 <div className="bg-[#e7ebee] dark:bg-[#353534] p-2 rounded-xl text-[#081d2c] dark:text-white">
                   <span className="material-symbols-outlined text-sm block">notes</span>
                 </div>
-                <h2 className="font-black text-xs text-[#081d2c] dark:text-[#e5e2e1] uppercase tracking-[0.2em]">
+                <h2 className="font-black text-xs text-[#081d2c] dark:text-zinc-50 uppercase tracking-[0.2em]">
                   Details
                 </h2>
               </div>
@@ -283,7 +283,7 @@ export default function RapidReporting() {
                   onChange={(event) => setSubject(event.target.value)}
                   placeholder="Subject / Short Description"
                   aria-label="Subject / Short Description"
-                  className="w-full bg-[#f7f9ff] dark:bg-[#1a1a1a] border border-[#c1c6d5]/50 dark:border-white/5 text-[#081d2c] dark:text-white text-sm p-4 rounded-xl focus:outline-none focus:border-[#175ead] dark:focus:border-[#72aafe] focus:ring-1 focus:ring-[#175ead] dark:focus:ring-[#72aafe] font-['Outfit'] font-bold placeholder:text-[#414753]/60 dark:placeholder:text-[#717785]/60 transition-colors shadow-inner"
+                  className="w-full bg-[#f7f9ff] dark:bg-zinc-900 border border-[#c1c6d5]/50 dark:border-white/5 text-[#081d2c] dark:text-white text-sm p-4 rounded-xl focus:outline-none focus:border-[#175ead] dark:focus:border-[#72aafe] focus:ring-1 focus:ring-[#175ead] dark:focus:ring-[#72aafe] font-['Outfit'] font-bold placeholder:text-[#414753]/60 dark:placeholder:text-[#717785]/60 transition-colors shadow-inner"
                 />
 
                 <textarea
@@ -291,14 +291,14 @@ export default function RapidReporting() {
                   value={details}
                   onChange={(event) => setDetails(event.target.value)}
                   aria-label="Details description"
-                  className="w-full bg-[#f7f9ff] dark:bg-[#1a1a1a] border border-[#c1c6d5]/50 dark:border-white/5 text-[#081d2c] dark:text-white text-sm p-4 rounded-xl focus:outline-none focus:border-[#175ead] dark:focus:border-[#72aafe] focus:ring-1 focus:ring-[#175ead] dark:focus:ring-[#72aafe] h-40 resize-none font-['Outfit'] font-medium placeholder:text-[#414753]/60 dark:placeholder:text-[#717785]/60 transition-colors shadow-inner"
+                  className="w-full bg-[#f7f9ff] dark:bg-zinc-900 border border-[#c1c6d5]/50 dark:border-white/5 text-[#081d2c] dark:text-white text-sm p-4 rounded-xl focus:outline-none focus:border-[#175ead] dark:focus:border-[#72aafe] focus:ring-1 focus:ring-[#175ead] dark:focus:ring-[#72aafe] h-40 resize-none font-['Outfit'] font-medium placeholder:text-[#414753]/60 dark:placeholder:text-[#717785]/60 transition-colors shadow-inner"
                   placeholder="Please describe exactly what you need so our team can assist you immediately..."
                 />
 
                 <div className="flex items-center gap-4">
                   <button
                     type="button"
-                    className="bg-[#f7f9ff]/80 dark:bg-[#1a1a1a]/80 border border-dashed border-[#c1c6d5] dark:border-[#5d3f3b] text-[#175ead] dark:text-[#72aafe] hover:bg-[#e2efff] dark:hover:bg-[#1e1e1e] font-bold text-xs px-6 py-4 rounded-xl flex items-center gap-2 transition-colors uppercase tracking-widest w-full justify-center"
+                    className="bg-[#f7f9ff]/80 dark:bg-zinc-900/80 border border-dashed border-[#c1c6d5] dark:border-[#5d3f3b] text-[#175ead] dark:text-[#72aafe] hover:bg-[#e2efff] dark:hover:bg-[#1e1e1e] font-bold text-xs px-6 py-4 rounded-xl flex items-center gap-2 transition-colors uppercase tracking-widest w-full justify-center"
                   >
                     <span className="material-symbols-outlined">add_a_photo</span>
                     Attach Media
@@ -329,7 +329,7 @@ export default function RapidReporting() {
               </button>
               <Link
                 href="/guest-dashboard"
-                className="px-10 bg-[#f7f9ff] dark:bg-[#1a1a1a] hover:bg-[#e2efff] dark:hover:bg-[#1e1e1e] border border-[#c1c6d5]/50 dark:border-white/5 text-[#414753] dark:text-[#c1c6d5] hover:text-[#081d2c] dark:hover:text-white font-black py-5 rounded-2xl tracking-[0.2em] uppercase transition-colors flex items-center justify-center text-xs shadow-sm hover:shadow-md hover:-translate-y-1"
+                className="px-10 bg-[#f7f9ff] dark:bg-zinc-900 hover:bg-[#e2efff] dark:hover:bg-[#1e1e1e] border border-[#c1c6d5]/50 dark:border-white/5 text-[#414753] dark:text-[#c1c6d5] hover:text-[#081d2c] dark:hover:text-white font-black py-5 rounded-2xl tracking-[0.2em] uppercase transition-colors flex items-center justify-center text-xs shadow-sm hover:shadow-md hover:-translate-y-1"
               >
                 Cancel
               </Link>

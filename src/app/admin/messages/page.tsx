@@ -357,7 +357,7 @@ export default function AdminMessages() {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col bg-[#fafafa] font-['Sora'] text-[#09090b] dark:bg-[#0a0a0a] dark:text-[#e5e2e1]">
+    <div className="relative min-h-screen flex flex-col bg-slate-50 font-['Sora'] text-slate-900 dark:bg-zinc-950 dark:text-zinc-50">
       <div
         className="absolute inset-0 pointer-events-none z-0"
         style={{
@@ -384,11 +384,11 @@ export default function AdminMessages() {
         />
 
         <main className="mx-auto flex w-full max-w-[1680px] flex-1 overflow-hidden p-6">
-          <div className="flex h-full w-full overflow-hidden rounded-2xl border border-[#e4e4e7] bg-white shadow-sm dark:border-white/5 dark:bg-[#0f0f0f]">
-            <aside className="flex w-full max-w-[360px] flex-col border-r border-[#e4e4e7] bg-[#fafafa]/70 dark:border-white/5 dark:bg-[#0a0a0a]">
-              <div className="border-b border-[#e4e4e7] p-4 dark:border-white/5">
+          <div className="flex h-full w-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-white/5 dark:bg-zinc-900">
+            <aside className="flex w-full max-w-[360px] flex-col border-r border-slate-200 bg-slate-50/70 dark:border-white/5 dark:bg-zinc-950">
+              <div className="border-b border-slate-200 p-4 dark:border-white/5">
                 <div className="relative">
-                  <span className="material-symbols-outlined absolute left-3 top-2.5 text-[#a1a1aa] text-[18px]">
+                  <span className="material-symbols-outlined absolute left-3 top-2.5 text-zinc-400 text-[18px]">
                     search
                   </span>
                   <input
@@ -396,21 +396,21 @@ export default function AdminMessages() {
                     value={searchTerm}
                     onChange={(event) => setSearchTerm(event.target.value)}
                     placeholder="Search guests, staff, departments..."
-                    className="w-full rounded-lg bg-[#f4f4f5] py-2 pl-9 pr-4 text-xs text-[#09090b] outline-none focus:ring-1 focus:ring-black dark:bg-[#1a1a1a]/50 dark:text-white dark:focus:ring-white"
+                    className="w-full rounded-lg bg-[#f4f4f5] py-2 pl-9 pr-4 text-xs text-slate-900 outline-none focus:ring-1 focus:ring-black dark:bg-zinc-900/50 dark:text-white dark:focus:ring-white"
                   />
                 </div>
                 <div className="mt-4 grid grid-cols-2 gap-2">
                   <button
                     type="button"
                     onClick={() => setActiveThreadId(buildAllStaffThread(viewer).id)}
-                    className="rounded-xl border border-[#e4e4e7] px-3 py-2 text-left text-xs font-bold uppercase tracking-[0.16em] text-[#09090b] transition-colors hover:border-black dark:border-white/10 dark:text-white dark:hover:border-white"
+                    className="rounded-xl border border-slate-200 px-3 py-2 text-left text-xs font-bold uppercase tracking-[0.16em] text-slate-900 transition-colors hover:border-black dark:border-white/10 dark:text-white dark:hover:border-white"
                   >
                     All Staff
                   </button>
                   <button
                     type="button"
                     onClick={() => setActiveThreadId(buildAllGuestsThread(viewer).id)}
-                    className="rounded-xl border border-[#e4e4e7] px-3 py-2 text-left text-xs font-bold uppercase tracking-[0.16em] text-[#09090b] transition-colors hover:border-black dark:border-white/10 dark:text-white dark:hover:border-white"
+                    className="rounded-xl border border-slate-200 px-3 py-2 text-left text-xs font-bold uppercase tracking-[0.16em] text-slate-900 transition-colors hover:border-black dark:border-white/10 dark:text-white dark:hover:border-white"
                   >
                     All Guests
                   </button>
@@ -423,7 +423,7 @@ export default function AdminMessages() {
                 onSelect={(thread) => void handleSelectThread(thread)}
               />
 
-              <div className="border-t border-[#e4e4e7] p-4 text-xs text-[#71717a] dark:border-white/5 dark:text-[#a1a1aa]">
+              <div className="border-t border-slate-200 p-4 text-xs text-slate-500 dark:border-white/5 dark:text-zinc-400">
                 {loadingContacts
                   ? "Loading roster and guest contacts..."
                   : `${staff.length} staff, ${guests.length} guests, ${departmentNames.length} department groups`}
@@ -431,12 +431,12 @@ export default function AdminMessages() {
             </aside>
 
             <section className="flex flex-1 flex-col">
-              <div className="flex flex-wrap items-center justify-between gap-4 border-b border-[#e4e4e7] px-6 py-5 dark:border-white/5">
+              <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-200 px-6 py-5 dark:border-white/5">
                 <div>
-                  <h2 className="text-lg font-semibold tracking-tight text-[#09090b] dark:text-white">
+                  <h2 className="text-lg font-semibold tracking-tight text-slate-900 dark:text-white">
                     {activeThread?.title || "Select a thread"}
                   </h2>
-                  <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-[#71717a] dark:text-[#a1a1aa]">
+                  <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-500 dark:text-zinc-400">
                     {activeThread?.subtitle || "Operational messaging hub"}
                   </p>
                 </div>
@@ -445,12 +445,12 @@ export default function AdminMessages() {
                     type="button"
                     onClick={() => void handleOpenVoiceRoom()}
                     disabled={!activeThread}
-                    className="inline-flex items-center gap-2 rounded-full border border-[#e4e4e7] px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-[#09090b] transition-colors hover:border-black dark:border-white/10 dark:text-white dark:hover:border-white disabled:opacity-50"
+                    className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-slate-900 transition-colors hover:border-black dark:border-white/10 dark:text-white dark:hover:border-white disabled:opacity-50"
                   >
                     <span className="material-symbols-outlined text-[16px]">call</span>
                     Start Voice Room
                   </button>
-                  <div className="rounded-full bg-[#f4f4f5] px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-[#71717a] dark:bg-[#1a1a1a] dark:text-[#a1a1aa]">
+                  <div className="rounded-full bg-[#f4f4f5] px-4 py-2 text-xs font-bold uppercase tracking-[0.16em] text-slate-500 dark:bg-zinc-900 dark:text-zinc-400">
                     {activeThread?.audience || "none selected"}
                   </div>
                 </div>
@@ -477,9 +477,9 @@ export default function AdminMessages() {
                 />
               </div>
 
-              <form onSubmit={handleSend} className="border-t border-[#e4e4e7] p-5 dark:border-white/5">
+              <form onSubmit={handleSend} className="border-t border-slate-200 p-5 dark:border-white/5">
                 <div className="mb-4 grid gap-3 md:grid-cols-[1fr_auto_auto]">
-                  <label className="flex items-center gap-2 rounded-xl border border-[#e4e4e7] px-4 py-3 text-xs font-bold uppercase tracking-[0.16em] text-[#09090b] dark:border-white/10 dark:text-white">
+                  <label className="flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-3 text-xs font-bold uppercase tracking-[0.16em] text-slate-900 dark:border-white/10 dark:text-white">
                     <input
                       type="checkbox"
                       checked={meetingEnabled}
@@ -487,7 +487,7 @@ export default function AdminMessages() {
                     />
                     Meeting Invite
                   </label>
-                  <label className="flex items-center gap-2 rounded-xl border border-[#e4e4e7] px-4 py-3 text-xs font-bold uppercase tracking-[0.16em] text-[#09090b] dark:border-white/10 dark:text-white">
+                  <label className="flex items-center gap-2 rounded-xl border border-slate-200 px-4 py-3 text-xs font-bold uppercase tracking-[0.16em] text-slate-900 dark:border-white/10 dark:text-white">
                     <input
                       type="checkbox"
                       checked={scheduleEnabled}
@@ -500,7 +500,7 @@ export default function AdminMessages() {
                     value={scheduledFor}
                     onChange={(event) => setScheduledFor(event.target.value)}
                     disabled={!scheduleEnabled}
-                    className="rounded-xl border border-[#e4e4e7] bg-[#fafafa] px-4 py-3 text-sm outline-none focus:border-black dark:border-white/10 dark:bg-[#1a1a1a] dark:text-white dark:focus:border-white disabled:opacity-50"
+                    className="rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none focus:border-black dark:border-white/10 dark:bg-zinc-900 dark:text-white dark:focus:border-white disabled:opacity-50"
                   />
                 </div>
 
@@ -515,7 +515,7 @@ export default function AdminMessages() {
                         ? "Add meeting notes or leave blank for an automatic invite"
                         : "Type a message..."
                     }
-                    className="w-full rounded-full border border-[#e4e4e7] bg-[#f4f4f5] px-5 py-3 pr-16 text-sm outline-none transition-colors focus:border-black dark:border-white/10 dark:bg-[#1a1a1a] dark:text-white dark:focus:border-white disabled:opacity-60"
+                    className="w-full rounded-full border border-slate-200 bg-[#f4f4f5] px-5 py-3 pr-16 text-sm outline-none transition-colors focus:border-black dark:border-white/10 dark:bg-zinc-900 dark:text-white dark:focus:border-white disabled:opacity-60"
                   />
                   <button
                     type="submit"
@@ -528,7 +528,7 @@ export default function AdminMessages() {
                 </div>
 
                 {scheduleEnabled && scheduledIso && (
-                  <p className="mt-3 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                  <p className="mt-3 text-xs text-slate-500 dark:text-zinc-400">
                     Scheduled for {formatMessageDateTime(scheduledIso)}
                   </p>
                 )}

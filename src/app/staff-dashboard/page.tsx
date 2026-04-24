@@ -77,7 +77,7 @@ function buildChecklist(entry: {
     },
     {
       title: "Duty assignment",
-      detail: `${entry.role} | ${entry.department}`,
+      detail: `${entry.role} • ${entry.department}`,
       ready: Boolean(entry.role && entry.department),
       icon: "assignment_ind",
     },
@@ -256,7 +256,7 @@ export default function StaffDashboard() {
       : [];
 
   return (
-    <div className="relative flex h-screen flex-col overflow-hidden bg-[#fafafa] font-['Sora'] text-[#09090b] transition-colors selection:bg-black selection:text-white dark:bg-[#09090b] dark:text-[#fafafa] dark:selection:bg-white dark:selection:text-black">
+    <div className="relative flex h-screen flex-col overflow-hidden bg-slate-50 font-['Sora'] text-slate-900 transition-colors selection:bg-black selection:text-white dark:bg-[#09090b] dark:text-[#fafafa] dark:selection:bg-white dark:selection:text-black">
       <div
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
@@ -285,11 +285,11 @@ export default function StaffDashboard() {
         <main className="mx-auto flex w-full max-w-[1600px] flex-1 overflow-y-auto p-4 md:p-10 lg:p-12">
           <div className="w-full">
             <div className="mb-10 flex flex-col gap-2">
-              <h1 className="text-3xl font-light tracking-tight">Shift Overview</h1>
-              <p className="text-sm text-[#71717a] dark:text-[#a1a1aa]">
+              <h1 className="text-3xl font-light tracking-tight">Live Shift Overview</h1>
+              <p className="text-sm text-slate-500 dark:text-zinc-400">
                 {loading
                   ? "Loading your staff profile..."
-                  : `${profile.role} | ${profile.department} | ${profile.sector}`}
+                  : `${profile.role} • ${profile.department} • ${profile.sector}`}
               </p>
             </div>
 
@@ -319,17 +319,17 @@ export default function StaffDashboard() {
                 ].map((stat) => (
                   <div
                     key={stat.label}
-                    className="group relative flex h-32 flex-col justify-between overflow-hidden rounded-2xl border border-[#e4e4e7] bg-white p-6 shadow-sm transition-colors hover:border-[#a1a1aa] dark:border-[#27272a] dark:bg-[#09090b] dark:hover:border-[#52525b]"
+                    className="group relative flex h-32 flex-col justify-between overflow-hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm transition-colors hover:border-[#a1a1aa] dark:border-zinc-800/80 dark:bg-[#09090b] dark:hover:border-[#52525b]"
                   >
                     <div className="relative z-10 flex items-start justify-between">
-                      <p className="text-[11px] font-medium uppercase tracking-wide text-[#71717a] dark:text-[#a1a1aa]">
+                      <p className="text-[11px] font-medium uppercase tracking-wide text-slate-500 dark:text-zinc-400">
                         {stat.label}
                       </p>
-                      <span className="material-symbols-outlined text-[18px] text-[#a1a1aa] dark:text-[#52525b]">
+                      <span className="material-symbols-outlined text-[18px] text-zinc-400 dark:text-zinc-500">
                         {stat.icon}
                       </span>
                     </div>
-                    <p className="relative z-10 text-2xl font-light tracking-tight text-[#09090b] dark:text-white">
+                    <p className="relative z-10 text-2xl font-light tracking-tight text-slate-900 dark:text-white">
                       {stat.value}
                     </p>
                   </div>
@@ -337,17 +337,17 @@ export default function StaffDashboard() {
               </div>
 
               <div className="flex flex-col gap-8 lg:col-span-8">
-                <div className="overflow-hidden rounded-2xl border border-[#e4e4e7] bg-white shadow-sm dark:border-[#27272a] dark:bg-[#09090b]">
-                  <div className="flex items-center justify-between border-b border-[#f4f4f5] p-6 dark:border-[#27272a]">
+                <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-zinc-800/80 dark:bg-[#09090b]">
+                  <div className="flex items-center justify-between border-b border-[#f4f4f5] p-6 dark:border-zinc-800/80">
                     <div>
-                      <h3 className="text-sm font-medium text-[#09090b] dark:text-[#fafafa]">
-                        Snapshot
+                      <h3 className="text-sm font-medium text-slate-900 dark:text-[#fafafa]">
+                        Operational Snapshot
                       </h3>
-                      <p className="mt-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                      <p className="mt-1 text-xs text-slate-500 dark:text-zinc-400">
                         Real-time view from the authenticated staff profile.
                       </p>
                     </div>
-                    <span className="rounded-full bg-[#f4f4f5] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-[#09090b] dark:bg-[#27272a] dark:text-white">
+                    <span className="rounded-full bg-[#f4f4f5] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-slate-900 dark:bg-[#27272a] dark:text-white">
                       {profile.status}
                     </span>
                   </div>
@@ -365,32 +365,32 @@ export default function StaffDashboard() {
                     ].map((field) => (
                       <div
                         key={field.label}
-                        className="rounded-2xl border border-[#e4e4e7] bg-[#fafafa] p-5 dark:border-[#27272a] dark:bg-[#121215]"
+                        className="rounded-2xl border border-slate-200 bg-slate-50 p-5 dark:border-zinc-800/80 dark:bg-[#121215]"
                       >
-                        <p className="mb-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#71717a] dark:text-[#a1a1aa]">
+                        <p className="mb-2 flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-zinc-400">
                           <span className="material-symbols-outlined text-[14px]">{field.icon}</span>
                           {field.label}
                         </p>
-                        <p className="text-sm font-semibold text-[#09090b] dark:text-white">
+                        <p className="text-sm font-semibold text-slate-900 dark:text-white">
                           {field.value}
                         </p>
                       </div>
                     ))}
                   </div>
 
-                  <div className="border-t border-[#f4f4f5] bg-[#fafafa] p-4 dark:border-[#27272a] dark:bg-[#0f0f0f]">
-                    <p className="text-xs text-[#71717a] dark:text-[#a1a1aa]">{cardStatus}</p>
+                  <div className="border-t border-[#f4f4f5] bg-slate-50 p-4 dark:border-zinc-800/80 dark:bg-zinc-900">
+                    <p className="text-xs text-slate-500 dark:text-zinc-400">{cardStatus}</p>
                   </div>
                 </div>
 
-                <div className="rounded-2xl border border-[#e4e4e7] bg-white p-6 shadow-sm dark:border-[#27272a] dark:bg-[#09090b]">
+                <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-zinc-800/80 dark:bg-[#09090b]">
                   <div className="mb-6 flex items-center justify-between">
-                    <h3 className="text-sm font-medium text-[#09090b] dark:text-[#fafafa]">
-                      Profile
+                    <h3 className="text-sm font-medium text-slate-900 dark:text-[#fafafa]">
+                      Profile Readiness Checklist
                     </h3>
                     <Link
                       href="/staff-profile"
-                      className="flex items-center gap-1 text-xs text-[#71717a] transition-colors hover:text-[#09090b] dark:hover:text-white"
+                      className="flex items-center gap-1 text-xs text-slate-500 transition-colors hover:text-slate-900 dark:hover:text-white"
                     >
                       Open Profile
                       <span className="material-symbols-outlined text-[14px]">arrow_forward</span>
@@ -401,14 +401,14 @@ export default function StaffDashboard() {
                     {checklist.map((item) => (
                       <div
                         key={item.title}
-                        className="rounded-xl border border-[#e4e4e7] bg-[#fafafa] p-4 transition-colors dark:border-[#27272a] dark:bg-[#18181b]"
+                        className="rounded-xl border border-slate-200 bg-slate-50 p-4 transition-colors dark:border-zinc-800/80 dark:bg-[#18181b]"
                       >
                         <div className="mb-2 flex items-start justify-between gap-4">
                           <div className="flex items-center gap-2">
-                            <span className="material-symbols-outlined text-[16px] text-[#71717a] dark:text-[#a1a1aa]">
+                            <span className="material-symbols-outlined text-[16px] text-slate-500 dark:text-zinc-400">
                               {item.icon}
                             </span>
-                            <p className="text-sm font-semibold text-[#09090b] dark:text-white">
+                            <p className="text-sm font-semibold text-slate-900 dark:text-white">
                               {item.title}
                             </p>
                           </div>
@@ -422,7 +422,7 @@ export default function StaffDashboard() {
                             {item.ready ? "Ready" : "Pending"}
                           </span>
                         </div>
-                        <p className="text-xs text-[#71717a] dark:text-[#a1a1aa]">{item.detail}</p>
+                        <p className="text-xs text-slate-500 dark:text-zinc-400">{item.detail}</p>
                       </div>
                     ))}
                   </div>
@@ -430,12 +430,12 @@ export default function StaffDashboard() {
               </div>
 
               <div className="flex flex-col gap-8 lg:col-span-4">
-                <div className="rounded-2xl border border-[#e4e4e7] bg-white p-6 shadow-sm dark:border-[#27272a] dark:bg-[#09090b]">
+                <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-zinc-800/80 dark:bg-[#09090b]">
                   <div className="mb-6 flex items-center justify-between">
-                    <h3 className="text-sm font-medium text-[#09090b] dark:text-[#fafafa]">
-                      Team
+                    <h3 className="text-sm font-medium text-slate-900 dark:text-[#fafafa]">
+                      Department Roster
                     </h3>
-                    <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#71717a] dark:text-[#a1a1aa]">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-slate-500 dark:text-zinc-400">
                       {sameDepartmentStaff.length} listed
                     </span>
                   </div>
@@ -443,44 +443,44 @@ export default function StaffDashboard() {
                     {(loadingRoster ? [] : sameDepartmentStaff.slice(0, 4)).map((member) => (
                       <div
                         key={member.id}
-                        className="rounded-xl border border-[#e4e4e7] bg-[#fafafa] p-4 dark:border-[#27272a] dark:bg-[#18181b]"
+                        className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-zinc-800/80 dark:bg-[#18181b]"
                       >
                         <div className="mb-2 flex items-center justify-between gap-3">
-                          <p className="text-sm font-semibold text-[#09090b] dark:text-white">
+                          <p className="text-sm font-semibold text-slate-900 dark:text-white">
                             {member.name}
                           </p>
-                          <span className="text-[9px] font-bold uppercase tracking-[0.16em] text-[#71717a] dark:text-[#a1a1aa]">
+                          <span className="text-[9px] font-bold uppercase tracking-[0.16em] text-slate-500 dark:text-zinc-400">
                             {member.st}
                           </span>
                         </div>
-                        <p className="text-xs text-[#71717a] dark:text-[#a1a1aa]">{member.role}</p>
-                        <p className="mt-2 text-[11px] text-[#71717a] dark:text-[#a1a1aa]">
+                        <p className="text-xs text-slate-500 dark:text-zinc-400">{member.role}</p>
+                        <p className="mt-2 text-[11px] text-slate-500 dark:text-zinc-400">
                           {member.shift || member.department}
                         </p>
                       </div>
                     ))}
 
                     {!loadingRoster && sameDepartmentStaff.length === 0 && (
-                      <div className="rounded-xl border border-dashed border-[#d4d4d8] p-4 text-sm text-[#71717a] dark:border-[#27272a] dark:text-[#a1a1aa]">
-                        No team entries yet.
+                      <div className="rounded-xl border border-dashed border-[#d4d4d8] p-4 text-sm text-slate-500 dark:border-zinc-800/80 dark:text-zinc-400">
+                        No department roster entries found yet.
                       </div>
                     )}
 
                     {loadingRoster && (
-                      <div className="rounded-xl border border-dashed border-[#d4d4d8] p-4 text-sm text-[#71717a] dark:border-[#27272a] dark:text-[#a1a1aa]">
-                        Loading team...
+                      <div className="rounded-xl border border-dashed border-[#d4d4d8] p-4 text-sm text-slate-500 dark:border-zinc-800/80 dark:text-zinc-400">
+                        Loading department roster...
                       </div>
                     )}
                   </div>
                 </div>
 
-                <div className="rounded-2xl border border-[#e4e4e7] bg-white p-6 shadow-sm dark:border-[#27272a] dark:bg-[#09090b]">
+                <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-zinc-800/80 dark:bg-[#09090b]">
                   <div className="mb-4 flex items-center gap-2">
-                    <span className="material-symbols-outlined text-[18px] text-[#71717a] dark:text-[#a1a1aa]">
+                    <span className="material-symbols-outlined text-[18px] text-slate-500 dark:text-zinc-400">
                       contacts
                     </span>
-                    <h3 className="text-sm font-medium text-[#09090b] dark:text-[#fafafa]">
-                      Contacts
+                    <h3 className="text-sm font-medium text-slate-900 dark:text-[#fafafa]">
+                      Direct Contacts
                     </h3>
                   </div>
                   <div className="space-y-4">
@@ -493,12 +493,12 @@ export default function StaffDashboard() {
                     ].map((field) => (
                       <div
                         key={field.label}
-                        className="rounded-xl border border-[#e4e4e7] bg-[#fafafa] p-4 dark:border-[#27272a] dark:bg-[#18181b]"
+                        className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-zinc-800/80 dark:bg-[#18181b]"
                       >
-                        <p className="text-[10px] font-bold uppercase tracking-widest text-[#71717a] dark:text-[#a1a1aa]">
+                        <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 dark:text-zinc-400">
                           {field.label}
                         </p>
-                        <p className="mt-2 text-sm font-semibold text-[#09090b] dark:text-white">
+                        <p className="mt-2 text-sm font-semibold text-slate-900 dark:text-white">
                           {field.value}
                         </p>
                       </div>
@@ -511,7 +511,7 @@ export default function StaffDashboard() {
                 <DashboardMessagingCard
                   eyebrow="Shift Messaging"
                   title="Command Bridge"
-                  description="Admin line, department room, staff feed."
+                  description="Staff messaging is now wired into the dashboard with live previews for your direct admin line, department room, and staff-wide operational feed."
                   recentThreads={recentMessageThreads}
                   totalThreads={totalMessageThreads}
                   activeThreads={activeMessageThreads}
@@ -542,16 +542,16 @@ export default function StaffDashboard() {
                 />
               </div>
 
-              <div className="lg:col-span-12 rounded-2xl border border-[#e4e4e7] bg-white p-6 shadow-sm dark:border-[#27272a] dark:bg-[#09090b]">
+              <div className="lg:col-span-12 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-zinc-800/80 dark:bg-[#09090b]">
                 <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                   <div>
-                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#71717a] dark:text-[#a1a1aa]">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500 dark:text-zinc-400">
                       Live Route
                     </p>
-                    <h3 className="mt-1 text-2xl font-light tracking-tight text-[#09090b] dark:text-white">
+                    <h3 className="mt-1 text-2xl font-light tracking-tight text-slate-900 dark:text-white">
                       {selectedStaff?.assignment || "No active assignment"}
                     </h3>
-                    <p className="mt-2 text-sm text-[#71717a] dark:text-[#a1a1aa]">
+                    <p className="mt-2 text-sm text-slate-500 dark:text-zinc-400">
                       {selectedStaffTrackingStatus?.nextInstruction || "Generate the tactical map to begin live routing."}
                     </p>
                   </div>
@@ -561,7 +561,7 @@ export default function StaffDashboard() {
                 </div>
 
                 <div className="mt-6 grid gap-6 xl:grid-cols-[1.2fr_0.8fr]">
-                  <div className="overflow-hidden rounded-[18px] border border-[#e4e4e7] dark:border-[#27272a]">
+                  <div className="overflow-hidden rounded-[18px] border border-slate-200 dark:border-zinc-800/80">
                     <EvacuationMap
                       compact
                       floorId={selectedStaffFloorId}
@@ -577,22 +577,22 @@ export default function StaffDashboard() {
                   </div>
 
                   <div className="space-y-4">
-                    <div className="rounded-xl border border-[#e4e4e7] bg-[#fafafa] p-5 dark:border-[#27272a] dark:bg-[#18181b]">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#71717a] dark:text-[#a1a1aa]">
+                    <div className="rounded-xl border border-slate-200 bg-slate-50 p-5 dark:border-zinc-800/80 dark:bg-[#18181b]">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500 dark:text-zinc-400">
                         Position
                       </p>
-                      <p className="mt-2 text-sm font-semibold text-[#09090b] dark:text-white">
+                      <p className="mt-2 text-sm font-semibold text-slate-900 dark:text-white">
                         {selectedStaffNode?.label || "Current anchor unavailable"}
                       </p>
-                      <p className="mt-2 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                      <p className="mt-2 text-xs text-slate-500 dark:text-zinc-400">
                         {selectedStaffTrackingStatus
-                          ? `${selectedStaffTrackingStatus.trackingMode} | confidence ${Math.round(selectedStaffTrackingStatus.confidence * 100)}%`
+                          ? `${selectedStaffTrackingStatus.trackingMode} • confidence ${Math.round(selectedStaffTrackingStatus.confidence * 100)}%`
                           : "Routing telemetry will appear after the admin map is generated."}
                       </p>
                     </div>
 
-                    <div className="rounded-xl border border-[#e4e4e7] bg-[#fafafa] p-5 dark:border-[#27272a] dark:bg-[#18181b]">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#71717a] dark:text-[#a1a1aa]">
+                    <div className="rounded-xl border border-slate-200 bg-slate-50 p-5 dark:border-zinc-800/80 dark:bg-[#18181b]">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500 dark:text-zinc-400">
                         {beaconCopy.routeLocksLabel}
                       </p>
                       <div className="mt-3 flex flex-wrap gap-2">
@@ -606,26 +606,26 @@ export default function StaffDashboard() {
                             </span>
                           ))
                         ) : (
-                          <p className="text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                          <p className="text-xs text-slate-500 dark:text-zinc-400">
                             {beaconCopy.routeLocksPending}
                           </p>
                         )}
                       </div>
                     </div>
 
-                    <div className="rounded-xl border border-[#e4e4e7] bg-[#fafafa] p-5 dark:border-[#27272a] dark:bg-[#18181b]">
-                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#71717a] dark:text-[#a1a1aa]">
+                    <div className="rounded-xl border border-slate-200 bg-slate-50 p-5 dark:border-zinc-800/80 dark:bg-[#18181b]">
+                      <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-slate-500 dark:text-zinc-400">
                         Route Steps
                       </p>
                       <div className="mt-3 space-y-2">
                         {selectedStaffRouteSteps.length > 0 ? (
                           selectedStaffRouteSteps.map((step) => (
-                            <div key={step} className="rounded-xl bg-white px-4 py-3 text-sm text-[#09090b] dark:bg-[#09090b] dark:text-white">
+                            <div key={step} className="rounded-xl bg-white px-4 py-3 text-sm text-slate-900 dark:bg-[#09090b] dark:text-white">
                               {step}
                             </div>
                           ))
                         ) : (
-                          <p className="text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                          <p className="text-xs text-slate-500 dark:text-zinc-400">
                             No live staff route is available right now.
                           </p>
                         )}

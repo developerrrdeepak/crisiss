@@ -6,20 +6,11 @@ import { useEffect, useState } from "react";
 import { useSocket } from "@/hooks/useSocket";
 import { useRadio } from "@/hooks/useRadio";
 import { useSosTransport } from "@/hooks/useSosTransport";
-import { useAuthSync } from "@/hooks/useAuthSync";
-import {
-  buildAllGuestsThread,
-  buildAllStaffThread,
-  ensureThreads,
-  sendThreadMessage,
-  type MessagingViewer,
-} from "@/lib/messaging";
 import {
   getTransportLabel,
   type SosTransport,
   type TransportChannels,
 } from "@/lib/sos-transport";
-import { persistIncident, updateIncidentStatus } from "@/lib/incident-client";
 
 interface Alert {
   incidentId: string;
@@ -41,12 +32,9 @@ export default function AdminEmergency() {
   const [activeAlerts, setActiveAlerts] = useState<Alert[]>([]);
   const [activeRadioChannel, setActiveRadioChannel] = useState<string | null>(null);
   const [selectedAlertId, setSelectedAlertId] = useState<string | null>(null);
-  const [commandFeedback, setCommandFeedback] = useState<string | null>(null);
-  const [commandBusy, setCommandBusy] = useState<"evacuation" | "seal" | "dispatch" | null>(null);
   const [transportSelections, setTransportSelections] = useState<
     Record<string, SosTransport>
   >({});
-  const { dbUser } = useAuthSync("admin");
 
   const socket = useSocket("admin");
   const { isMicActive, toggleMic } = useRadio(socket, activeRadioChannel || "");
@@ -158,12 +146,6 @@ export default function AdminEmergency() {
       setSelectedAlertId(null);
     }
 
-    try {
-      await updateIncidentStatus(alert.incidentId, "Resolved");
-    } catch (error) {
-      console.error("Failed to resolve emergency incident:", error);
-    }
-
     socket?.emit("resolve-alert", alert);
     setActiveAlerts((prev) =>
       prev.filter((item) => item.incidentId !== alert.incidentId)
@@ -175,89 +157,8 @@ export default function AdminEmergency() {
     });
   };
 
-  const adminViewer: MessagingViewer | null = dbUser
-    ? {
-        role: "admin",
-        userId: dbUser.profileId || dbUser.id || dbUser.firebaseUid,
-        aliasIds: [dbUser.id, dbUser.loginId ?? null, dbUser.firebaseUid].filter(
-          (value): value is string => Boolean(value)
-        ),
-        name: dbUser.name || "Administrator",
-      }
-    : null;
-
-  const handleProtocolAction = async (action: "evacuation" | "seal" | "dispatch") => {
-    if (!adminViewer) {
-      setCommandFeedback("Admin session is still loading. Retry in a moment.");
-      return;
-    }
-
-    setCommandBusy(action);
-    setCommandFeedback(null);
-
-    const guestThread = buildAllGuestsThread(adminViewer);
-    const staffThread = buildAllStaffThread(adminViewer);
-    const activeAlert = activeAlerts[0] ?? null;
-
-    try {
-      if (action === "evacuation") {
-        await ensureThreads([guestThread, staffThread]);
-        await Promise.all([
-          sendThreadMessage({
-            thread: guestThread,
-            sender: adminViewer,
-            text: "Emergency evacuation is now active. Follow your live route guidance immediately and keep the radio channel open.",
-          }),
-          sendThreadMessage({
-            thread: staffThread,
-            sender: adminViewer,
-            text: "Emergency evacuation protocol is active. Sweep your assigned zones, guide occupants to exits, and confirm clearance on comms.",
-          }),
-        ]);
-        setCommandFeedback("Evacuation broadcast sent to guest and staff channels.");
-      }
-
-      if (action === "seal") {
-        await ensureThreads([staffThread]);
-        await sendThreadMessage({
-          thread: staffThread,
-          sender: adminViewer,
-          text: "Command center order: seal Sector 3 immediately, lock all access points, and report once the perimeter is secure.",
-        });
-        setCommandFeedback("Sector 3 lockdown order sent to the staff channel.");
-      }
-
-      if (action === "dispatch") {
-        await ensureThreads([staffThread]);
-        await Promise.all([
-          sendThreadMessage({
-            thread: staffThread,
-            sender: adminViewer,
-            text: "External authorities have been dispatched. Keep the access corridor clear, maintain incident comms, and prepare a status handoff.",
-          }),
-          persistIncident({
-            id: `CMD-${Date.now()}`,
-            title: "Authorities Dispatched",
-            description: activeAlert
-              ? `Admin dispatched authorities for ${activeAlert.originRole === "staff" ? activeAlert.roomId : `Room ${activeAlert.roomId}`}.`
-              : "Admin dispatched authorities from the emergency control panel.",
-            severity: "High",
-            roomId: activeAlert?.roomId ?? null,
-            status: "Active",
-          }),
-        ]);
-        setCommandFeedback("Authority dispatch logged and staff notified.");
-      }
-    } catch (error) {
-      console.error("Failed to execute emergency protocol action:", error);
-      setCommandFeedback("Emergency command failed. Check Firebase connectivity and retry.");
-    } finally {
-      setCommandBusy(null);
-    }
-  };
-
   return (
-    <div className="bg-[#fafafa] dark:bg-[#0a0a0a] text-[#09090b] dark:text-[#e5e2e1] min-h-screen flex flex-col font-['Sora'] relative">
+    <div className="bg-slate-50 dark:bg-zinc-950 text-slate-900 dark:text-zinc-50 min-h-screen flex flex-col font-['Sora'] relative">
       <div
         className="absolute inset-0 pointer-events-none z-0"
         style={{
@@ -301,13 +202,13 @@ export default function AdminEmergency() {
                 {activeAlerts.length > 0 ? "Active SOS Alerts" : "System Secure"}
               </h1>
             </div>
-            <p className="text-sm text-[#71717a] dark:text-[#a1a1aa]">
+            <p className="text-sm text-slate-500 dark:text-zinc-400">
               Real-time emergency broadcast tracking with manual admin transport switching.
             </p>
           </div>
 
           <div className="grid w-full grid-cols-1 gap-8 lg:grid-cols-12">
-            <div className="flex h-[500px] flex-col rounded-2xl border border-[#e4e4e7] bg-white p-8 shadow-sm dark:border-white/5 dark:bg-[#0f0f0f] lg:col-span-8">
+            <div className="flex h-[500px] flex-col rounded-2xl border border-slate-200 bg-white p-8 shadow-sm dark:border-white/5 dark:bg-zinc-900 lg:col-span-8">
               <div className="mb-6 flex items-center justify-between">
                 <h3 className="text-sm font-medium">Property Grid Isolation</h3>
                 {activeAlerts.length > 0 && (
@@ -318,14 +219,14 @@ export default function AdminEmergency() {
               </div>
 
               <div
-                className={`relative flex flex-1 items-center justify-center overflow-hidden rounded-xl border border-dashed bg-[#fafafa] dark:bg-[#050505] ${
+                className={`relative flex flex-1 items-center justify-center overflow-hidden rounded-xl border border-dashed bg-slate-50 dark:bg-[#050505] ${
                   activeAlerts.length > 0
                     ? "border-red-500/50"
-                    : "border-[#e4e4e7] dark:border-[#27272a]"
+                    : "border-slate-200 dark:border-zinc-800/80"
                 }`}
               >
                 {activeAlerts.length === 0 && (
-                  <div className="flex flex-col items-center text-xs opacity-50 text-[#71717a]">
+                  <div className="flex flex-col items-center text-xs opacity-50 text-slate-500">
                     <span className="material-symbols-outlined mb-2 text-4xl">radar</span>
                     Monitoring Grid Active
                   </div>
@@ -377,7 +278,7 @@ export default function AdminEmergency() {
                         Resolve & End Call
                       </button>
 
-                      <div className="mt-3 w-[235px] rounded-2xl border border-[#175ead]/20 bg-white/95 p-3 shadow-sm dark:border-white/10 dark:bg-[#0f0f0f]">
+                      <div className="mt-3 w-[235px] rounded-2xl border border-[#175ead]/20 bg-white/95 p-3 shadow-sm dark:border-white/10 dark:bg-zinc-900">
                         <p className="text-[9px] font-black uppercase tracking-[0.18em] text-[#175ead] dark:text-[#72aafe]">
                           Manual Transport
                         </p>
@@ -410,8 +311,8 @@ export default function AdminEmergency() {
               <div
                 className={`rounded-2xl p-8 transition-all ${
                   activeAlerts.length > 0
-                    ? "border border-red-500/30 bg-white shadow-[0_0_30px_rgba(239,68,68,0.05)] dark:bg-[#0f0f0f]"
-                    : "border border-[#e4e4e7] bg-white shadow-sm dark:border-white/5 dark:bg-[#0f0f0f]"
+                    ? "border border-red-500/30 bg-white shadow-[0_0_30px_rgba(239,68,68,0.05)] dark:bg-zinc-900"
+                    : "border border-slate-200 bg-white shadow-sm dark:border-white/5 dark:bg-zinc-900"
                 }`}
               >
                 <h3
@@ -421,11 +322,6 @@ export default function AdminEmergency() {
                 >
                   Protocol Execution
                 </h3>
-                {commandFeedback && (
-                  <div className="mb-4 rounded-2xl border border-[#175ead]/15 bg-[#e2efff]/40 px-4 py-3 text-xs font-semibold text-[#175ead] dark:border-white/10 dark:bg-[#121212] dark:text-[#72aafe]">
-                    {commandFeedback}
-                  </div>
-                )}
                 <div className="space-y-4">
                   <div className="rounded-2xl border border-[#175ead]/20 bg-[#e2efff]/40 p-4 dark:border-white/10 dark:bg-[#121212]">
                     <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#175ead] dark:text-[#72aafe]">
@@ -434,10 +330,10 @@ export default function AdminEmergency() {
                     <p className="mt-2 text-sm font-semibold text-[#081d2c] dark:text-white">
                       Manual route: {getTransportLabel(adminTransport)}
                     </p>
-                    <p className="mt-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                    <p className="mt-1 text-xs text-slate-500 dark:text-zinc-400">
                       Recommendation: {recommendedLabel}. Admin transport never auto-switches.
                     </p>
-                    <p className="mt-1 text-[11px] text-[#71717a] dark:text-[#a1a1aa]">
+                    <p className="mt-1 text-[11px] text-slate-500 dark:text-zinc-400">
                       Network health: {assessment.qualityLabel}
                     </p>
                     <div className="mt-4 grid grid-cols-3 gap-2">
@@ -448,7 +344,7 @@ export default function AdminEmergency() {
                           className={`rounded-xl border px-3 py-2 text-[10px] font-bold uppercase tracking-[0.16em] transition-colors ${
                             manualTransport === transport
                               ? "border-[#175ead] bg-[#175ead] text-white dark:border-[#72aafe] dark:bg-[#72aafe] dark:text-[#081d2c]"
-                              : "border-[#c1c6d5]/40 bg-white text-[#414753] dark:border-white/10 dark:bg-[#1a1a1a] dark:text-[#c1c6d5]"
+                              : "border-[#c1c6d5]/40 bg-white text-[#414753] dark:border-white/10 dark:bg-zinc-900 dark:text-[#c1c6d5]"
                           }`}
                         >
                           {transport === "ble" ? "Beacon" : getTransportLabel(transport)}
@@ -457,69 +353,54 @@ export default function AdminEmergency() {
                     </div>
                   </div>
 
-                  <button
-                    type="button"
-                    onClick={() => void handleProtocolAction("evacuation")}
-                    disabled={commandBusy !== null}
-                    className="flex w-full items-center justify-center gap-3 rounded-xl bg-red-600 py-4 font-semibold text-white shadow-sm transition-colors hover:bg-red-700 disabled:opacity-60"
-                  >
+                  <button className="flex w-full items-center justify-center gap-3 rounded-xl bg-red-600 py-4 font-semibold text-white shadow-sm transition-colors hover:bg-red-700">
                     <span className="material-symbols-outlined">campaign</span>
-                    {commandBusy === "evacuation" ? "Broadcasting..." : "Broadcast Evacuation"}
+                    Broadcast Evacuation
                   </button>
-                  <button
-                    type="button"
-                    onClick={() => void handleProtocolAction("seal")}
-                    disabled={commandBusy !== null}
-                    className="flex w-full items-center justify-center gap-3 rounded-xl bg-[#f4f4f5] py-4 font-semibold text-[#09090b] shadow-sm transition-colors hover:bg-[#e4e4e7] dark:bg-[#1a1a1a] dark:text-white dark:hover:bg-[#252525] disabled:opacity-60"
-                  >
+                  <button className="flex w-full items-center justify-center gap-3 rounded-xl bg-[#f4f4f5] py-4 font-semibold text-slate-900 shadow-sm transition-colors hover:bg-[#e4e4e7] dark:bg-zinc-900 dark:text-white dark:hover:bg-[#252525]">
                     <span className="material-symbols-outlined">lock</span>
-                    {commandBusy === "seal" ? "Sealing..." : "Seal Sector 3"}
+                    Seal Sector 3
                   </button>
-                  <button
-                    type="button"
-                    onClick={() => void handleProtocolAction("dispatch")}
-                    disabled={commandBusy !== null}
-                    className="flex w-full items-center justify-center gap-3 rounded-xl border border-transparent bg-[#f4f4f5] py-4 font-semibold text-[#09090b] shadow-sm transition-colors hover:border-blue-500 hover:bg-[#e4e4e7] dark:bg-[#27272a] dark:text-white dark:hover:bg-[#3f3f46] disabled:opacity-60"
-                  >
+                  <button className="flex w-full items-center justify-center gap-3 rounded-xl border border-transparent bg-[#f4f4f5] py-4 font-semibold text-slate-900 shadow-sm transition-colors hover:border-blue-500 hover:bg-[#e4e4e7] dark:bg-[#27272a] dark:text-white dark:hover:bg-[#3f3f46]">
                     <span className="material-symbols-outlined text-blue-500">local_police</span>
-                    {commandBusy === "dispatch" ? "Dispatching..." : "Dispatch Authorities"}
+                    Dispatch Authorities
                   </button>
                 </div>
               </div>
 
-              <div className="flex-1 rounded-2xl border border-[#e4e4e7] bg-white p-8 shadow-sm dark:border-white/5 dark:bg-[#0f0f0f]">
+              <div className="flex-1 rounded-2xl border border-slate-200 bg-white p-8 shadow-sm dark:border-white/5 dark:bg-zinc-900">
                 <h3 className="mb-4 text-sm font-medium">Latest Signal Details</h3>
                 {activeAlerts.length > 0 ? (
-                  <div className="space-y-4 border-t border-[#f4f4f5] pt-4 text-sm dark:border-[#27272a]">
-                    <div className="flex justify-between border-b border-dashed border-[#e4e4e7] pb-2 dark:border-[#27272a]">
-                      <span className="text-xs font-medium text-[#a1a1aa]">Origin</span>
-                      <span className="text-xs font-semibold text-[#09090b] dark:text-white">
+                  <div className="space-y-4 border-t border-[#f4f4f5] pt-4 text-sm dark:border-zinc-800/80">
+                    <div className="flex justify-between border-b border-dashed border-slate-200 pb-2 dark:border-zinc-800/80">
+                      <span className="text-xs font-medium text-zinc-400">Origin</span>
+                      <span className="text-xs font-semibold text-slate-900 dark:text-white">
                         {getAlertOriginLabel(activeAlerts[0])}
                       </span>
                     </div>
-                    <div className="flex justify-between border-b border-dashed border-[#e4e4e7] pb-2 dark:border-[#27272a]">
-                      <span className="text-xs font-medium text-[#a1a1aa]">
+                    <div className="flex justify-between border-b border-dashed border-slate-200 pb-2 dark:border-zinc-800/80">
+                      <span className="text-xs font-medium text-zinc-400">
                         {getAlertIdentityLabel(activeAlerts[0])}
                       </span>
-                      <span className="text-xs font-semibold text-[#09090b] dark:text-white">
+                      <span className="text-xs font-semibold text-slate-900 dark:text-white">
                         {activeAlerts[0].guestName}
                       </span>
                     </div>
-                    <div className="flex justify-between border-b border-dashed border-[#e4e4e7] pb-2 dark:border-[#27272a]">
-                      <span className="text-xs font-medium text-[#a1a1aa]">Signal ID</span>
-                      <span className="font-mono text-xs text-[#09090b] dark:text-white">
+                    <div className="flex justify-between border-b border-dashed border-slate-200 pb-2 dark:border-zinc-800/80">
+                      <span className="text-xs font-medium text-zinc-400">Signal ID</span>
+                      <span className="font-mono text-xs text-slate-900 dark:text-white">
                         {activeAlerts[0].incidentId}
                       </span>
                     </div>
-                    <div className="flex justify-between border-b border-dashed border-[#e4e4e7] pb-2 dark:border-[#27272a]">
-                      <span className="text-xs font-medium text-[#a1a1aa]">Caller Route</span>
-                      <span className="text-xs font-semibold text-[#09090b] dark:text-white">
+                    <div className="flex justify-between border-b border-dashed border-slate-200 pb-2 dark:border-zinc-800/80">
+                      <span className="text-xs font-medium text-zinc-400">Caller Route</span>
+                      <span className="text-xs font-semibold text-slate-900 dark:text-white">
                         {getTransportLabel(activeAlerts[0].activeTransport || "internet")}
                       </span>
                     </div>
                     <div className="flex justify-between pb-2">
-                      <span className="text-xs font-medium text-[#a1a1aa]">Admin Route</span>
-                      <span className="text-xs font-semibold text-[#09090b] dark:text-white">
+                      <span className="text-xs font-medium text-zinc-400">Admin Route</span>
+                      <span className="text-xs font-semibold text-slate-900 dark:text-white">
                         {getTransportLabel(
                           transportSelections[activeAlerts[0].incidentId] || manualTransport
                         )}
@@ -527,7 +408,7 @@ export default function AdminEmergency() {
                     </div>
                   </div>
                 ) : (
-                  <p className="border-t border-[#f4f4f5] pt-4 text-xs text-[#a1a1aa] dark:border-[#27272a]">
+                  <p className="border-t border-[#f4f4f5] pt-4 text-xs text-zinc-400 dark:border-zinc-800/80">
                     Awaiting incoming transmissions...
                   </p>
                 )}

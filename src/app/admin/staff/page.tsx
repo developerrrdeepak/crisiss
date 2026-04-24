@@ -163,15 +163,15 @@ function StaffRow({ member, onEdit }: { member: StaffMember; onEdit: () => void 
             {!member.photoUrl && getStaffInitials(member.name)}
           </div>
           <div>
-            <p style={{ color: hovered ? "#2563eb" : undefined }} className="font-semibold text-[#09090b] dark:text-white transition-colors duration-150">{member.name}</p>
-            <p className="text-xs text-[#71717a] dark:text-[#a1a1aa]">Joined {formatStaffDisplayDate(member.joiningDate)}</p>
+            <p style={{ color: hovered ? "#2563eb" : undefined }} className="font-semibold text-slate-900 dark:text-white transition-colors duration-150">{member.name}</p>
+            <p className="text-xs text-slate-500 dark:text-zinc-400">Joined {formatStaffDisplayDate(member.joiningDate)}</p>
           </div>
         </div>
       </td>
-      <td className="px-4 py-4 font-mono text-xs font-semibold text-[#71717a] dark:text-[#a1a1aa]">{member.employeeId || "-"}</td>
-      <td className="px-4 py-4 text-[#09090b] dark:text-white">{member.role}</td>
-      <td className="px-4 py-4 text-[#71717a] dark:text-[#a1a1aa]">{member.department || member.sector || "-"}</td>
-      <td className="px-4 py-4 text-xs text-[#71717a] dark:text-[#a1a1aa]">{member.email || "-"}</td>
+      <td className="px-4 py-4 font-mono text-xs font-semibold text-slate-500 dark:text-zinc-400">{member.employeeId || "-"}</td>
+      <td className="px-4 py-4 text-slate-900 dark:text-white">{member.role}</td>
+      <td className="px-4 py-4 text-slate-500 dark:text-zinc-400">{member.department || member.sector || "-"}</td>
+      <td className="px-4 py-4 text-xs text-slate-500 dark:text-zinc-400">{member.email || "-"}</td>
       <td className="px-4 py-4">
         <span className={`rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-[0.18em] border ${
           member.st.toLowerCase() === "active"
@@ -192,7 +192,7 @@ function StaffRow({ member, onEdit }: { member: StaffMember; onEdit: () => void 
             color: hovered ? "#2563eb" : undefined,
             transition: "all 0.15s ease",
           }}
-          className="rounded-xl border border-[#e4e4e7] dark:border-[#27272a] px-3 py-2 text-[11px] font-bold uppercase tracking-[0.16em]"
+          className="rounded-xl border border-slate-200 dark:border-zinc-800/80 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.16em]"
         >
           Edit
         </button>
@@ -532,7 +532,7 @@ export default function AdminStaff() {
   };
 
   return (
-    <div className="bg-[#fafafa] dark:bg-[#0a0a0a] text-[#09090b] dark:text-[#e5e2e1] min-h-screen flex flex-col font-['Sora'] relative overflow-hidden">
+    <div className="bg-slate-50 dark:bg-zinc-950 text-slate-900 dark:text-zinc-50 min-h-screen flex flex-col font-['Sora'] relative overflow-hidden">
       {/* Ambient gradient blobs */}
       <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
         <div className="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-gradient-to-br from-blue-500/6 via-indigo-500/4 to-transparent blur-3xl" />
@@ -560,7 +560,7 @@ export default function AdminStaff() {
             <div className="mb-8 flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
               <div>
                 <h1 className="text-3xl font-semibold tracking-tight">Staff Registration Command</h1>
-                <p className="mt-2 text-sm text-[#71717a] dark:text-[#a1a1aa]">
+                <p className="mt-2 text-sm text-slate-500 dark:text-zinc-400">
                   Register new team members, generate staff credentials, and prepare printable digital ID cards.
                 </p>
               </div>
@@ -590,26 +590,26 @@ export default function AdminStaff() {
 
             <div className="mb-8 grid gap-4 md:grid-cols-4">
               {[
-                { label: "Total Staff", val: staff.length, color: "text-[#09090b] dark:text-white", gradient: "from-slate-500/8 to-gray-500/4", icon: "groups" },
+                { label: "Total Staff", val: staff.length, color: "text-slate-900 dark:text-white", gradient: "from-slate-500/8 to-gray-500/4", icon: "groups" },
                 { label: "Active", val: activeStaffCount, color: "text-emerald-600 dark:text-emerald-400", gradient: "from-emerald-500/10 to-green-500/5", icon: "check_circle" },
-                { label: "Departments", val: departmentCount, color: "text-[#09090b] dark:text-white", gradient: "from-blue-500/8 to-sky-500/4", icon: "corporate_fare" },
+                { label: "Departments", val: departmentCount, color: "text-slate-900 dark:text-white", gradient: "from-blue-500/8 to-sky-500/4", icon: "corporate_fare" },
                 { label: "Access Ready", val: staff.filter((member) => Boolean(member.email)).length, color: "text-[#175ead]", gradient: "from-indigo-500/10 to-blue-500/5", icon: "key" },
               ].map(s => (
-                <div key={s.label} className={`group relative rounded-2xl border border-[#e4e4e7] dark:border-[#27272a] bg-gradient-to-br ${s.gradient} bg-white dark:bg-[#0f0f0f] p-5 overflow-hidden hover:border-[#d4d4d8] dark:hover:border-[#3f3f46] hover:shadow-lg hover:shadow-black/5 hover:-translate-y-0.5 transition-all duration-200 cursor-default`}>
+                <div key={s.label} className={`group relative rounded-2xl border border-slate-200 dark:border-zinc-800/80 bg-gradient-to-br ${s.gradient} bg-white dark:bg-zinc-900 p-5 overflow-hidden hover:border-[#d4d4d8] dark:hover:border-[#3f3f46] hover:shadow-lg hover:shadow-black/5 hover:-translate-y-0.5 transition-all duration-200 cursor-default`}>
                   <div className="absolute top-3 right-3 opacity-15 group-hover:opacity-35 transition-opacity duration-200">
                     <span className="material-symbols-outlined text-2xl">{s.icon}</span>
                   </div>
-                  <p className="text-[10px] font-bold tracking-[0.24em] uppercase text-[#a1a1aa]">{s.label}</p>
+                  <p className="text-[10px] font-bold tracking-[0.24em] uppercase text-zinc-400">{s.label}</p>
                   <p className={`mt-3 text-3xl font-light tracking-tight ${s.color}`}>{s.val}</p>
                 </div>
               ))}
             </div>
 
-            <div className="rounded-[28px] border border-[#e4e4e7] bg-white shadow-sm dark:border-[#27272a] dark:bg-[#0f0f0f] overflow-hidden">
-              <div className="flex items-center justify-between border-b border-[#e4e4e7] px-6 py-5 dark:border-[#27272a] bg-gradient-to-r from-white to-[#fafafa] dark:from-[#0f0f0f] dark:to-[#111111]">
+            <div className="rounded-[28px] border border-slate-200 bg-white shadow-sm dark:border-zinc-800/80 dark:bg-zinc-900 overflow-hidden">
+              <div className="flex items-center justify-between border-b border-slate-200 px-6 py-5 dark:border-zinc-800/80 bg-gradient-to-r from-white to-[#fafafa] dark:from-[#0f0f0f] dark:to-[#111111]">
                 <div>
                   <h2 className="text-lg font-semibold">Staff Registry</h2>
-                  <p className="mt-1 text-sm text-[#71717a] dark:text-[#a1a1aa]">
+                  <p className="mt-1 text-sm text-slate-500 dark:text-zinc-400">
                     Stored staff profiles with generated identity details and login email.
                   </p>
                 </div>
@@ -625,7 +625,7 @@ export default function AdminStaff() {
                       })
                       .finally(() => setLoading(false));
                   }}
-                  className="rounded-xl border border-[#e4e4e7] px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-[#fafafa] dark:border-[#27272a] dark:hover:bg-[#18181b]"
+                  className="rounded-xl border border-slate-200 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.18em] transition-colors hover:bg-slate-50 dark:border-zinc-800/80 dark:hover:bg-[#18181b]"
                 >
                   Refresh
                 </button>
@@ -634,7 +634,7 @@ export default function AdminStaff() {
               <div className="overflow-x-auto">
                 <table className="min-w-full text-left text-sm">
                   <thead>
-                    <tr className="border-b border-[#e4e4e7] text-[11px] uppercase tracking-[0.2em] text-[#71717a] dark:border-[#27272a] dark:text-[#a1a1aa] bg-[#fafafa]/50 dark:bg-[#111111]/50">
+                    <tr className="border-b border-slate-200 text-[11px] uppercase tracking-[0.2em] text-slate-500 dark:border-zinc-800/80 dark:text-zinc-400 bg-slate-50/50 dark:bg-zinc-900/50/50">
                       <th className="px-6 py-3 font-semibold">Staff Member</th>
                       <th className="px-4 py-3 font-semibold">Employee ID</th>
                       <th className="px-4 py-3 font-semibold">Role</th>
@@ -647,13 +647,13 @@ export default function AdminStaff() {
                   <tbody className="divide-y divide-[#f4f4f5] dark:divide-[#1a1a1a]">
                     {loading ? (
                       <tr>
-                        <td colSpan={7} className="px-6 py-8 text-center text-sm text-[#71717a] dark:text-[#a1a1aa]">
+                        <td colSpan={7} className="px-6 py-8 text-center text-sm text-slate-500 dark:text-zinc-400">
                           Loading staff roster...
                         </td>
                       </tr>
                     ) : staff.length === 0 ? (
                       <tr>
-                        <td colSpan={7} className="px-6 py-8 text-center text-sm text-[#71717a] dark:text-[#a1a1aa]">
+                        <td colSpan={7} className="px-6 py-8 text-center text-sm text-slate-500 dark:text-zinc-400">
                           No staff records found.
                         </td>
                       </tr>
@@ -672,11 +672,11 @@ export default function AdminStaff() {
 
       {showRegisterModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4">
-          <div className="max-h-[92vh] w-full max-w-4xl overflow-auto rounded-[28px] bg-white p-6 shadow-[0_24px_60px_rgba(0,0,0,0.28)] dark:bg-[#0f0f0f]">
+          <div className="max-h-[92vh] w-full max-w-4xl overflow-auto rounded-[28px] bg-white p-6 shadow-[0_24px_60px_rgba(0,0,0,0.28)] dark:bg-zinc-900">
             <div className="mb-6 flex items-start justify-between gap-4">
               <div>
                 <h3 className="text-xl font-semibold">Register New Staff Member</h3>
-                <p className="mt-1 text-sm text-[#71717a] dark:text-[#a1a1aa]">
+                <p className="mt-1 text-sm text-slate-500 dark:text-zinc-400">
                   Admin will create the staff profile, assign role details, and generate login credentials with a printable digital ID card.
                 </p>
               </div>
@@ -685,7 +685,7 @@ export default function AdminStaff() {
                   setShowRegisterModal(false);
                   resetRegistrationForm();
                 }}
-                className="rounded-full border border-[#e4e4e7] p-2 text-[#71717a] transition-colors hover:bg-[#fafafa] dark:border-[#27272a] dark:hover:bg-[#18181b]"
+                className="rounded-full border border-slate-200 p-2 text-slate-500 transition-colors hover:bg-slate-50 dark:border-zinc-800/80 dark:hover:bg-[#18181b]"
               >
                 <span className="material-symbols-outlined text-lg">close</span>
               </button>
@@ -699,7 +699,7 @@ export default function AdminStaff() {
                   onChange={(event) =>
                     setRegistrationForm((current) => ({ ...current, name: event.target.value }))
                   }
-                  className="mt-2 w-full rounded-2xl border border-transparent bg-[#fafafa] px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
+                  className="mt-2 w-full rounded-2xl border border-transparent bg-slate-50 px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
                   placeholder="Deepak Sharma"
                 />
               </div>
@@ -711,7 +711,7 @@ export default function AdminStaff() {
                   onChange={(event) =>
                     setRegistrationForm((current) => ({ ...current, email: event.target.value }))
                   }
-                  className="mt-2 w-full rounded-2xl border border-transparent bg-[#fafafa] px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
+                  className="mt-2 w-full rounded-2xl border border-transparent bg-slate-50 px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
                   placeholder="staff@aegis.com"
                 />
               </div>
@@ -722,7 +722,7 @@ export default function AdminStaff() {
                   onChange={(event) =>
                     setRegistrationForm((current) => ({ ...current, role: event.target.value }))
                   }
-                  className="mt-2 w-full rounded-2xl border border-transparent bg-[#fafafa] px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
+                  className="mt-2 w-full rounded-2xl border border-transparent bg-slate-50 px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
                   placeholder="Front Desk Executive"
                 />
               </div>
@@ -733,7 +733,7 @@ export default function AdminStaff() {
                   onChange={(event) =>
                     setRegistrationForm((current) => ({ ...current, department: event.target.value }))
                   }
-                  className="mt-2 w-full rounded-2xl border border-transparent bg-[#fafafa] px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
+                  className="mt-2 w-full rounded-2xl border border-transparent bg-slate-50 px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
                   placeholder="Guest Services"
                 />
               </div>
@@ -744,7 +744,7 @@ export default function AdminStaff() {
                   onChange={(event) =>
                     setRegistrationForm((current) => ({ ...current, phone: event.target.value }))
                   }
-                  className="mt-2 w-full rounded-2xl border border-transparent bg-[#fafafa] px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
+                  className="mt-2 w-full rounded-2xl border border-transparent bg-slate-50 px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
                   placeholder="+91-9876543201"
                 />
               </div>
@@ -755,7 +755,7 @@ export default function AdminStaff() {
                   onChange={(event) =>
                     setRegistrationForm((current) => ({ ...current, emergencyContact: event.target.value }))
                   }
-                  className="mt-2 w-full rounded-2xl border border-transparent bg-[#fafafa] px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
+                  className="mt-2 w-full rounded-2xl border border-transparent bg-slate-50 px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
                   placeholder="+91-9876543210"
                 />
               </div>
@@ -766,7 +766,7 @@ export default function AdminStaff() {
                   onChange={(event) =>
                     setRegistrationForm((current) => ({ ...current, bloodGroup: event.target.value }))
                   }
-                  className="mt-2 w-full rounded-2xl border border-transparent bg-[#fafafa] px-4 py-3 text-sm uppercase outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
+                  className="mt-2 w-full rounded-2xl border border-transparent bg-slate-50 px-4 py-3 text-sm uppercase outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
                   placeholder="B+"
                 />
               </div>
@@ -778,7 +778,7 @@ export default function AdminStaff() {
                   onChange={(event) =>
                     setRegistrationForm((current) => ({ ...current, joiningDate: event.target.value }))
                   }
-                  className="mt-2 w-full rounded-2xl border border-transparent bg-[#fafafa] px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
+                  className="mt-2 w-full rounded-2xl border border-transparent bg-slate-50 px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
                 />
               </div>
               <div>
@@ -789,12 +789,12 @@ export default function AdminStaff() {
                   onChange={(event) =>
                     setRegistrationForm((current) => ({ ...current, validTill: event.target.value }))
                   }
-                  className="mt-2 w-full rounded-2xl border border-transparent bg-[#fafafa] px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
+                  className="mt-2 w-full rounded-2xl border border-transparent bg-slate-50 px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
                 />
               </div>
               <div className="md:col-span-2">
                 <label className="text-xs font-semibold uppercase tracking-[0.16em]">Upload Staff Photo (optional)</label>
-                <div className="mt-2 rounded-[24px] border border-dashed border-[#d4d4d8] bg-[#fafafa] p-4 dark:border-[#27272a] dark:bg-[#18181b]">
+                <div className="mt-2 rounded-[24px] border border-dashed border-[#d4d4d8] bg-slate-50 p-4 dark:border-zinc-800/80 dark:bg-[#18181b]">
                   <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                     <div className="flex items-center gap-4">
                       <div
@@ -815,7 +815,7 @@ export default function AdminStaff() {
                         <p className="text-sm font-semibold">
                           {registrationForm.photoUrl ? "Photo selected" : "Choose an image"}
                         </p>
-                        <p className="mt-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                        <p className="mt-1 text-xs text-slate-500 dark:text-zinc-400">
                           JPG, PNG, or WEBP up to 3 MB. The photo is stored with the staff profile.
                         </p>
                       </div>
@@ -836,7 +836,7 @@ export default function AdminStaff() {
                         <button
                           type="button"
                           onClick={() => updateRegistrationField("photoUrl", "")}
-                          className="rounded-2xl border border-[#e4e4e7] px-4 py-2.5 text-sm font-semibold transition-colors hover:bg-white dark:border-[#27272a] dark:hover:bg-[#101012]"
+                          className="rounded-2xl border border-slate-200 px-4 py-2.5 text-sm font-semibold transition-colors hover:bg-white dark:border-zinc-800/80 dark:hover:bg-[#101012]"
                         >
                           Remove
                         </button>
@@ -860,7 +860,7 @@ export default function AdminStaff() {
                   setShowRegisterModal(false);
                   resetRegistrationForm();
                 }}
-                className="rounded-2xl border border-[#e4e4e7] px-5 py-3 text-sm font-semibold transition-colors hover:bg-[#fafafa] dark:border-[#27272a] dark:hover:bg-[#18181b]"
+                className="rounded-2xl border border-slate-200 px-5 py-3 text-sm font-semibold transition-colors hover:bg-slate-50 dark:border-zinc-800/80 dark:hover:bg-[#18181b]"
               >
                 Cancel
               </button>
@@ -871,17 +871,17 @@ export default function AdminStaff() {
 
       {editingStaff && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4">
-          <div className="max-h-[92vh] w-full max-w-5xl overflow-auto rounded-[28px] bg-white p-6 shadow-[0_24px_60px_rgba(0,0,0,0.28)] dark:bg-[#0f0f0f]">
+          <div className="max-h-[92vh] w-full max-w-5xl overflow-auto rounded-[28px] bg-white p-6 shadow-[0_24px_60px_rgba(0,0,0,0.28)] dark:bg-zinc-900">
             <div className="mb-6 flex items-start justify-between gap-4">
               <div>
                 <h3 className="text-xl font-semibold">Edit Staff Member</h3>
-                <p className="mt-1 text-sm text-[#71717a] dark:text-[#a1a1aa]">
+                <p className="mt-1 text-sm text-slate-500 dark:text-zinc-400">
                   Update profile details, refresh the ID card photo, and correct staff records without regenerating login credentials.
                 </p>
               </div>
               <button
                 onClick={resetEditForm}
-                className="rounded-full border border-[#e4e4e7] p-2 text-[#71717a] transition-colors hover:bg-[#fafafa] dark:border-[#27272a] dark:hover:bg-[#18181b]"
+                className="rounded-full border border-slate-200 p-2 text-slate-500 transition-colors hover:bg-slate-50 dark:border-zinc-800/80 dark:hover:bg-[#18181b]"
               >
                 <span className="material-symbols-outlined text-lg">close</span>
               </button>
@@ -894,7 +894,7 @@ export default function AdminStaff() {
                   <input
                     value={editingStaff.name}
                     onChange={(event) => updateEditField("name", event.target.value)}
-                    className="mt-2 w-full rounded-2xl border border-transparent bg-[#fafafa] px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
+                    className="mt-2 w-full rounded-2xl border border-transparent bg-slate-50 px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
                   />
                 </div>
                 <div>
@@ -902,7 +902,7 @@ export default function AdminStaff() {
                   <input
                     value={editingStaff.email}
                     readOnly
-                    className="mt-2 w-full rounded-2xl border border-[#e4e4e7] bg-[#f4f4f5] px-4 py-3 text-sm text-[#71717a] outline-none dark:border-[#27272a] dark:bg-[#141416] dark:text-[#a1a1aa]"
+                    className="mt-2 w-full rounded-2xl border border-slate-200 bg-[#f4f4f5] px-4 py-3 text-sm text-slate-500 outline-none dark:border-zinc-800/80 dark:bg-[#141416] dark:text-zinc-400"
                   />
                 </div>
                 <div>
@@ -910,7 +910,7 @@ export default function AdminStaff() {
                   <input
                     value={editingStaff.employeeId}
                     readOnly
-                    className="mt-2 w-full rounded-2xl border border-[#e4e4e7] bg-[#f4f4f5] px-4 py-3 text-sm font-mono text-[#71717a] outline-none dark:border-[#27272a] dark:bg-[#141416] dark:text-[#a1a1aa]"
+                    className="mt-2 w-full rounded-2xl border border-slate-200 bg-[#f4f4f5] px-4 py-3 text-sm font-mono text-slate-500 outline-none dark:border-zinc-800/80 dark:bg-[#141416] dark:text-zinc-400"
                   />
                 </div>
                 <div>
@@ -918,7 +918,7 @@ export default function AdminStaff() {
                   <select
                     value={editingStaff.status}
                     onChange={(event) => updateEditField("status", event.target.value)}
-                    className="mt-2 w-full rounded-2xl border border-transparent bg-[#fafafa] px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
+                    className="mt-2 w-full rounded-2xl border border-transparent bg-slate-50 px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
                   >
                     <option value="Active">Active</option>
                     <option value="Inactive">Inactive</option>
@@ -931,7 +931,7 @@ export default function AdminStaff() {
                   <input
                     value={editingStaff.role}
                     onChange={(event) => updateEditField("role", event.target.value)}
-                    className="mt-2 w-full rounded-2xl border border-transparent bg-[#fafafa] px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
+                    className="mt-2 w-full rounded-2xl border border-transparent bg-slate-50 px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
                   />
                 </div>
                 <div>
@@ -939,7 +939,7 @@ export default function AdminStaff() {
                   <input
                     value={editingStaff.department}
                     onChange={(event) => updateEditField("department", event.target.value)}
-                    className="mt-2 w-full rounded-2xl border border-transparent bg-[#fafafa] px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
+                    className="mt-2 w-full rounded-2xl border border-transparent bg-slate-50 px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
                   />
                 </div>
                 <div>
@@ -947,7 +947,7 @@ export default function AdminStaff() {
                   <input
                     value={editingStaff.phone}
                     onChange={(event) => updateEditField("phone", event.target.value)}
-                    className="mt-2 w-full rounded-2xl border border-transparent bg-[#fafafa] px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
+                    className="mt-2 w-full rounded-2xl border border-transparent bg-slate-50 px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
                   />
                 </div>
                 <div>
@@ -955,7 +955,7 @@ export default function AdminStaff() {
                   <input
                     value={editingStaff.emergencyContact}
                     onChange={(event) => updateEditField("emergencyContact", event.target.value)}
-                    className="mt-2 w-full rounded-2xl border border-transparent bg-[#fafafa] px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
+                    className="mt-2 w-full rounded-2xl border border-transparent bg-slate-50 px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
                   />
                 </div>
                 <div>
@@ -963,7 +963,7 @@ export default function AdminStaff() {
                   <input
                     value={editingStaff.bloodGroup}
                     onChange={(event) => updateEditField("bloodGroup", event.target.value)}
-                    className="mt-2 w-full rounded-2xl border border-transparent bg-[#fafafa] px-4 py-3 text-sm uppercase outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
+                    className="mt-2 w-full rounded-2xl border border-transparent bg-slate-50 px-4 py-3 text-sm uppercase outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
                   />
                 </div>
                 <div>
@@ -972,7 +972,7 @@ export default function AdminStaff() {
                     type="date"
                     value={editingStaff.joiningDate}
                     onChange={(event) => updateEditField("joiningDate", event.target.value)}
-                    className="mt-2 w-full rounded-2xl border border-transparent bg-[#fafafa] px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
+                    className="mt-2 w-full rounded-2xl border border-transparent bg-slate-50 px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
                   />
                 </div>
                 <div>
@@ -981,12 +981,12 @@ export default function AdminStaff() {
                     type="date"
                     value={editingStaff.validTill}
                     onChange={(event) => updateEditField("validTill", event.target.value)}
-                    className="mt-2 w-full rounded-2xl border border-transparent bg-[#fafafa] px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
+                    className="mt-2 w-full rounded-2xl border border-transparent bg-slate-50 px-4 py-3 text-sm outline-none transition-colors focus:border-[#175ead] dark:bg-[#18181b]"
                   />
                 </div>
                 <div className="md:col-span-2">
                   <label className="text-xs font-semibold uppercase tracking-[0.16em]">Staff Photo</label>
-                  <div className="mt-2 rounded-[24px] border border-dashed border-[#d4d4d8] bg-[#fafafa] p-4 dark:border-[#27272a] dark:bg-[#18181b]">
+                  <div className="mt-2 rounded-[24px] border border-dashed border-[#d4d4d8] bg-slate-50 p-4 dark:border-zinc-800/80 dark:bg-[#18181b]">
                     <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                       <div className="flex items-center gap-4">
                         <div
@@ -1007,7 +1007,7 @@ export default function AdminStaff() {
                           <p className="text-sm font-semibold">
                             {editingStaff.photoUrl ? "Current photo ready" : "No photo on profile"}
                           </p>
-                          <p className="mt-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                          <p className="mt-1 text-xs text-slate-500 dark:text-zinc-400">
                             Upload a new image to update the staff ID card.
                           </p>
                         </div>
@@ -1028,7 +1028,7 @@ export default function AdminStaff() {
                           <button
                             type="button"
                             onClick={() => updateEditField("photoUrl", "")}
-                            className="rounded-2xl border border-[#e4e4e7] px-4 py-2.5 text-sm font-semibold transition-colors hover:bg-white dark:border-[#27272a] dark:hover:bg-[#101012]"
+                            className="rounded-2xl border border-slate-200 px-4 py-2.5 text-sm font-semibold transition-colors hover:bg-white dark:border-zinc-800/80 dark:hover:bg-[#101012]"
                           >
                             Remove
                           </button>
@@ -1040,7 +1040,7 @@ export default function AdminStaff() {
               </div>
 
               <div className="space-y-4">
-                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-[#71717a] dark:text-[#a1a1aa]">
+                <p className="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500 dark:text-zinc-400">
                   Live ID Card Preview
                 </p>
                 <StaffIdCard staff={editingStaff} className="min-h-[520px]" />
@@ -1057,7 +1057,7 @@ export default function AdminStaff() {
               </button>
               <button
                 onClick={resetEditForm}
-                className="rounded-2xl border border-[#e4e4e7] px-5 py-3 text-sm font-semibold transition-colors hover:bg-[#fafafa] dark:border-[#27272a] dark:hover:bg-[#18181b]"
+                className="rounded-2xl border border-slate-200 px-5 py-3 text-sm font-semibold transition-colors hover:bg-slate-50 dark:border-zinc-800/80 dark:hover:bg-[#18181b]"
               >
                 Cancel
               </button>

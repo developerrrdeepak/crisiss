@@ -94,7 +94,7 @@ export default function StaffTacticalMap() {
   });
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#f7f9ff] font-['Outfit'] text-[#081d2c] transition-colors dark:bg-[#0a0a0a] dark:text-[#e5e2e1]">
+    <div className="flex min-h-screen flex-col bg-[#f7f9ff] font-['Outfit'] text-[#081d2c] transition-colors dark:bg-zinc-950 dark:text-zinc-50">
       <DashboardHeader
         title="Responder Map"
         subtitle="Local Staff Simulation"
@@ -113,7 +113,7 @@ export default function StaffTacticalMap() {
 
         <div className="flex-1 overflow-auto p-4 md:p-6">
           <div className="grid gap-6 xl:grid-cols-[1.55fr_0.8fr]">
-            <section className="rounded-[2rem] border border-[#d5dbe6] bg-white p-5 shadow-xl dark:border-[#27272a] dark:bg-[#09090b]">
+            <section className="rounded-[2rem] border border-[#d5dbe6] bg-white p-5 shadow-xl dark:border-zinc-800/80 dark:bg-[#09090b]">
               <div className="flex flex-wrap gap-2">
                 {FLOORS.map((floor) => (
                   <button
@@ -123,7 +123,7 @@ export default function StaffTacticalMap() {
                     className={`rounded-full px-4 py-2 text-xs font-black uppercase tracking-[0.18em] ${
                       activeFloorId === floor.id
                         ? "bg-[#081d2c] text-white dark:bg-white dark:text-[#081d2c]"
-                        : "border border-[#d5dbe6] bg-[#f8fbff] text-[#414753] dark:border-[#27272a] dark:bg-[#111827] dark:text-[#c1c6d5]"
+                        : "border border-[#d5dbe6] bg-[#f8fbff] text-[#414753] dark:border-zinc-800/80 dark:bg-[#111827] dark:text-[#c1c6d5]"
                     }`}
                   >
                     {floor.label}
@@ -145,14 +145,14 @@ export default function StaffTacticalMap() {
             </section>
 
             <aside className="space-y-6">
-              <section className="rounded-[2rem] border border-[#d5dbe6] bg-white p-5 shadow-xl dark:border-[#27272a] dark:bg-[#09090b]">
+              <section className="rounded-[2rem] border border-[#d5dbe6] bg-white p-5 shadow-xl dark:border-zinc-800/80 dark:bg-[#09090b]">
                 <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#175ead]">
                   Dispatch Unit
                 </p>
                 <select
                   value={state.selectedStaffId || ""}
                   onChange={(event) => setSelectedStaff(event.target.value)}
-                  className="mt-4 w-full rounded-2xl border border-[#d5dbe6] bg-[#f8fbff] px-4 py-3 text-sm dark:border-[#27272a] dark:bg-[#111827]"
+                  className="mt-4 w-full rounded-2xl border border-[#d5dbe6] bg-[#f8fbff] px-4 py-3 text-sm dark:border-zinc-800/80 dark:bg-[#111827]"
                 >
                   {state.occupants.filter((occupant) => occupant.role === "staff").length === 0 ? (
                     <option value="">Build demo from admin map first</option>
@@ -168,7 +168,7 @@ export default function StaffTacticalMap() {
                 <select
                   value={selectedStaff?.startNodeId ?? ""}
                   onChange={(event) => selectedStaff && moveOccupant(selectedStaff.id, event.target.value)}
-                  className="mt-3 w-full rounded-2xl border border-[#d5dbe6] bg-[#f8fbff] px-4 py-3 text-sm dark:border-[#27272a] dark:bg-[#111827]"
+                  className="mt-3 w-full rounded-2xl border border-[#d5dbe6] bg-[#f8fbff] px-4 py-3 text-sm dark:border-zinc-800/80 dark:bg-[#111827]"
                 >
                   {!hasDemoGraph ? <option value="">No active demo graph yet</option> : null}
                   {Object.values(graphNodesById)
@@ -181,15 +181,15 @@ export default function StaffTacticalMap() {
                 </select>
               </section>
 
-              <section className="rounded-[2rem] border border-[#d5dbe6] bg-white p-5 shadow-xl dark:border-[#27272a] dark:bg-[#09090b]">
+              <section className="rounded-[2rem] border border-[#d5dbe6] bg-white p-5 shadow-xl dark:border-zinc-800/80 dark:bg-[#09090b]">
                 <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#175ead]">
                   Command Bridge
                 </p>
                 <h3 className="mt-2 text-xl font-black">{selectedStaff?.name || "Awaiting mapped responder"}</h3>
-                <p className="mt-2 text-sm text-[#717785] dark:text-[#a1a1aa]">
+                <p className="mt-2 text-sm text-[#717785] dark:text-zinc-400">
                   Channel: {activeCommandChannel || "No staff bridge assigned yet"}
                 </p>
-                <p className="mt-2 text-sm text-[#717785] dark:text-[#a1a1aa]">
+                <p className="mt-2 text-sm text-[#717785] dark:text-zinc-400">
                   {beaconCopy.liveLockLabel}: {selectedStaff?.lastBeaconSignal?.address ?? beaconCopy.pendingLockLabel} | Confidence: {Math.round((selectedStaff?.trackingConfidence ?? 0) * 100)}%
                 </p>
                 <button
@@ -204,15 +204,15 @@ export default function StaffTacticalMap() {
                 </button>
               </section>
 
-              <section className="rounded-[2rem] border border-[#d5dbe6] bg-white p-5 shadow-xl dark:border-[#27272a] dark:bg-[#09090b]">
+              <section className="rounded-[2rem] border border-[#d5dbe6] bg-white p-5 shadow-xl dark:border-zinc-800/80 dark:bg-[#09090b]">
                 <p className="text-[10px] font-black uppercase tracking-[0.22em] text-[#bc000a]">
                   Response Route
                 </p>
                 <h3 className="mt-2 text-xl font-black">{selectedStaff?.assignment || "No assignment"}</h3>
-                <p className="mt-2 text-sm text-[#717785] dark:text-[#a1a1aa]">
+                <p className="mt-2 text-sm text-[#717785] dark:text-zinc-400">
                   Objective: {responseTargetNode?.label || "None"}
                 </p>
-                <p className="mt-2 text-sm text-[#717785] dark:text-[#a1a1aa]">
+                <p className="mt-2 text-sm text-[#717785] dark:text-zinc-400">
                   Live position: {selectedStaffCurrentNode?.label || "Unknown"} | Floors:{" "}
                   {responseFloors.join(" -> ")}
                 </p>

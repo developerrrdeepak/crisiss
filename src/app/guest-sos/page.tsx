@@ -10,7 +10,6 @@ import {
   buildTransportChannels,
   getTransportLabel,
 } from "@/lib/sos-transport";
-import { persistIncident, updateIncidentStatus } from "@/lib/incident-client";
 
 import { GuestSidebar } from "@/components/GuestSidebar";
 import { useAuthSync } from "@/hooks/useAuthSync";
@@ -87,13 +86,6 @@ export default function GuestSOS() {
       if (isMicActive) {
           await toggleMic();
       }
-      if (activeIncidentId) {
-        try {
-          await updateIncidentStatus(incidentId, "Resolved");
-        } catch (error) {
-          console.error("Failed to resolve guest SOS incident:", error);
-        }
-      }
       socket?.emit('resolve-alert', { roomId: roomId, incidentId });
   };
 
@@ -120,23 +112,22 @@ export default function GuestSOS() {
         originRole: "guest",
       });
     } catch {
-      // Keep realtime SOS active even when Firestore is unavailable.
+      console.log("Firestore bypassed (likely using mock credentials), proceeding with realtime broadcast.");
     }
 
-    try {
-      await persistIncident({
-        id: incidentId,
-        title: "SOS Distress",
-        description: `Guest ${userName} triggered an SOS alert from room ${roomId}. Active transport: ${activeTransport}. Channel: ${audioChannel}.`,
-        severity: "Critical",
-        roomId,
-        status: "Active",
-      });
-    } catch (error) {
-      console.error("Failed to persist guest SOS incident:", error);
-    }
+    // 2. Broadcast via Socket.io to Admins & Staff
+    socket?.emit('trigger-sos', {
+      incidentId,
+      guestName: userName,
+      roomId: roomId,
+      audioChannel,
+      activeTransport,
+      transportMode: "auto",
+      transportChannels,
+      originRole: "guest",
+    });
 
-    // Auto-open Mic to transmit audio to staff
+    // 3. Auto-open Mic to transmit audio to staff
     await toggleMic();
   };
 
@@ -192,7 +183,7 @@ export default function GuestSOS() {
   ]);
 
   return (
-    <div className="bg-[#f5f6fa] dark:bg-[#151824] text-[#081d2c] dark:text-[#e5e2e1] min-h-screen flex flex-col font-['Outfit'] transition-colors relative overflow-hidden">
+    <div className="bg-[#f5f6fa] dark:bg-[#151824] text-[#081d2c] dark:text-zinc-50 min-h-screen flex flex-col font-['Outfit'] transition-colors relative overflow-hidden">
       <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-[#bc000a]/10 dark:bg-[#e2241f]/10 rounded-full blur-[120px] animate-blob" />
       </div>
@@ -228,7 +219,7 @@ export default function GuestSOS() {
                 className={`w-48 h-48 md:w-64 md:h-64 rounded-full flex flex-col items-center justify-center shadow-[inset_0_-15px_30px_rgba(0,0,0,0.4),_0_20px_40px_rgba(188,0,10,0.5)] border-[6px] relative z-10 transition-all duration-500
                     ${sosActive
                     ? "bg-red-900 border-red-500 animate-pulse ring-8 ring-red-500/50"
-                    : "bg-gradient-to-t from-[#bc000a] to-[#ff5449] border-white/90 dark:border-[#1a1a1a]"
+                    : "bg-gradient-to-t from-[#bc000a] to-[#ff5449] border-white/90 dark:border-zinc-800"
                   }
                   `}
                 aria-label={sosActive ? "SOS Active - Emergency Transmitting" : "Activate SOS - Hold for 3 seconds"}
@@ -263,7 +254,7 @@ export default function GuestSOS() {
                     {assessment.summary}
                   </p>
                 </div>
-                <span className="rounded-full border border-[#175ead]/20 bg-white/80 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-[#175ead] dark:border-white/10 dark:bg-[#1a1a1a] dark:text-[#72aafe]">
+                <span className="rounded-full border border-[#175ead]/20 bg-white/80 px-3 py-1 text-[10px] font-black uppercase tracking-[0.16em] text-[#175ead] dark:border-white/10 dark:bg-zinc-900 dark:text-[#72aafe]">
                   {assessment.qualityLabel}
                 </span>
               </div>
@@ -320,7 +311,7 @@ export default function GuestSOS() {
                 <button
                   onClick={handleCallFrontDesk}
                   className={`border rounded-xl py-2 font-black text-xs uppercase tracking-widest transition-all shadow-sm flex items-center justify-center gap-2 w-full
-                    ${isMicActive ? "bg-red-500 text-white border-red-600 animate-pulse" : "bg-white dark:bg-[#1a1a1a] text-[#081d2c] dark:text-white border-[#c1c6d5]/50 dark:border-white/10 hover:-translate-y-0.5"}
+                    ${isMicActive ? "bg-red-500 text-white border-red-600 animate-pulse" : "bg-white dark:bg-zinc-900 text-[#081d2c] dark:text-white border-[#c1c6d5]/50 dark:border-white/10 hover:-translate-y-0.5"}
                  `}>
                   <span className="material-symbols-outlined text-[16px]">{isMicActive ? "mic" : "call"}</span>
                   {isMicActive ? "Voice Channel Open" : "Call Front Desk"}

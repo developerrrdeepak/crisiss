@@ -1,23 +1,17 @@
 // src/hooks/useSocket.ts
 import { useEffect, useRef, useState } from 'react';
 import { io, Socket } from 'socket.io-client';
-import { getPublicEnv } from '@/lib/public-env';
+
+// Use an environment variable for the production URL, with a fallback for local development
+const SOCKET_SERVER_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'https://aegis-socket-service-759964236760.europe-west1.run.app';
 
 export const useSocket = (role: 'admin' | 'staff' | 'guest') => {
     const socketRef = useRef<Socket | null>(null);
     const [socket, setSocket] = useState<Socket | null>(null);
 
     useEffect(() => {
-        const socketServerUrl = getPublicEnv("NEXT_PUBLIC_SOCKET_URL");
-
-        if (!socketServerUrl) {
-            console.warn("NEXT_PUBLIC_SOCKET_URL is not configured. Realtime radio and relay features are disabled.");
-            setSocket(null);
-            return;
-        }
-
         if (!socketRef.current) {
-            socketRef.current = io(socketServerUrl);
+            socketRef.current = io(SOCKET_SERVER_URL);
 
             socketRef.current.on('connect', () => {
                 console.log(`Connected to Aegis Signaling Server as ${role}`);

@@ -1,13 +1,12 @@
 "use client";
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 interface AdminSidebarProps {
   sidebarExpanded: boolean;
-  setSidebarExpanded: (value: boolean) => void;
+  setSidebarExpanded: (v: boolean) => void;
   sidebarMobileOpen: boolean;
-  setSidebarMobileOpen: (value: boolean) => void;
+  setSidebarMobileOpen: (v: boolean) => void;
   alertCount?: number;
   messageCount?: number;
 }
@@ -24,71 +23,77 @@ export function AdminSidebar({
   const isOpen = sidebarExpanded || sidebarMobileOpen;
 
   const mainNav = [
-    { icon: "dashboard", label: "Home", href: "/admin" },
-    { icon: "map", label: "Map", href: "/admin/tactical-map" },
+    { icon: "dashboard", label: "Dashboard", href: "/admin" },
+    { icon: "map", label: "Tactical Map", href: "/admin/tactical-map" },
     {
       icon: "chat",
       label: "Messages",
       href: "/admin/messages",
       badge: messageCount > 0 ? String(messageCount) : undefined,
     },
-    { icon: "emergency", label: "Emergency", href: "/admin/emergency" },
+    { icon: "emergency", label: "Emergency SOS", href: "/admin/emergency" },
   ];
 
-  const systemNav = [
-    { icon: "meeting_room", label: "Rooms", href: "/admin/rooms" },
-    { icon: "videocam", label: "Cameras", href: "/admin/cameras" },
-    { icon: "badge", label: "Staff", href: "/admin/staff" },
-    { icon: "person", label: "Guests", href: "/admin/guests" },
-    { icon: "add_home", label: "Inventory", href: "/admin/manage-rooms" },
+  const managementNav = [
+    { icon: "meeting_room", label: "Room Allocation", href: "/admin/rooms" },
+    { icon: "videocam", label: "Camera Access", href: "/admin/cameras" },
+    { icon: "badge", label: "Staff Details", href: "/admin/staff" },
+    { icon: "person", label: "Guest Details", href: "/admin/guests" },
+    { icon: "add_home", label: "Manage Rooms", href: "/admin/manage-rooms" },
   ];
 
-  const renderNavItem = (item: { icon: string; label: string; href: string; badge?: string }) => {
-    const isActive = pathname === item.href || (item.href === "/admin" && pathname === "/admin");
+  const renderNavItem = (n: { icon: string; label: string; href: string; badge?: string }) => {
+    const isActive =
+      pathname === n.href || (n.label === "Dashboard" && pathname === "/admin");
     return (
       <Link
-        href={item.href}
-        key={item.href}
-        className={`group relative flex items-center gap-3 rounded-2xl px-3 py-3 transition-all ${
+        href={n.href}
+        key={n.label}
+        className={`relative flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 group ${
           isActive
-            ? "bg-[#101828] text-white shadow-lg shadow-black/10 dark:bg-white dark:text-[#101828]"
-            : "text-[var(--text-muted)] hover:bg-[var(--bg-secondary)] hover:text-[var(--text-primary)]"
+            ? "bg-[#09090b] dark:bg-white text-white dark:text-slate-900 shadow-md shadow-black/10"
+            : "text-slate-500 dark:text-zinc-400 hover:bg-[#f4f4f5] dark:hover:bg-zinc-900 hover:text-slate-900 dark:hover:text-white"
         }`}
       >
         <span
-          className="material-symbols-outlined shrink-0 text-[22px]"
+          className={`material-symbols-outlined shrink-0 text-[22px] transition-transform duration-200 group-hover:scale-105 ${
+            isActive ? "text-white dark:text-slate-900" : ""
+          }`}
           style={{ fontVariationSettings: isActive ? '"FILL" 1' : '"FILL" 0' }}
         >
-          {item.icon}
+          {n.icon}
         </span>
 
+        {/* Label */}
         <span
-          className="overflow-hidden whitespace-nowrap text-[13px] font-semibold tracking-tight"
+          className={`whitespace-nowrap text-[13px] font-semibold tracking-tight flex-1 overflow-hidden`}
           style={{
             transition: isOpen
-              ? "opacity 220ms ease 160ms, transform 220ms ease 160ms, max-width 400ms ease"
-              : "opacity 120ms ease, transform 120ms ease, max-width 400ms ease",
+              ? "opacity 280ms ease 180ms, transform 280ms ease 180ms, max-width 500ms cubic-bezier(0.4,0,0.2,1)"
+              : "opacity 120ms ease, transform 120ms ease, max-width 500ms cubic-bezier(0.4,0,0.2,1)",
             opacity: isOpen ? 1 : 0,
             transform: isOpen ? "translateX(0)" : "translateX(-8px)",
             maxWidth: isOpen ? "160px" : "0px",
             pointerEvents: isOpen ? "auto" : "none",
           }}
         >
-          {item.label}
+          {n.label}
         </span>
 
-        {item.badge && (
+        {/* Badge */}
+        {n.badge && (
           <span
-            className={`ml-auto flex h-5 min-w-[20px] items-center justify-center rounded-full px-1.5 text-[10px] font-black ${
-              isActive ? "bg-white/20 text-white dark:bg-black/10 dark:text-[#101828]" : "bg-red-500 text-white"
+            className={`shrink-0 text-[10px] font-black w-4.5 h-4.5 min-w-[18px] min-h-[18px] flex items-center justify-center rounded-full ${
+              isActive ? "bg-white/25 dark:bg-black/20 text-white dark:text-slate-900" : "bg-red-500 text-white"
             }`}
             style={{
-              transition: "opacity 160ms ease, transform 160ms ease",
+              transition: "opacity 180ms ease, transform 180ms ease",
+              transitionDelay: isOpen ? "230ms" : "0ms",
               opacity: isOpen ? 1 : 0,
               transform: isOpen ? "scale(1)" : "scale(0)",
             }}
           >
-            {item.badge}
+            {n.badge}
           </span>
         )}
       </Link>
@@ -97,95 +102,116 @@ export function AdminSidebar({
 
   return (
     <>
+      {/* Mobile overlay */}
       {sidebarMobileOpen && (
         <div
-          className="fixed inset-0 z-[45] bg-black/55 backdrop-blur-md md:hidden"
+          className="fixed inset-0 bg-black/60 backdrop-blur-md z-[45] md:hidden transition-opacity duration-300"
           onClick={() => setSidebarMobileOpen(false)}
         />
       )}
 
+      {/* Sidebar */}
       <aside
-        className={`fixed left-0 top-[64px] z-50 flex h-[calc(100vh-64px)] flex-col overflow-hidden border-r border-[var(--border-color)] bg-[var(--glass-bg)] backdrop-blur-xl ${
-          sidebarMobileOpen ? "translate-x-0 w-[272px]" : "-translate-x-full md:translate-x-0"
-        } ${sidebarExpanded ? "md:w-[272px]" : "md:w-[84px]"}`}
+        className={`
+          fixed top-[64px] left-0 h-[calc(100vh-64px)] z-50 flex flex-col
+          bg-white/90 dark:bg-zinc-950/95 backdrop-blur-xl
+          border-r border-slate-200 dark:border-zinc-800
+          shadow-[2px_0_16px_rgba(0,0,0,0.04)] dark:shadow-[4px_0_24px_rgba(0,0,0,0.3)]
+          overflow-hidden
+          ${sidebarMobileOpen ? "translate-x-0 w-64" : "-translate-x-full md:translate-x-0"}
+          ${sidebarExpanded ? "md:w-64" : "md:w-[72px]"}
+        `}
         style={{
-          transition: "width 420ms cubic-bezier(0.4, 0, 0.2, 1), transform 420ms cubic-bezier(0.4, 0, 0.2, 1)",
+          transition: "width 500ms cubic-bezier(0.4, 0, 0.2, 1), transform 500ms cubic-bezier(0.4, 0, 0.2, 1)",
         }}
         onMouseEnter={() => setSidebarExpanded(true)}
         onMouseLeave={() => setSidebarExpanded(false)}
       >
-        <div className="flex items-center justify-end border-b border-[var(--border-color)] p-4 md:hidden">
-          <button
-            onClick={() => setSidebarMobileOpen(false)}
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)] text-[var(--text-muted)]"
-          >
-            <span className="material-symbols-outlined text-[18px]">close</span>
-          </button>
+        {/* Mobile Close Button */}
+        <div className="md:hidden flex items-center justify-end p-4 border-b border-slate-200 dark:border-zinc-800">
+           <button onClick={() => setSidebarMobileOpen(false)} className="w-9 h-9 rounded-full bg-[#f4f4f5] dark:bg-zinc-900 text-slate-500 dark:text-zinc-400 hover:text-slate-900 dark:hover:text-white flex items-center justify-center transition-all duration-200">
+             <span className="material-symbols-outlined text-[20px]">close</span>
+           </button>
         </div>
 
-        <nav className="flex w-[272px] flex-1 flex-col overflow-y-auto overflow-x-hidden p-3 pt-7">
-          <div className="mb-2 px-3">
-            <span
-              className="block text-[10px] font-black uppercase tracking-[0.2em] text-[var(--text-muted)]"
-              style={{
-                transition: "opacity 180ms ease, transform 180ms ease",
-                opacity: isOpen ? 1 : 0,
-                transform: isOpen ? "translateX(0)" : "translateX(-8px)",
-              }}
-            >
-              Core
-            </span>
+        {/* Navigation Content */}
+        <nav className="w-64 flex-1 flex flex-col gap-0 p-3 pt-8 overflow-y-auto overflow-x-hidden scrollbar-hide">
+          {/* MAIN segment */}
+          <div className="mb-1.5 px-3 h-5 overflow-hidden">
+             <span
+               className="text-[10px] font-bold uppercase tracking-[0.28em] text-zinc-400 dark:text-zinc-500 block"
+               style={{
+                 transition: "opacity 220ms ease, transform 220ms ease",
+                 transitionDelay: isOpen ? "160ms" : "0ms",
+                 opacity: isOpen ? 1 : 0,
+                 transform: isOpen ? "translateX(0)" : "translateX(-10px)",
+               }}
+             >
+               Main
+             </span>
           </div>
-          <div className="flex flex-col gap-1">{mainNav.map(renderNavItem)}</div>
+          <div className="flex flex-col gap-1 mb-8">
+            {mainNav.map(renderNavItem)}
+          </div>
 
-          <div className="mb-2 mt-7 px-3">
-            <span
-              className="block text-[10px] font-black uppercase tracking-[0.2em] text-[var(--text-muted)]"
-              style={{
-                transition: "opacity 180ms ease, transform 180ms ease",
-                opacity: isOpen ? 1 : 0,
-                transform: isOpen ? "translateX(0)" : "translateX(-8px)",
-              }}
-            >
-              System
-            </span>
+          {/* MANAGEMENT segment */}
+          <div className="mb-1.5 px-3 h-5 overflow-hidden">
+             <span
+               className="text-[10px] font-bold uppercase tracking-[0.28em] text-zinc-400 dark:text-zinc-500 block"
+               style={{
+                 transition: "opacity 220ms ease, transform 220ms ease",
+                 transitionDelay: isOpen ? "200ms" : "0ms",
+                 opacity: isOpen ? 1 : 0,
+                 transform: isOpen ? "translateX(0)" : "translateX(-10px)",
+               }}
+             >
+               Management
+             </span>
           </div>
-          <div className="flex flex-col gap-1">{systemNav.map(renderNavItem)}</div>
+          <div className="flex flex-col gap-1">
+            {managementNav.map(renderNavItem)}
+          </div>
         </nav>
 
+        {/* Quick Insights / Status Region */}
         <div
-          className="border-t border-[var(--border-color)] p-3"
+          className="mt-auto p-3 border-t border-slate-200 dark:border-zinc-800"
           style={{
-            transition: "opacity 220ms ease, transform 220ms ease",
+            transition: "opacity 280ms ease, transform 280ms ease",
+            transitionDelay: isOpen ? "260ms" : "0ms",
             opacity: isOpen ? 1 : 0,
             transform: isOpen ? "translateY(0)" : "translateY(12px)",
           }}
         >
-          <div className="rounded-[1.4rem] border border-[var(--border-color)] bg-[var(--bg-secondary)] p-4">
-            <div className="flex items-center justify-between">
-              <span className="text-[10px] font-black uppercase tracking-[0.18em] text-[var(--text-muted)]">
-                Status
-              </span>
-              <span className="flex items-center gap-2 text-[11px] font-semibold text-emerald-500">
-                <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                Live
-              </span>
+            <div className="p-3 rounded-xl bg-[#f4f4f5] dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)] animate-pulse" />
+                    <span className="text-[11px] font-semibold text-slate-900 dark:text-white">System</span>
+                  </div>
+                  <span className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400">92% Up</span>
+                </div>
+                <div className="w-full h-1 bg-[#e4e4e7] dark:bg-[#27272a] rounded-full overflow-hidden">
+                    <div className="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 transition-all duration-1000 rounded-full" style={{ width: '92%' }} />
+                </div>
             </div>
-            <div className="mt-4 flex flex-wrap gap-2">
-              <span className="rounded-full bg-[var(--surface-muted)] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--text-primary)]">
-                {alertCount > 0 ? `${alertCount} alerts` : "Clear"}
-              </span>
-              <span className="rounded-full bg-[var(--surface-muted)] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-[var(--text-primary)]">
-                {messageCount > 0 ? `${messageCount} inbox` : "Inbox ready"}
-              </span>
-            </div>
-          </div>
+            
+            {alertCount > 0 && (
+              <div className="mt-2 p-2.5 flex items-center gap-2.5 rounded-xl bg-red-500/8 border border-red-500/15 text-red-600 dark:text-red-400">
+                <span className="material-symbols-outlined text-[18px] animate-bounce">notifications_active</span>
+                <span className="text-[11px] font-bold uppercase tracking-wide">{alertCount} Alert{alertCount > 1 ? "s" : ""}</span>
+              </div>
+            )}
         </div>
       </aside>
 
       <div
-        className={`hidden shrink-0 md:block ${sidebarExpanded ? "w-[272px]" : "w-[84px]"}`}
-        style={{ transition: "width 420ms cubic-bezier(0.4, 0, 0.2, 1)" }}
+        className={`hidden md:block shrink-0 ${
+          sidebarExpanded ? "w-64" : "w-[72px]"
+        }`}
+        style={{
+          transition: "width 500ms cubic-bezier(0.4, 0, 0.2, 1)",
+        }}
       />
     </>
   );

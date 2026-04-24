@@ -285,7 +285,7 @@ export default function AdminRooms() {
   };
 
   return (
-    <div className="bg-[#fafafa] dark:bg-[#0a0a0a] text-[#09090b] dark:text-[#e5e2e1] min-h-screen flex flex-col font-['Sora']">
+    <div className="bg-slate-50 dark:bg-zinc-950 text-slate-900 dark:text-zinc-50 min-h-screen flex flex-col font-['Sora']">
       <DashboardHeader
         title="Room Allocation"
         userName="Administrator"
@@ -306,13 +306,13 @@ export default function AdminRooms() {
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h1 className="text-2xl font-semibold tracking-tight">Room Allocation</h1>
-                <p className="text-sm text-[#71717a] dark:text-[#a1a1aa] mt-1">
+                <p className="text-sm text-slate-500 dark:text-zinc-400 mt-1">
                   Assign guests with real DB-backed credentials, QR access, and saved personal details.
                 </p>
               </div>
               <Link
                 href="/admin/manage-rooms"
-                className="inline-flex items-center gap-2 rounded-xl border border-[#e4e4e7] dark:border-[#27272a] bg-white dark:bg-[#0f0f0f] px-4 py-2 text-sm font-medium hover:bg-[#f4f4f5] dark:hover:bg-[#18181b] transition-colors"
+                className="inline-flex items-center gap-2 rounded-xl border border-slate-200 dark:border-zinc-800/80 bg-white dark:bg-zinc-900 px-4 py-2 text-sm font-medium hover:bg-[#f4f4f5] dark:hover:bg-[#18181b] transition-colors"
               >
                 <span className="material-symbols-outlined text-lg">settings</span>
                 Manage Rooms
@@ -332,26 +332,26 @@ export default function AdminRooms() {
             )}
 
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-              <div className="bg-white dark:bg-[#0f0f0f] border border-[#e4e4e7] dark:border-[#27272a] rounded-xl p-4">
-                <p className="text-xs text-[#71717a] dark:text-[#a1a1aa] uppercase tracking-wider">Total Rooms</p>
+              <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 rounded-xl p-4">
+                <p className="text-xs text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Total Rooms</p>
                 <p className="text-2xl font-semibold mt-2">{rooms.length}</p>
               </div>
-              <div className="bg-white dark:bg-[#0f0f0f] border border-[#e4e4e7] dark:border-[#27272a] rounded-xl p-4">
-                <p className="text-xs text-[#71717a] dark:text-[#a1a1aa] uppercase tracking-wider">Vacant</p>
+              <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 rounded-xl p-4">
+                <p className="text-xs text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Vacant</p>
                 <p className="text-2xl font-semibold mt-2 text-green-600 dark:text-green-400">{vacantCount}</p>
               </div>
-              <div className="bg-white dark:bg-[#0f0f0f] border border-[#e4e4e7] dark:border-[#27272a] rounded-xl p-4">
-                <p className="text-xs text-[#71717a] dark:text-[#a1a1aa] uppercase tracking-wider">Occupied</p>
+              <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 rounded-xl p-4">
+                <p className="text-xs text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Occupied</p>
                 <p className="text-2xl font-semibold mt-2 text-red-600 dark:text-red-400">{occupiedCount}</p>
               </div>
-              <div className="bg-white dark:bg-[#0f0f0f] border border-[#e4e4e7] dark:border-[#27272a] rounded-xl p-4">
-                <p className="text-xs text-[#71717a] dark:text-[#a1a1aa] uppercase tracking-wider">Current Floor</p>
+              <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 rounded-xl p-4">
+                <p className="text-xs text-slate-500 dark:text-zinc-400 uppercase tracking-wider">Current Floor</p>
                 <p className="text-2xl font-semibold mt-2">{selectedFloor}</p>
               </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-[240px_1fr_320px] gap-6">
-              <div className="bg-white dark:bg-[#0f0f0f] border border-[#e4e4e7] dark:border-[#27272a] rounded-xl p-4">
+              <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 rounded-xl p-4">
                 <h3 className="text-sm font-semibold mb-4">Floors</h3>
                 <div className="space-y-2">
                   {floors.map((floor) => (
@@ -373,18 +373,18 @@ export default function AdminRooms() {
                 </div>
               </div>
 
-              <div className="bg-white dark:bg-[#0f0f0f] border border-[#e4e4e7] dark:border-[#27272a] rounded-xl p-6">
+              <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 rounded-xl p-6">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-lg font-semibold">Floor {selectedFloor} Rooms</h3>
                   <button
                     onClick={() => void fetchRooms()}
-                    className="rounded-lg border border-[#e4e4e7] dark:border-[#27272a] px-3 py-2 text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-[#fafafa] dark:hover:bg-[#18181b] transition-colors"
+                    className="rounded-lg border border-slate-200 dark:border-zinc-800/80 px-3 py-2 text-[11px] font-bold uppercase tracking-[0.2em] hover:bg-slate-50 dark:hover:bg-[#18181b] transition-colors"
                   >
                     Refresh
                   </button>
                 </div>
                 {isLoading ? (
-                  <div className="text-center py-12 text-[#71717a] dark:text-[#a1a1aa]">Loading...</div>
+                  <div className="text-center py-12 text-slate-500 dark:text-zinc-400">Loading...</div>
                 ) : (
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
                     {floorRooms.map((room) => (
@@ -408,24 +408,24 @@ export default function AdminRooms() {
                 )}
               </div>
 
-              <div className="bg-white dark:bg-[#0f0f0f] border border-[#e4e4e7] dark:border-[#27272a] rounded-xl p-4">
+              <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 rounded-xl p-4">
                 {selectedRoom ? (
                   <div className="space-y-4">
                     <div>
                       <h3 className="text-lg font-semibold">Room {selectedRoom.num}</h3>
-                      <p className="text-sm text-[#71717a] dark:text-[#a1a1aa]">{selectedRoom.type}</p>
+                      <p className="text-sm text-slate-500 dark:text-zinc-400">{selectedRoom.type}</p>
                     </div>
                     <div className={`px-3 py-2 rounded-lg text-sm font-medium ${getStatusColor(selectedRoom.state)}`}>
                       {selectedRoom.state.toUpperCase()}
                     </div>
                     {selectedRoom.guestName && (
                       <div className="p-3 bg-[#f4f4f5] dark:bg-[#18181b] rounded-lg">
-                        <p className="text-xs text-[#71717a] dark:text-[#a1a1aa]">Guest</p>
+                        <p className="text-xs text-slate-500 dark:text-zinc-400">Guest</p>
                         <p className="font-medium mt-1">{selectedRoom.guestName}</p>
                       </div>
                     )}
                     <div className="space-y-2">
-                      <p className="text-xs font-semibold uppercase tracking-wider text-[#71717a] dark:text-[#a1a1aa]">Actions</p>
+                      <p className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-zinc-400">Actions</p>
                       {selectedRoom.state === "vacant" && (
                         <button
                           onClick={() => {
@@ -459,7 +459,7 @@ export default function AdminRooms() {
                         <button
                           onClick={() => void updateRoomStatus(selectedRoom.id, "maintenance")}
                           disabled={busyRoomId === selectedRoom.id}
-                          className="w-full px-4 py-2 border border-[#e4e4e7] dark:border-[#27272a] rounded-lg text-sm font-medium hover:bg-[#f4f4f5] dark:hover:bg-[#18181b] transition-colors disabled:opacity-60"
+                          className="w-full px-4 py-2 border border-slate-200 dark:border-zinc-800/80 rounded-lg text-sm font-medium hover:bg-[#f4f4f5] dark:hover:bg-[#18181b] transition-colors disabled:opacity-60"
                         >
                           Maintenance
                         </button>
@@ -467,7 +467,7 @@ export default function AdminRooms() {
                     </div>
                   </div>
                 ) : (
-                  <div className="text-center py-12 text-[#71717a] dark:text-[#a1a1aa] text-sm">
+                  <div className="text-center py-12 text-slate-500 dark:text-zinc-400 text-sm">
                     Select a room to allocate a guest or manage room state.
                   </div>
                 )}
@@ -479,9 +479,9 @@ export default function AdminRooms() {
 
       {showAssignModal && selectedRoom && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white dark:bg-[#0f0f0f] rounded-xl max-w-lg w-full p-6">
+          <div className="bg-white dark:bg-zinc-900 rounded-xl max-w-lg w-full p-6">
             <h3 className="text-lg font-semibold mb-1">Allocate Guest to Room {selectedRoom.num}</h3>
-            <p className="text-sm text-[#71717a] dark:text-[#a1a1aa] mb-5">
+            <p className="text-sm text-slate-500 dark:text-zinc-400 mb-5">
                           Fill the guest profile. Login credentials and QR access will be generated automatically and saved in Firebase Data Connect.
             </p>
 
@@ -493,7 +493,7 @@ export default function AdminRooms() {
                   onChange={(event) =>
                     setBookingForm((current) => ({ ...current, guestName: event.target.value }))
                   }
-                  className="mt-2 w-full rounded-xl bg-[#fafafa] dark:bg-[#18181b] border border-transparent focus:border-[#175ead] px-4 py-3 text-sm outline-none transition-colors"
+                  className="mt-2 w-full rounded-xl bg-slate-50 dark:bg-[#18181b] border border-transparent focus:border-[#175ead] px-4 py-3 text-sm outline-none transition-colors"
                   placeholder="Guest full name"
                 />
               </div>
@@ -505,7 +505,7 @@ export default function AdminRooms() {
                   onChange={(event) =>
                     setBookingForm((current) => ({ ...current, email: event.target.value }))
                   }
-                  className="mt-2 w-full rounded-xl bg-[#fafafa] dark:bg-[#18181b] border border-transparent focus:border-[#175ead] px-4 py-3 text-sm outline-none transition-colors"
+                  className="mt-2 w-full rounded-xl bg-slate-50 dark:bg-[#18181b] border border-transparent focus:border-[#175ead] px-4 py-3 text-sm outline-none transition-colors"
                   placeholder="guest@example.com"
                 />
               </div>
@@ -516,7 +516,7 @@ export default function AdminRooms() {
                   onChange={(event) =>
                     setBookingForm((current) => ({ ...current, idNumber: event.target.value }))
                   }
-                  className="mt-2 w-full rounded-xl bg-[#fafafa] dark:bg-[#18181b] border border-transparent focus:border-[#175ead] px-4 py-3 text-sm outline-none transition-colors"
+                  className="mt-2 w-full rounded-xl bg-slate-50 dark:bg-[#18181b] border border-transparent focus:border-[#175ead] px-4 py-3 text-sm outline-none transition-colors"
                   placeholder="Passport / Aadhaar / ID"
                 />
               </div>
@@ -527,7 +527,7 @@ export default function AdminRooms() {
                   onChange={(event) =>
                     setBookingForm((current) => ({ ...current, contactNumber: event.target.value }))
                   }
-                  className="mt-2 w-full rounded-xl bg-[#fafafa] dark:bg-[#18181b] border border-transparent focus:border-[#175ead] px-4 py-3 text-sm outline-none transition-colors"
+                  className="mt-2 w-full rounded-xl bg-slate-50 dark:bg-[#18181b] border border-transparent focus:border-[#175ead] px-4 py-3 text-sm outline-none transition-colors"
                   placeholder="Phone number"
                 />
               </div>
@@ -538,7 +538,7 @@ export default function AdminRooms() {
                   onChange={(event) =>
                     setBookingForm((current) => ({ ...current, address: event.target.value }))
                   }
-                  className="mt-2 w-full rounded-xl bg-[#fafafa] dark:bg-[#18181b] border border-transparent focus:border-[#175ead] px-4 py-3 text-sm outline-none transition-colors min-h-[96px]"
+                  className="mt-2 w-full rounded-xl bg-slate-50 dark:bg-[#18181b] border border-transparent focus:border-[#175ead] px-4 py-3 text-sm outline-none transition-colors min-h-[96px]"
                   placeholder="Guest address"
                 />
               </div>
@@ -551,7 +551,7 @@ export default function AdminRooms() {
                   onChange={(event) =>
                     setBookingForm((current) => ({ ...current, nights: event.target.value }))
                   }
-                  className="mt-2 w-full rounded-xl bg-[#fafafa] dark:bg-[#18181b] border border-transparent focus:border-[#175ead] px-4 py-3 text-sm outline-none transition-colors"
+                  className="mt-2 w-full rounded-xl bg-slate-50 dark:bg-[#18181b] border border-transparent focus:border-[#175ead] px-4 py-3 text-sm outline-none transition-colors"
                 />
               </div>
             </div>
@@ -569,7 +569,7 @@ export default function AdminRooms() {
                   setShowAssignModal(false);
                   resetBookingForm();
                 }}
-                className="px-4 py-3 border border-[#e4e4e7] dark:border-[#27272a] rounded-lg text-sm font-medium hover:bg-[#f4f4f5] dark:hover:bg-[#18181b] transition-colors"
+                className="px-4 py-3 border border-slate-200 dark:border-zinc-800/80 rounded-lg text-sm font-medium hover:bg-[#f4f4f5] dark:hover:bg-[#18181b] transition-colors"
               >
                 Cancel
               </button>

@@ -3,11 +3,29 @@ import { initializeApp, getApps, getApp, FirebaseApp } from "firebase/app";
 import { getFirestore, Firestore } from "firebase/firestore";
 import { getAuth, GoogleAuthProvider, Auth } from "firebase/auth";
 import { getAnalytics, isSupported } from "firebase/analytics";
-import { getPublicEnv } from "@/lib/public-env";
+
+declare global {
+  interface Window {
+    __AEGIS_PUBLIC_ENV__?: Record<string, string | undefined>;
+  }
+}
 
 // Environment check helper - works on both server and client
 function isServer(): boolean {
   return typeof window === 'undefined';
+}
+
+function getPublicEnv(key: keyof NonNullable<Window["__AEGIS_PUBLIC_ENV__"]>): string | undefined {
+  const buildValue = process.env[key];
+  if (buildValue?.trim()) {
+    return buildValue;
+  }
+
+  if (typeof window !== "undefined") {
+    return window.__AEGIS_PUBLIC_ENV__?.[key];
+  }
+
+  return undefined;
 }
 
 // Singleton storage

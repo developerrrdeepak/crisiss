@@ -220,7 +220,7 @@ export default function StaffMessages() {
   };
 
   return (
-    <div className="relative min-h-screen flex flex-col bg-[#fafafa] font-['Sora'] text-[#09090b] dark:bg-[#09090b] dark:text-[#fafafa]">
+    <div className="relative min-h-screen flex flex-col bg-slate-50 font-['Sora'] text-slate-900 dark:bg-[#09090b] dark:text-[#fafafa]">
       <div
         className="absolute inset-0 z-0 pointer-events-none"
         style={{
@@ -246,10 +246,10 @@ export default function StaffMessages() {
         />
 
         <main className="mx-auto flex w-full max-w-[1500px] flex-1 overflow-hidden p-6">
-          <div className="flex h-full w-full overflow-hidden rounded-2xl border border-[#e4e4e7] bg-white shadow-sm dark:border-[#27272a] dark:bg-[#0f0f0f]">
-            <aside className="flex w-full max-w-[340px] flex-col border-r border-[#e4e4e7] bg-[#fafafa]/70 dark:border-white/5 dark:bg-[#0a0a0a]">
-              <div className="border-b border-[#e4e4e7] p-4 dark:border-white/5">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#71717a] dark:text-[#a1a1aa]">
+          <div className="flex h-full w-full overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-zinc-800/80 dark:bg-zinc-900">
+            <aside className="flex w-full max-w-[340px] flex-col border-r border-slate-200 bg-slate-50/70 dark:border-white/5 dark:bg-zinc-950">
+              <div className="border-b border-slate-200 p-4 dark:border-white/5">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-zinc-400">
                   Staff Channels
                 </p>
               </div>
@@ -261,12 +261,12 @@ export default function StaffMessages() {
             </aside>
 
             <section className="flex flex-1 flex-col">
-              <div className="flex items-center justify-between border-b border-[#e4e4e7] px-6 py-5 dark:border-white/5">
+              <div className="flex items-center justify-between border-b border-slate-200 px-6 py-5 dark:border-white/5">
                 <div>
-                  <h2 className="text-lg font-semibold tracking-tight text-[#09090b] dark:text-white">
+                  <h2 className="text-lg font-semibold tracking-tight text-slate-900 dark:text-white">
                     {activeThread?.title || "Select a channel"}
                   </h2>
-                  <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-[#71717a] dark:text-[#a1a1aa]">
+                  <p className="text-[11px] font-medium uppercase tracking-[0.18em] text-slate-500 dark:text-zinc-400">
                     {activeThread?.subtitle || "Staff communication center"}
                   </p>
                 </div>
@@ -274,7 +274,7 @@ export default function StaffMessages() {
                   type="button"
                   onClick={() => void handleRequestVoiceCall()}
                   disabled={!directThread}
-                  className="inline-flex items-center gap-2 rounded-full border border-[#e4e4e7] px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-[#09090b] transition-colors hover:border-black dark:border-white/10 dark:text-white dark:hover:border-white disabled:opacity-50"
+                  className="inline-flex items-center gap-2 rounded-full border border-slate-200 px-4 py-2 text-xs font-bold uppercase tracking-[0.18em] text-slate-900 transition-colors hover:border-black dark:border-white/10 dark:text-white dark:hover:border-white disabled:opacity-50"
                 >
                   <span className="material-symbols-outlined text-[16px]">call</span>
                   Voice Call Admin
@@ -309,7 +309,7 @@ export default function StaffMessages() {
                 />
               </div>
 
-              <form onSubmit={handleSend} className="border-t border-[#e4e4e7] p-4 dark:border-white/5">
+              <form onSubmit={handleSend} className="border-t border-slate-200 p-4 dark:border-white/5">
                 <div className="relative flex items-center">
                   <input
                     type="text"
@@ -319,7 +319,7 @@ export default function StaffMessages() {
                     placeholder={
                       canReply ? "Send update..." : "This channel is read-only for staff"
                     }
-                    className="w-full rounded-full border border-[#e4e4e7] bg-[#f4f4f5] px-5 py-3 pr-16 text-sm outline-none transition-colors focus:border-black dark:border-white/10 dark:bg-[#1a1a1a] dark:text-white dark:focus:border-white disabled:opacity-60"
+                    className="w-full rounded-full border border-slate-200 bg-[#f4f4f5] px-5 py-3 pr-16 text-sm outline-none transition-colors focus:border-black dark:border-white/10 dark:bg-zinc-900 dark:text-white dark:focus:border-white disabled:opacity-60"
                   />
                   <button
                     type="submit"

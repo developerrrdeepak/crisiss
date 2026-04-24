@@ -1157,20 +1157,20 @@ export default function AdminTacticalMap() {
                     Reset
                   </button>
                 </div>
-                <div className="mt-3 rounded-lg bg-[#f4f4f5] px-3 py-3 text-xs text-[#52525b] dark:bg-[#18181b] dark:text-[#a1a1aa]">
+                <div className="mt-3 rounded-lg bg-[#f4f4f5] px-3 py-3 text-xs text-zinc-500 dark:bg-[#18181b] dark:text-zinc-400">
                   {state.simulationRunning
                     ? beaconCopy.simulationActiveSummary
                     : beaconCopy.simulationIdleSummary}
                 </div>
-                <p className="mt-3 text-xs text-[#71717a] dark:text-[#a1a1aa]">{blueprintStatus}</p>
+                <p className="mt-3 text-xs text-slate-500 dark:text-zinc-400">{blueprintStatus}</p>
                 <input ref={floorPlanInputRef} type="file" accept="image/*,.svg,.pdf,application/pdf" className="hidden" onChange={handleFloorPlanUpload} />
               </div>
 
-              <div className="bg-white dark:bg-[#0f0f0f] border border-[#e4e4e7] dark:border-[#27272a] rounded-xl p-4">
+              <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 rounded-xl p-4">
                 <h3 className="text-sm font-semibold mb-3">{beaconCopy.simulatorPanelLabel}</h3>
                 <div className="space-y-3">
                   <div className="grid grid-cols-3 gap-2">
-                    <label className="col-span-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                    <label className="col-span-1 text-xs text-slate-500 dark:text-zinc-400">
                       {beaconCopy.simulatorSpacingLabel}
                       <input
                         type="number"
@@ -1178,10 +1178,10 @@ export default function AdminTacticalMap() {
                         step="0.5"
                         value={bleSpacingMeters}
                         onChange={(event) => setBleSpacingMeters(event.target.value)}
-                        className="mt-1 w-full rounded-lg border border-[#e4e4e7] bg-[#f4f4f5] px-3 py-2 text-sm dark:border-[#27272a] dark:bg-[#18181b]"
+                        className="mt-1 w-full rounded-lg border border-slate-200 bg-[#f4f4f5] px-3 py-2 text-sm dark:border-zinc-800/80 dark:bg-[#18181b]"
                       />
                     </label>
-                    <label className="col-span-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                    <label className="col-span-1 text-xs text-slate-500 dark:text-zinc-400">
                       Width (m)
                       <input
                         type="number"
@@ -1189,10 +1189,10 @@ export default function AdminTacticalMap() {
                         step="0.5"
                         value={dimensionDraft.width}
                         onChange={(event) => setDimensionDraft((current) => ({ ...current, width: event.target.value }))}
-                        className="mt-1 w-full rounded-lg border border-[#e4e4e7] bg-[#f4f4f5] px-3 py-2 text-sm dark:border-[#27272a] dark:bg-[#18181b]"
+                        className="mt-1 w-full rounded-lg border border-slate-200 bg-[#f4f4f5] px-3 py-2 text-sm dark:border-zinc-800/80 dark:bg-[#18181b]"
                       />
                     </label>
-                    <label className="col-span-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                    <label className="col-span-1 text-xs text-slate-500 dark:text-zinc-400">
                       Height (m)
                       <input
                         type="number"
@@ -1200,7 +1200,7 @@ export default function AdminTacticalMap() {
                         step="0.5"
                         value={dimensionDraft.height}
                         onChange={(event) => setDimensionDraft((current) => ({ ...current, height: event.target.value }))}
-                        className="mt-1 w-full rounded-lg border border-[#e4e4e7] bg-[#f4f4f5] px-3 py-2 text-sm dark:border-[#27272a] dark:bg-[#18181b]"
+                        className="mt-1 w-full rounded-lg border border-slate-200 bg-[#f4f4f5] px-3 py-2 text-sm dark:border-zinc-800/80 dark:bg-[#18181b]"
                       />
                     </label>
                   </div>
@@ -1211,7 +1211,7 @@ export default function AdminTacticalMap() {
                     <div className="flex items-center justify-between gap-3">
                       <div>
                         <div className="text-sm font-medium">Walk Calibration</div>
-                        <div className="mt-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                        <div className="mt-1 text-xs text-slate-500 dark:text-zinc-400">
                           Click two map points, then enter walked distance to auto-scale dimensions.
                         </div>
                       </div>
@@ -1235,29 +1235,29 @@ export default function AdminTacticalMap() {
                         value={walkDistanceMeters}
                         onChange={(event) => setWalkDistanceMeters(event.target.value)}
                         placeholder="Walked meters"
-                        className="rounded-lg border border-[#e4e4e7] bg-[#f4f4f5] px-3 py-2 text-sm dark:border-[#27272a] dark:bg-[#18181b]"
+                        className="rounded-lg border border-slate-200 bg-[#f4f4f5] px-3 py-2 text-sm dark:border-zinc-800/80 dark:bg-[#18181b]"
                       />
                       <button onClick={handleApplyWalkCalibration} className="rounded-lg bg-emerald-600 px-3 py-2 text-sm text-white">
                         Apply
                       </button>
                     </div>
-                    <div className="mt-2 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                    <div className="mt-2 text-xs text-slate-500 dark:text-zinc-400">
                       Current scale: {activeFloorDimensions.widthMeters}m x {activeFloorDimensions.heightMeters}m | source: {activeFloorDimensions.source}
                     </div>
-                    <div className="mt-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                    <div className="mt-1 text-xs text-slate-500 dark:text-zinc-400">
                       Start: {walkCalibrationStart ? `${walkCalibrationStart.x.toFixed(1)}%, ${walkCalibrationStart.y.toFixed(1)}%` : "not set"} | End: {walkCalibrationEnd ? `${walkCalibrationEnd.x.toFixed(1)}%, ${walkCalibrationEnd.y.toFixed(1)}%` : "not set"}
                     </div>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white dark:bg-[#0f0f0f] border border-[#e4e4e7] dark:border-[#27272a] rounded-xl p-4">
+              <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 rounded-xl p-4">
                 <h3 className="text-sm font-semibold mb-3">{beaconCopy.liveTestLabel}</h3>
                 <div className="space-y-3">
                   <select
                     value={bleTestOccupantId}
                     onChange={(event) => setBleTestOccupantId(event.target.value)}
-                    className="w-full rounded-lg border border-[#e4e4e7] bg-[#f4f4f5] px-3 py-2 text-sm dark:border-[#27272a] dark:bg-[#18181b]"
+                    className="w-full rounded-lg border border-slate-200 bg-[#f4f4f5] px-3 py-2 text-sm dark:border-zinc-800/80 dark:bg-[#18181b]"
                   >
                     {state.occupants.map((occupant) => (
                       <option key={occupant.id} value={occupant.id}>
@@ -1268,7 +1268,7 @@ export default function AdminTacticalMap() {
                   <select
                     value={bleTestAddress}
                     onChange={(event) => setBleTestAddress(event.target.value)}
-                    className="w-full rounded-lg border border-[#e4e4e7] bg-[#f4f4f5] px-3 py-2 text-sm dark:border-[#27272a] dark:bg-[#18181b]"
+                    className="w-full rounded-lg border border-slate-200 bg-[#f4f4f5] px-3 py-2 text-sm dark:border-zinc-800/80 dark:bg-[#18181b]"
                   >
                     {anchorNodesOnActiveFloor.map((node) => (
                       <option key={node.id} value={buildAnchorAddress(node)}>
@@ -1279,13 +1279,13 @@ export default function AdminTacticalMap() {
                   <button onClick={handleInjectBleScan} className="w-full rounded-lg bg-sky-600 px-3 py-2 text-sm text-white">
                     {beaconCopy.injectActionLabel}
                   </button>
-                  <p className="text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                  <p className="text-xs text-slate-500 dark:text-zinc-400">
                     {beaconCopy.injectActionSummary}
                   </p>
                 </div>
               </div>
 
-              <div className="bg-white dark:bg-[#0f0f0f] border border-[#e4e4e7] dark:border-[#27272a] rounded-xl p-4">
+              <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 rounded-xl p-4">
                 <h3 className="text-sm font-semibold mb-3">Auto Follow Person</h3>
                 <div className="space-y-3">
                   <label className="flex items-center justify-between gap-3 rounded-lg bg-[#f4f4f5] px-3 py-2 text-sm dark:bg-[#18181b]">
@@ -1323,7 +1323,7 @@ export default function AdminTacticalMap() {
                   <select
                     value={followOccupantId}
                     onChange={(event) => handleFollowOccupantChange(event.target.value)}
-                    className="w-full rounded-lg border border-[#e4e4e7] bg-[#f4f4f5] px-3 py-2 text-sm dark:border-[#27272a] dark:bg-[#18181b]"
+                    className="w-full rounded-lg border border-slate-200 bg-[#f4f4f5] px-3 py-2 text-sm dark:border-zinc-800/80 dark:bg-[#18181b]"
                   >
                     {state.occupants.map((occupant) => (
                       <option key={occupant.id} value={occupant.id}>
@@ -1335,25 +1335,25 @@ export default function AdminTacticalMap() {
                     <div className="font-medium">
                       {followedOccupant?.name ?? "No person selected"}
                     </div>
-                    <div className="mt-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                    <div className="mt-1 text-xs text-slate-500 dark:text-zinc-400">
                       Current floor: {followedOccupantNode?.floorId.replace("_", " ") ?? "Unknown"}
                     </div>
-                    <div className="mt-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                    <div className="mt-1 text-xs text-slate-500 dark:text-zinc-400">
                       Route nodes: {followedOccupantRoute?.length ?? 0}
                     </div>
                   </div>
-                  <div className="rounded-lg border border-[#e4e4e7] px-3 py-3 text-sm dark:border-[#27272a]">
+                  <div className="rounded-lg border border-slate-200 px-3 py-3 text-sm dark:border-zinc-800/80">
                     <div className="font-medium">
                       Primary tracked floor: {trackedFloorSummary?.label ?? "Unknown"}
                     </div>
-                    <div className="mt-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                    <div className="mt-1 text-xs text-slate-500 dark:text-zinc-400">
                       Mode: {followMode === "selected" ? "selected person" : "most active floor"}
                     </div>
-                    <div className="mt-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                    <div className="mt-1 text-xs text-slate-500 dark:text-zinc-400">
                       Occupants: {trackedFloorSummary?.occupantCount ?? 0} | Hazards: {trackedFloorSummary?.hazardCount ?? 0} | Recent events: {trackedFloorSummary?.recentEventCount ?? 0}
                     </div>
                     {secondaryTrackedFloor ? (
-                      <div className="mt-2 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                      <div className="mt-2 text-xs text-slate-500 dark:text-zinc-400">
                         Secondary watch: {secondaryTrackedFloor.label} ({secondaryTrackedFloor.occupantCount} occupants)
                       </div>
                     ) : null}
@@ -1361,11 +1361,11 @@ export default function AdminTacticalMap() {
                 </div>
               </div>
 
-              <div className="bg-white dark:bg-[#0f0f0f] border border-[#e4e4e7] dark:border-[#27272a] rounded-xl p-4">
+              <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 rounded-xl p-4">
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <h3 className="text-sm font-semibold">Live Command Bridge</h3>
-                      <p className="mt-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                      <p className="mt-1 text-xs text-slate-500 dark:text-zinc-400">
                         Control talk/listen for selected guest or staff channel directly from here.
                       </p>
                   </div>
@@ -1383,24 +1383,24 @@ export default function AdminTacticalMap() {
 
                 <div className="mt-4 rounded-lg bg-[#f4f4f5] px-3 py-3 text-sm dark:bg-[#18181b]">
                   <div className="font-medium">{activeCommandOccupant?.name ?? "No live occupant selected"}</div>
-                  <div className="mt-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                  <div className="mt-1 text-xs text-slate-500 dark:text-zinc-400">
                     Channel: {activeCommandChannel || "Waiting for a mapped comms channel"}
                   </div>
-                  <div className="mt-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                  <div className="mt-1 text-xs text-slate-500 dark:text-zinc-400">
                     Position: {followedOccupantNode?.label ?? "Unknown"} | Floor: {followedOccupantNode?.floorId.replace("_", " ") ?? "Unknown"}
                   </div>
                 </div>
 
                 <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
-                  <div className="rounded-lg border border-[#e4e4e7] px-3 py-3 dark:border-[#27272a]">
+                  <div className="rounded-lg border border-slate-200 px-3 py-3 dark:border-zinc-800/80">
                     <div className="font-semibold">Tracking confidence</div>
-                    <div className="mt-1 text-[#71717a] dark:text-[#a1a1aa]">
+                    <div className="mt-1 text-slate-500 dark:text-zinc-400">
                       {Math.round((activeCommandOccupant?.trackingConfidence ?? 0) * 100)}%
                     </div>
                   </div>
-                  <div className="rounded-lg border border-[#e4e4e7] px-3 py-3 dark:border-[#27272a]">
+                  <div className="rounded-lg border border-slate-200 px-3 py-3 dark:border-zinc-800/80">
                     <div className="font-semibold">Last signal</div>
-                    <div className="mt-1 text-[#71717a] dark:text-[#a1a1aa]">
+                    <div className="mt-1 text-slate-500 dark:text-zinc-400">
                       {activeCommandOccupant?.lastSignalSource ?? "routing"}
                     </div>
                   </div>
@@ -1410,21 +1410,21 @@ export default function AdminTacticalMap() {
                   <div className="font-semibold">
                     {beaconCopy.liveLockLabel}: {activeCommandOccupant?.lastBeaconSignal?.address ?? beaconCopy.pendingLockLabel}
                   </div>
-                  <div className="mt-1 text-[#71717a] dark:text-[#a1a1aa]">
+                  <div className="mt-1 text-slate-500 dark:text-zinc-400">
                     RSSI: {activeCommandOccupant?.lastBeaconSignal?.rssi ?? "--"} dBm | Distance: {activeCommandOccupant?.lastBeaconSignal?.distanceMeters ?? "--"}m
                   </div>
-                  <div className="mt-1 text-[#71717a] dark:text-[#a1a1aa]">
+                  <div className="mt-1 text-slate-500 dark:text-zinc-400">
                     Last seen: {activeCommandOccupant?.lastSeenAt ? new Date(activeCommandOccupant.lastSeenAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" }) : "No live sample yet"}
                   </div>
                 </div>
               </div>
 
               {secondaryTrackedFloor ? (
-                <div className="bg-white dark:bg-[#0f0f0f] border border-[#e4e4e7] dark:border-[#27272a] rounded-xl p-4">
+                <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 rounded-xl p-4">
                   <div className="mb-3 flex items-start justify-between gap-3">
                     <div>
                       <h3 className="text-sm font-semibold">Secondary Floor Watch</h3>
-                      <p className="mt-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                      <p className="mt-1 text-xs text-slate-500 dark:text-zinc-400">
                         Live preview for next busiest floor - no need to switch constantly.
                       </p>
                     </div>
@@ -1453,26 +1453,26 @@ export default function AdminTacticalMap() {
               ) : null}
 
               {selectedNode && (
-                <div className="bg-white dark:bg-[#0f0f0f] border border-[#e4e4e7] dark:border-[#27272a] rounded-xl p-4">
+                <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 rounded-xl p-4">
                   <h3 className="text-sm font-semibold mb-3">Selected Node</h3>
                   <div className="space-y-3">
                     <div>
-                      <label className="text-xs text-[#71717a] dark:text-[#a1a1aa]">Label</label>
+                      <label className="text-xs text-slate-500 dark:text-zinc-400">Label</label>
                       <input
                         type="text"
                         value={selectedNode.label}
                         onChange={(e) => updateGraphNode(selectedNode.id, { label: e.target.value })}
-                        className="w-full mt-1 px-3 py-2 bg-[#f4f4f5] dark:bg-[#18181b] border border-[#e4e4e7] dark:border-[#27272a] rounded-lg text-sm"
+                        className="w-full mt-1 px-3 py-2 bg-[#f4f4f5] dark:bg-[#18181b] border border-slate-200 dark:border-zinc-800/80 rounded-lg text-sm"
                       />
                     </div>
                     {selectedNode.type === "beacon" ? (
                       <div className="rounded-lg bg-[#f4f4f5] px-3 py-3 text-sm dark:bg-[#18181b]">
                         <div className="font-medium">{selectedNode.bleAddress ?? "BLE address pending"}</div>
-                        <div className="mt-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                        <div className="mt-1 text-xs text-slate-500 dark:text-zinc-400">
                           Major: {selectedNode.beaconMajor ?? selectedNode.beaconIndex ?? "-"} | Zone: {selectedNode.zoneId}
                         </div>
                         {typeof selectedNode.mountX === "number" && typeof selectedNode.mountY === "number" ? (
-                          <div className="mt-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                          <div className="mt-1 text-xs text-slate-500 dark:text-zinc-400">
                             Mounted at: {selectedNode.mountX.toFixed(1)}%, {selectedNode.mountY.toFixed(1)}%
                           </div>
                         ) : null}
@@ -1480,7 +1480,7 @@ export default function AdminTacticalMap() {
                     ) : null}
                     {selectedCameraNode ? (
                       <div className="space-y-3">
-                        <div className="rounded-xl border border-[#e4e4e7] bg-[#081d2c] p-3 text-white dark:border-[#27272a]">
+                        <div className="rounded-xl border border-slate-200 bg-[#081d2c] p-3 text-white dark:border-zinc-800/80">
                           <div className="flex items-start justify-between gap-3">
                             <div>
                               <div className="text-xs uppercase tracking-[0.2em] text-sky-200">Live Preview</div>
@@ -1612,26 +1612,26 @@ export default function AdminTacticalMap() {
                 </div>
               )}
 
-              <div className="bg-white dark:bg-[#0f0f0f] border border-[#e4e4e7] dark:border-[#27272a] rounded-xl p-4">
+              <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 rounded-xl p-4">
                 <h3 className="text-sm font-semibold mb-3">Guest Saved Route</h3>
                 {guestPreviewOccupant ? (
                   <div className="space-y-3">
                     <div className="rounded-lg bg-[#f4f4f5] px-3 py-3 text-sm dark:bg-[#18181b]">
                       <div className="font-medium">{guestPreviewOccupant.name}</div>
-                      <div className="mt-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                      <div className="mt-1 text-xs text-slate-500 dark:text-zinc-400">
                         Room: {guestPreviewRoom}
                       </div>
                       {guestPreviewRoute ? (
-                        <div className="mt-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                        <div className="mt-1 text-xs text-slate-500 dark:text-zinc-400">
                           Saved route distance: {guestPreviewDistance}m
                         </div>
                       ) : null}
-                      <div className="mt-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                      <div className="mt-1 text-xs text-slate-500 dark:text-zinc-400">
                         Live reroute reacts to blocked BLE nodes and camera hazards automatically.
                       </div>
                     </div>
                     {guestPreviewRoute ? (
-                      <div className="rounded-lg border border-[#e4e4e7] px-3 py-3 dark:border-[#27272a]">
+                      <div className="rounded-lg border border-slate-200 px-3 py-3 dark:border-zinc-800/80">
                         <div className="text-xs font-semibold uppercase tracking-[0.18em] text-[#64748b]">
                           BLE sequence
                         </div>
@@ -1643,46 +1643,46 @@ export default function AdminTacticalMap() {
                               </span>
                             ))
                           ) : (
-                            <span className="text-xs text-[#71717a] dark:text-[#a1a1aa]">No BLE anchors yet on the saved route.</span>
+                            <span className="text-xs text-slate-500 dark:text-zinc-400">No BLE anchors yet on the saved route.</span>
                           )}
                         </div>
                       </div>
                     ) : (
-                      <div className="rounded-lg border border-dashed border-[#cbd5e1] px-3 py-3 text-xs text-[#71717a] dark:border-[#334155] dark:text-[#a1a1aa]">
+                      <div className="rounded-lg border border-dashed border-[#cbd5e1] px-3 py-3 text-xs text-slate-500 dark:border-[#334155] dark:text-zinc-400">
                         No safe guest route is available right now. Active hazards are blocking this guest path.
                       </div>
                     )}
                   </div>
                 ) : (
-                  <p className="text-sm text-[#71717a] dark:text-[#a1a1aa]">
+                  <p className="text-sm text-slate-500 dark:text-zinc-400">
                     Guest route preview will appear once a valid BLE-linked route is available.
                   </p>
                 )}
               </div>
 
-              <div className="bg-white dark:bg-[#0f0f0f] border border-[#e4e4e7] dark:border-[#27272a] rounded-xl p-4">
+              <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 rounded-xl p-4">
                 <h3 className="text-sm font-semibold mb-3">Stats</h3>
                 <div className="space-y-2 text-sm">
                   <div className="flex justify-between">
-                    <span className="text-[#71717a] dark:text-[#a1a1aa]">Active Hazards</span>
+                    <span className="text-slate-500 dark:text-zinc-400">Active Hazards</span>
                     <span className="font-semibold">{openIncidentCount}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[#71717a] dark:text-[#a1a1aa]">Total Nodes</span>
+                    <span className="text-slate-500 dark:text-zinc-400">Total Nodes</span>
                     <span className="font-semibold">{state.graphNodes.length}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[#71717a] dark:text-[#a1a1aa]">Occupants</span>
+                    <span className="text-slate-500 dark:text-zinc-400">Occupants</span>
                     <span className="font-semibold">{state.occupants.length}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-[#71717a] dark:text-[#a1a1aa]">Camera Alerts</span>
+                    <span className="text-slate-500 dark:text-zinc-400">Camera Alerts</span>
                     <span className="font-semibold">{state.cameraDetections.length}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white dark:bg-[#0f0f0f] border border-[#e4e4e7] dark:border-[#27272a] rounded-xl p-4">
+              <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 rounded-xl p-4">
                 <h3 className="text-sm font-semibold mb-3">Simulation Feed</h3>
                 {recentTrackingEvents.length > 0 ? (
                   <div className="space-y-2">
@@ -1692,7 +1692,7 @@ export default function AdminTacticalMap() {
                           <span className="font-semibold uppercase tracking-[0.16em] text-[#175ead] dark:text-sky-300">
                             {event.kind.replaceAll("_", " ")}
                           </span>
-                          <span className="text-[#71717a] dark:text-[#a1a1aa]">
+                          <span className="text-slate-500 dark:text-zinc-400">
                             {new Date(event.createdAt).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" })}
                           </span>
                         </div>
@@ -1701,13 +1701,13 @@ export default function AdminTacticalMap() {
                     ))}
                   </div>
                 ) : (
-                  <p className="text-sm text-[#71717a] dark:text-[#a1a1aa]">
+                  <p className="text-sm text-slate-500 dark:text-zinc-400">
                     Simulation feed will show BLE locks, floor changes, camera alerts, and reroutes once the scenario starts.
                   </p>
                 )}
               </div>
 
-              <div className="bg-white dark:bg-[#0f0f0f] border border-[#e4e4e7] dark:border-[#27272a] rounded-xl p-4">
+              <div className="bg-white dark:bg-zinc-900 border border-slate-200 dark:border-zinc-800/80 rounded-xl p-4">
                 <h3 className="text-sm font-semibold mb-3">Live Camera Integration</h3>
                 {floorCameraNodes.length > 0 ? (
                   <div className="space-y-2">
@@ -1720,17 +1720,17 @@ export default function AdminTacticalMap() {
                             setBlueprintStatus(`${cameraNode.label} pushed a live smoke alert into the routing engine.`);
                           }
                         }}
-                        className="w-full rounded-lg border border-[#e4e4e7] dark:border-[#27272a] px-3 py-2 text-left text-sm hover:bg-[#f4f4f5] dark:hover:bg-[#18181b]"
+                        className="w-full rounded-lg border border-slate-200 dark:border-zinc-800/80 px-3 py-2 text-left text-sm hover:bg-[#f4f4f5] dark:hover:bg-[#18181b]"
                       >
                         <div className="font-medium">{cameraNode.label}</div>
-                        <div className="text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                        <div className="text-xs text-slate-500 dark:text-zinc-400">
                           Trigger smoke event for {cameraNode.zoneId}
                         </div>
                       </button>
                     ))}
                   </div>
                 ) : (
-                  <p className="text-sm text-[#71717a] dark:text-[#a1a1aa]">
+                  <p className="text-sm text-slate-500 dark:text-zinc-400">
                     No camera nodes on this floor yet. Generate from SVG or add cameras manually.
                   </p>
                 )}

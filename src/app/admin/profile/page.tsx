@@ -40,7 +40,7 @@ export default function AdminProfile() {
     };
 
     return (
-        <div className="bg-transparent text-gray-900 dark:text-[#e5e2e1] h-screen overflow-hidden flex flex-col font-['Sora'] transition-colors relative selection:bg-red-500 selection:text-white dark:selection:bg-[#ffb4aa] dark:selection:text-black">
+        <div className="bg-transparent text-gray-900 dark:text-zinc-50 h-screen overflow-hidden flex flex-col font-['Sora'] transition-colors relative selection:bg-red-500 selection:text-white dark:selection:bg-[#ffb4aa] dark:selection:text-black">
             
             {/* Premium Ambient Background Glows */}
             <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full blur-[120px] bg-red-500/5 dark:bg-[#dc2626]/10 pointer-events-none z-0" />
@@ -76,15 +76,15 @@ export default function AdminProfile() {
                         className="flex flex-col gap-8"
                     >
                         {/* Hero Profile Card */}
-                        <motion.div variants={itemVariants} className="bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-xl border border-gray-200 dark:border-[#27272a] rounded-3xl shadow-lg shadow-gray-200/50 dark:shadow-black/50 overflow-hidden relative">
+                        <motion.div variants={itemVariants} className="bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl border border-gray-200 dark:border-zinc-800/80 rounded-3xl shadow-lg shadow-gray-200/50 dark:shadow-black/50 overflow-hidden relative">
                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-red-500/50 to-transparent"></div>
                             
                             <div className="px-6 md:px-8 py-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-6 relative z-10">
                                 <div className="flex flex-col sm:flex-row items-center sm:items-start gap-5 sm:gap-6 text-center sm:text-left w-full sm:w-auto">
 
                                     {/* Avatar */}
-                                    <div className="w-24 h-24 rounded-2xl bg-gray-50 dark:bg-[#121215] border border-gray-200 dark:border-[#27272a] flex items-center justify-center shrink-0 relative overflow-hidden group shadow-inner">
-                                        <span className="material-symbols-outlined text-4xl text-gray-400 dark:text-[#52525b] group-hover:scale-110 group-hover:text-red-500 transition-all duration-300">admin_panel_settings</span>
+                                    <div className="w-24 h-24 rounded-2xl bg-gray-50 dark:bg-[#121215] border border-gray-200 dark:border-zinc-800/80 flex items-center justify-center shrink-0 relative overflow-hidden group shadow-inner">
+                                        <span className="material-symbols-outlined text-4xl text-gray-400 dark:text-zinc-500 group-hover:scale-110 group-hover:text-red-500 transition-all duration-300">admin_panel_settings</span>
                                         <div className={`absolute bottom-0 left-0 w-full h-1.5 transition-colors duration-500 bg-red-500 shadow-[0_-2px_10px_rgba(220,38,38,0.5)]`} />
                                     </div>
 
@@ -95,8 +95,8 @@ export default function AdminProfile() {
                                                 ID: {adminInfo.badgeId}
                                             </span>
                                         </div>
-                                        <p className="text-sm font-bold text-gray-500 dark:text-[#a1a1aa] uppercase tracking-wider mt-2 sm:mt-1">{adminInfo.role}</p>
-                                        <p className="text-xs font-medium text-gray-400 dark:text-[#71717a] mt-1">{adminInfo.department}</p>
+                                        <p className="text-sm font-bold text-gray-500 dark:text-zinc-400 uppercase tracking-wider mt-2 sm:mt-1">{adminInfo.role}</p>
+                                        <p className="text-xs font-medium text-gray-400 dark:text-slate-500 mt-1">{adminInfo.department}</p>
                                     </div>
                                 </div>
                             </div>
@@ -104,9 +104,9 @@ export default function AdminProfile() {
 
                         <div className="grid grid-cols-1 gap-8">
                             {/* Personnel Records */}
-                            <motion.div variants={itemVariants} className="bg-white/80 dark:bg-[#0a0a0a]/80 backdrop-blur-xl border border-gray-200 dark:border-[#27272a] rounded-3xl p-6 lg:p-8 shadow-lg shadow-gray-200/50 dark:shadow-black/50">
-                                <div className="flex items-center gap-3 mb-8 pb-6 border-b border-gray-100 dark:border-[#27272a]/50">
-                                    <span className="material-symbols-outlined text-[20px] text-gray-400 dark:text-[#52525b]">assignment_ind</span>
+                            <motion.div variants={itemVariants} className="bg-white/80 dark:bg-zinc-950/80 backdrop-blur-xl border border-gray-200 dark:border-zinc-800/80 rounded-3xl p-6 lg:p-8 shadow-lg shadow-gray-200/50 dark:shadow-black/50">
+                                <div className="flex items-center gap-3 mb-8 pb-6 border-b border-gray-100 dark:border-zinc-800/80/50">
+                                    <span className="material-symbols-outlined text-[20px] text-gray-400 dark:text-zinc-500">assignment_ind</span>
                                     <h2 className="font-bold text-lg text-gray-900 dark:text-white">Master Records</h2>
                                 </div>
 
@@ -117,8 +117,8 @@ export default function AdminProfile() {
                                         { label: "Date Authorized", value: adminInfo.joinedDate, icon: "calendar_today" },
                                         { label: "Clearance Level", value: adminInfo.clearance, icon: "verified_user" },
                                     ].map(field => (
-                                        <div key={field.label} className="group p-4 rounded-xl hover:bg-white dark:hover:bg-[#121215] border border-transparent hover:border-gray-100 dark:hover:border-[#27272a] transition-all">
-                                            <p className="text-[11px] text-gray-500 dark:text-[#71717a] uppercase font-bold tracking-[0.15em] mb-2 flex items-center gap-2 group-hover:text-red-500 transition-colors">
+                                        <div key={field.label} className="group p-4 rounded-xl hover:bg-white dark:hover:bg-[#121215] border border-transparent hover:border-gray-100 dark:hover:border-zinc-800/80 transition-all">
+                                            <p className="text-[11px] text-gray-500 dark:text-slate-500 uppercase font-bold tracking-[0.15em] mb-2 flex items-center gap-2 group-hover:text-red-500 transition-colors">
                                                 <span className="material-symbols-outlined text-[16px]">{field.icon}</span>
                                                 {field.label}
                                             </p>

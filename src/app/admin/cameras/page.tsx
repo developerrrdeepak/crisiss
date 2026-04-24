@@ -375,7 +375,7 @@ export default function AdminCameras() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#fafafa] text-[#09090b] dark:bg-[#0a0a0a] dark:text-[#e5e2e1] font-['Sora']">
+    <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 dark:bg-zinc-950 dark:text-zinc-50 font-['Sora']">
       <DashboardHeader
         title="Security Cameras"
         userName="Administrator"
@@ -391,12 +391,12 @@ export default function AdminCameras() {
         />
         <main className="flex-1 overflow-auto p-4 md:p-6 lg:p-8">
           <div className="grid gap-6 xl:grid-cols-[1.45fr_0.95fr]">
-            <section className="rounded-[2rem] border border-[#e4e4e7] bg-white shadow-2xl dark:border-[#27272a] dark:bg-[#050505]">
-              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#e4e4e7] px-6 py-5 dark:border-[#27272a]">
+            <section className="rounded-[2rem] border border-slate-200 bg-white shadow-2xl dark:border-zinc-800/80 dark:bg-[#050505]">
+              <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 px-6 py-5 dark:border-zinc-800/80">
                 <div>
                   <p className="text-[10px] font-black uppercase tracking-[0.24em] text-[#175ead]">Live Preview</p>
                   <h2 className="mt-2 text-2xl font-black">{selectedSource?.label || "No source selected"}</h2>
-                  <p className="mt-2 text-sm text-[#71717a] dark:text-[#a1a1aa]">
+                  <p className="mt-2 text-sm text-slate-500 dark:text-zinc-400">
                     {selectedSource ? `${selectedSource.type === "phone" ? "Phone" : "RTSP"} path: ${selectedSource.path}` : "Configure a phone or RTSP source first."}
                   </p>
                   <p className="mt-2 text-[11px] font-black uppercase tracking-[0.18em] text-[#175ead] dark:text-[#9cc8ff]">
@@ -412,19 +412,19 @@ export default function AdminCameras() {
                       className={`rounded-full px-4 py-2 text-xs font-black uppercase tracking-[0.18em] ${
                         activeMediaTarget?.id === target.id
                           ? "bg-emerald-500 text-black"
-                          : "border border-[#e4e4e7] dark:border-[#27272a]"
+                          : "border border-slate-200 dark:border-zinc-800/80"
                       }`}
                     >
                       {target.label}
                     </button>
                   ))}
-                      <button type="button" onClick={() => { setPreviewProtocol("webrtc"); setPreviewRefreshKey((current) => current + 1); }} className={`rounded-full px-4 py-2 text-xs font-black uppercase tracking-[0.18em] ${previewProtocol === "webrtc" ? "bg-[#175ead] text-white" : "border border-[#e4e4e7] dark:border-[#27272a]"}`}>WebRTC</button>
-                      <button type="button" onClick={() => { setPreviewProtocol("hls"); setPreviewRefreshKey((current) => current + 1); }} className={`rounded-full px-4 py-2 text-xs font-black uppercase tracking-[0.18em] ${previewProtocol === "hls" ? "bg-[#09090b] text-white dark:bg-white dark:text-black" : "border border-[#e4e4e7] dark:border-[#27272a]"}`}>HLS</button>
-                  <button type="button" onClick={() => setPreviewRefreshKey((current) => current + 1)} className="rounded-full border border-[#e4e4e7] px-4 py-2 text-xs font-black uppercase tracking-[0.18em] dark:border-[#27272a]">Refresh</button>
+                      <button type="button" onClick={() => { setPreviewProtocol("webrtc"); setPreviewRefreshKey((current) => current + 1); }} className={`rounded-full px-4 py-2 text-xs font-black uppercase tracking-[0.18em] ${previewProtocol === "webrtc" ? "bg-[#175ead] text-white" : "border border-slate-200 dark:border-zinc-800/80"}`}>WebRTC</button>
+                      <button type="button" onClick={() => { setPreviewProtocol("hls"); setPreviewRefreshKey((current) => current + 1); }} className={`rounded-full px-4 py-2 text-xs font-black uppercase tracking-[0.18em] ${previewProtocol === "hls" ? "bg-[#09090b] text-white dark:bg-white dark:text-black" : "border border-slate-200 dark:border-zinc-800/80"}`}>HLS</button>
+                  <button type="button" onClick={() => setPreviewRefreshKey((current) => current + 1)} className="rounded-full border border-slate-200 px-4 py-2 text-xs font-black uppercase tracking-[0.18em] dark:border-zinc-800/80">Refresh</button>
                 </div>
               </div>
               <div className="p-6">
-                <div className="min-h-[420px] overflow-hidden rounded-[1.5rem] border border-[#e4e4e7] bg-black dark:border-[#27272a]">
+                <div className="min-h-[420px] overflow-hidden rounded-[1.5rem] border border-slate-200 bg-black dark:border-zinc-800/80">
                   {previewUrl ? (
                     <iframe
                       key={`${selectedSource?.path || "none"}-${previewProtocol}-${previewRefreshKey}`}
@@ -441,10 +441,10 @@ export default function AdminCameras() {
                 </div>
                 <div className="mt-5 grid gap-3 md:grid-cols-3">
                     {sources.map((source) => (
-                      <button key={source.id} type="button" onClick={() => { setSelectedSourceId(source.id); setPreviewRefreshKey((current) => current + 1); }} className={`rounded-[1.25rem] border px-4 py-4 text-left ${selectedSource?.id === source.id ? "border-[#175ead] bg-[#175ead]/5" : "border-[#e4e4e7] dark:border-[#27272a]"}`}>
-                      <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[#71717a] dark:text-[#a1a1aa]">{source.type === "phone" ? "Phone source" : "RTSP source"}</p>
+                      <button key={source.id} type="button" onClick={() => { setSelectedSourceId(source.id); setPreviewRefreshKey((current) => current + 1); }} className={`rounded-[1.25rem] border px-4 py-4 text-left ${selectedSource?.id === source.id ? "border-[#175ead] bg-[#175ead]/5" : "border-slate-200 dark:border-zinc-800/80"}`}>
+                      <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500 dark:text-zinc-400">{source.type === "phone" ? "Phone source" : "RTSP source"}</p>
                       <p className="mt-2 text-sm font-bold">{source.label}</p>
-                      <p className="mt-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">{source.path}</p>
+                      <p className="mt-1 text-xs text-slate-500 dark:text-zinc-400">{source.path}</p>
                     </button>
                   ))}
                 </div>
@@ -452,17 +452,17 @@ export default function AdminCameras() {
             </section>
 
             <section className="space-y-6">
-              <div className="rounded-[2rem] border border-[#e4e4e7] bg-white p-6 shadow-xl dark:border-[#27272a] dark:bg-[#050505]">
+              <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-xl dark:border-zinc-800/80 dark:bg-[#050505]">
                 <p className="text-[10px] font-black uppercase tracking-[0.24em] text-[#175ead]">Phone CCTV</p>
                 <h3 className="mt-2 text-xl font-black">Publish from a phone</h3>
                 <div className="mt-5 space-y-3">
-                  <input value={phoneSource.label} onChange={(event) => setPhoneSource((current) => ({ ...current, label: event.target.value }))} placeholder="Phone camera label" className="w-full rounded-2xl border border-[#e4e4e7] bg-[#fafafa] px-4 py-3 text-sm dark:border-[#27272a] dark:bg-[#111827]" />
-                  <input value={phoneSource.path} onChange={(event) => setPhoneSource((current) => ({ ...current, path: event.target.value }))} placeholder="phone-cctv" className="w-full rounded-2xl border border-[#e4e4e7] bg-[#fafafa] px-4 py-3 text-sm dark:border-[#27272a] dark:bg-[#111827]" />
+                  <input value={phoneSource.label} onChange={(event) => setPhoneSource((current) => ({ ...current, label: event.target.value }))} placeholder="Phone camera label" className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm dark:border-zinc-800/80 dark:bg-[#111827]" />
+                  <input value={phoneSource.path} onChange={(event) => setPhoneSource((current) => ({ ...current, path: event.target.value }))} placeholder="phone-cctv" className="w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm dark:border-zinc-800/80 dark:bg-[#111827]" />
                 </div>
-                <div className="mt-5 rounded-[1.5rem] border border-[#e4e4e7] bg-[#f8fafc] p-5 dark:border-[#27272a] dark:bg-[#0f1720]">
-                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[#71717a] dark:text-[#94a3b8]">Publish URL</p>
+                <div className="mt-5 rounded-[1.5rem] border border-slate-200 bg-[#f8fafc] p-5 dark:border-zinc-800/80 dark:bg-[#0f1720]">
+                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500 dark:text-[#94a3b8]">Publish URL</p>
                   <p className="mt-2 text-[11px] font-black uppercase tracking-[0.18em] text-[#175ead] dark:text-[#9cc8ff]">{activeMediaTarget?.label ?? "No backend active"}</p>
-                  <p className="mt-2 break-all text-xs text-[#71717a] dark:text-[#a1a1aa]">{phonePublishUrl || "Set NEXT_PUBLIC_MEDIAMTX_PRIMARY_WEBRTC_BASE_URL or NEXT_PUBLIC_MEDIAMTX_FALLBACK_WEBRTC_BASE_URL first."}</p>
+                  <p className="mt-2 break-all text-xs text-slate-500 dark:text-zinc-400">{phonePublishUrl || "Set NEXT_PUBLIC_MEDIAMTX_PRIMARY_WEBRTC_BASE_URL or NEXT_PUBLIC_MEDIAMTX_FALLBACK_WEBRTC_BASE_URL first."}</p>
                   <div className="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center">
                     {phonePublishQr ? (
                       // eslint-disable-next-line @next/next/no-img-element
@@ -471,30 +471,30 @@ export default function AdminCameras() {
                       <div className="h-40 w-40 rounded-2xl bg-[#e4e4e7] dark:bg-[#111827]" />
                     )}
                     <div className="space-y-3">
-                      <a href={phonePublishUrl || "#"} target="_blank" rel="noreferrer" className={`inline-flex rounded-2xl px-4 py-3 text-xs font-black uppercase tracking-[0.18em] ${phonePublishUrl ? "bg-[#175ead] text-white" : "pointer-events-none bg-[#d4d4d8] text-[#71717a]"}`}>Open Publish Page</a>
-                      <button type="button" onClick={() => { setSelectedSourceId("phone-source"); setPreviewProtocol("webrtc"); }} className="block rounded-2xl border border-[#e4e4e7] px-4 py-3 text-xs font-black uppercase tracking-[0.18em] dark:border-[#27272a]">Watch Phone Feed</button>
+                      <a href={phonePublishUrl || "#"} target="_blank" rel="noreferrer" className={`inline-flex rounded-2xl px-4 py-3 text-xs font-black uppercase tracking-[0.18em] ${phonePublishUrl ? "bg-[#175ead] text-white" : "pointer-events-none bg-[#d4d4d8] text-slate-500"}`}>Open Publish Page</a>
+                      <button type="button" onClick={() => { setSelectedSourceId("phone-source"); setPreviewProtocol("webrtc"); }} className="block rounded-2xl border border-slate-200 px-4 py-3 text-xs font-black uppercase tracking-[0.18em] dark:border-zinc-800/80">Watch Phone Feed</button>
                     </div>
                   </div>
                 </div>
                 {mediaTargets.length > 1 ? (
-                  <p className="mt-3 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                  <p className="mt-3 text-xs text-slate-500 dark:text-zinc-400">
                     Oracle-first mode is supported. When primary URLs are configured later, this page will prefer them and keep the current GCP MediaMTX as fallback.
                   </p>
                 ) : null}
               </div>
 
-              <div className="rounded-[2rem] border border-[#e4e4e7] bg-white p-6 shadow-xl dark:border-[#27272a] dark:bg-[#050505]">
+              <div className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-xl dark:border-zinc-800/80 dark:bg-[#050505]">
                 <p className="text-[10px] font-black uppercase tracking-[0.24em] text-[#bc000a] dark:text-[#ffb4aa]">RTSP CCTV</p>
                 <h3 className="mt-2 text-xl font-black">Connect a real CCTV camera</h3>
                 <div className="mt-5 grid gap-3 md:grid-cols-2">
-                  <input value={rtspLabel} onChange={(event) => setRtspLabel(event.target.value)} placeholder="Lobby CCTV" className="rounded-2xl border border-[#e4e4e7] bg-[#fafafa] px-4 py-3 text-sm dark:border-[#27272a] dark:bg-[#111827]" />
-                  <input value={rtspPathName} onChange={(event) => setRtspPathName(event.target.value)} placeholder="lobby-cctv" className="rounded-2xl border border-[#e4e4e7] bg-[#fafafa] px-4 py-3 text-sm dark:border-[#27272a] dark:bg-[#111827]" />
-                  <input value={rtspHost} onChange={(event) => setRtspHost(event.target.value)} placeholder="Camera IP or hostname" className="rounded-2xl border border-[#e4e4e7] bg-[#fafafa] px-4 py-3 text-sm dark:border-[#27272a] dark:bg-[#111827]" />
-                  <input value={rtspPort} onChange={(event) => setRtspPort(event.target.value)} placeholder="554" className="rounded-2xl border border-[#e4e4e7] bg-[#fafafa] px-4 py-3 text-sm dark:border-[#27272a] dark:bg-[#111827]" />
-                  <input value={rtspUser} onChange={(event) => setRtspUser(event.target.value)} placeholder="Username" className="rounded-2xl border border-[#e4e4e7] bg-[#fafafa] px-4 py-3 text-sm dark:border-[#27272a] dark:bg-[#111827]" />
-                  <input type="password" value={rtspPassword} onChange={(event) => setRtspPassword(event.target.value)} placeholder="Password" className="rounded-2xl border border-[#e4e4e7] bg-[#fafafa] px-4 py-3 text-sm dark:border-[#27272a] dark:bg-[#111827]" />
-                  <input value={rtspPath} onChange={(event) => setRtspPath(event.target.value)} placeholder="stream1" className="md:col-span-2 rounded-2xl border border-[#e4e4e7] bg-[#fafafa] px-4 py-3 text-sm dark:border-[#27272a] dark:bg-[#111827]" />
-                  <select value={rtspTransport} onChange={(event) => setRtspTransport(event.target.value as "automatic" | "tcp" | "udp")} className="md:col-span-2 rounded-2xl border border-[#e4e4e7] bg-[#fafafa] px-4 py-3 text-sm dark:border-[#27272a] dark:bg-[#111827]">
+                  <input value={rtspLabel} onChange={(event) => setRtspLabel(event.target.value)} placeholder="Lobby CCTV" className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm dark:border-zinc-800/80 dark:bg-[#111827]" />
+                  <input value={rtspPathName} onChange={(event) => setRtspPathName(event.target.value)} placeholder="lobby-cctv" className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm dark:border-zinc-800/80 dark:bg-[#111827]" />
+                  <input value={rtspHost} onChange={(event) => setRtspHost(event.target.value)} placeholder="Camera IP or hostname" className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm dark:border-zinc-800/80 dark:bg-[#111827]" />
+                  <input value={rtspPort} onChange={(event) => setRtspPort(event.target.value)} placeholder="554" className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm dark:border-zinc-800/80 dark:bg-[#111827]" />
+                  <input value={rtspUser} onChange={(event) => setRtspUser(event.target.value)} placeholder="Username" className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm dark:border-zinc-800/80 dark:bg-[#111827]" />
+                  <input type="password" value={rtspPassword} onChange={(event) => setRtspPassword(event.target.value)} placeholder="Password" className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm dark:border-zinc-800/80 dark:bg-[#111827]" />
+                  <input value={rtspPath} onChange={(event) => setRtspPath(event.target.value)} placeholder="stream1" className="md:col-span-2 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm dark:border-zinc-800/80 dark:bg-[#111827]" />
+                  <select value={rtspTransport} onChange={(event) => setRtspTransport(event.target.value as "automatic" | "tcp" | "udp")} className="md:col-span-2 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm dark:border-zinc-800/80 dark:bg-[#111827]">
                     <option value="tcp">TCP</option>
                     <option value="automatic">Automatic</option>
                     <option value="udp">UDP</option>
@@ -510,14 +510,14 @@ export default function AdminCameras() {
             </section>
           </div>
 
-          <section className="mt-6 rounded-[2rem] border border-[#e4e4e7] bg-white p-6 shadow-xl dark:border-[#27272a] dark:bg-[#050505]">
-            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-[#e4e4e7] pb-5 dark:border-[#27272a]">
+          <section className="mt-6 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-xl dark:border-zinc-800/80 dark:bg-[#050505]">
+            <div className="flex flex-wrap items-center justify-between gap-3 border-b border-slate-200 pb-5 dark:border-zinc-800/80">
               <div>
                 <p className="text-[10px] font-black uppercase tracking-[0.24em] text-[#175ead]">Tactical Map Sync</p>
                 <h3 className="mt-2 text-xl font-black">
                   {focusedCamera?.label ?? "Camera map context"}
                 </h3>
-                <p className="mt-2 text-sm text-[#71717a] dark:text-[#a1a1aa]">
+                <p className="mt-2 text-sm text-slate-500 dark:text-zinc-400">
                   Camera coverage, likely blocked nodes, and reroute pressure are projected onto the same tactical graph used by the operations map.
                 </p>
               </div>
@@ -529,7 +529,7 @@ export default function AdminCameras() {
               </Link>
             </div>
             <div className="mt-5 grid gap-5 xl:grid-cols-[1.35fr_0.8fr]">
-              <div className="overflow-hidden rounded-[1.5rem] border border-[#e4e4e7] dark:border-[#27272a]">
+              <div className="overflow-hidden rounded-[1.5rem] border border-slate-200 dark:border-zinc-800/80">
                 <EvacuationMap
                   floorId={focusedFloorId}
                   floorPlanImageUrl={state.floorPlanImages[focusedFloorId] ?? null}
@@ -547,29 +547,29 @@ export default function AdminCameras() {
                 />
               </div>
               <div className="space-y-4">
-                <div className="rounded-[1.5rem] border border-[#e4e4e7] bg-[#f8fafc] p-5 dark:border-[#27272a] dark:bg-[#0f1720]">
-                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[#71717a] dark:text-[#94a3b8]">Focused Floor</p>
+                <div className="rounded-[1.5rem] border border-slate-200 bg-[#f8fafc] p-5 dark:border-zinc-800/80 dark:bg-[#0f1720]">
+                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500 dark:text-[#94a3b8]">Focused Floor</p>
                   <p className="mt-2 text-lg font-black">{focusedFloorMeta?.label ?? focusedFloorId.replace("_", " ")}</p>
-                  <p className="mt-2 text-sm text-[#71717a] dark:text-[#a1a1aa]">
+                  <p className="mt-2 text-sm text-slate-500 dark:text-zinc-400">
                     {focusedImpact
                       ? `${focusedImpact.label}. Block ${focusedImpact.blockedNodeIds.length} nodes, avoid ${focusedImpact.avoidNodeIds.length}, close ${focusedImpact.blockedEdgeIds.length} edges.`
                       : "No mapped impact available for this camera on the current graph."}
                   </p>
                 </div>
-                <div className="rounded-[1.5rem] border border-[#e4e4e7] p-5 dark:border-[#27272a]">
-                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[#71717a] dark:text-[#94a3b8]">Coverage Nodes</p>
+                <div className="rounded-[1.5rem] border border-slate-200 p-5 dark:border-zinc-800/80">
+                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500 dark:text-[#94a3b8]">Coverage Nodes</p>
                   <div className="mt-3 flex flex-wrap gap-2">
                     {focusedCamera?.coverageNodeIds.map((nodeId) => (
                       <span key={nodeId} className="rounded-full bg-[#175ead]/10 px-3 py-1 text-[11px] font-black uppercase tracking-[0.12em] text-[#175ead] dark:bg-[#175ead]/20 dark:text-[#9cc8ff]">
                         {tacticalGraph.nodesById[nodeId]?.label ?? nodeId}
                       </span>
                     )) ?? (
-                      <span className="text-xs text-[#71717a] dark:text-[#a1a1aa]">No mapped coverage nodes.</span>
+                      <span className="text-xs text-slate-500 dark:text-zinc-400">No mapped coverage nodes.</span>
                     )}
                   </div>
                 </div>
-                <div className="rounded-[1.5rem] border border-[#e4e4e7] p-5 dark:border-[#27272a]">
-                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-[#71717a] dark:text-[#94a3b8]">Quick Focus</p>
+                <div className="rounded-[1.5rem] border border-slate-200 p-5 dark:border-zinc-800/80">
+                  <p className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500 dark:text-[#94a3b8]">Quick Focus</p>
                   <div className="mt-3 space-y-2">
                     {CAMERAS.map((camera) => (
                       <button
@@ -579,11 +579,11 @@ export default function AdminCameras() {
                         className={`w-full rounded-2xl border px-4 py-3 text-left ${
                           focusedCamera?.id === camera.id
                             ? "border-[#175ead] bg-[#175ead]/5"
-                            : "border-[#e4e4e7] dark:border-[#27272a]"
+                            : "border-slate-200 dark:border-zinc-800/80"
                         }`}
                       >
                         <p className="text-sm font-bold">{camera.label}</p>
-                        <p className="mt-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">
+                        <p className="mt-1 text-xs text-slate-500 dark:text-zinc-400">
                           {camera.floorId.replace("_", " ")} | {camera.zoneId}
                         </p>
                       </button>
@@ -594,25 +594,25 @@ export default function AdminCameras() {
             </div>
           </section>
 
-          <section className="mt-6 rounded-[2rem] border border-[#e4e4e7] bg-white p-6 shadow-xl dark:border-[#27272a] dark:bg-[#050505]">
+          <section className="mt-6 rounded-[2rem] border border-slate-200 bg-white p-6 shadow-xl dark:border-zinc-800/80 dark:bg-[#050505]">
             <p className="text-[10px] font-black uppercase tracking-[0.24em] text-[#bc000a] dark:text-[#ffb4aa]">Incident Trigger</p>
             <h3 className="mt-2 text-xl font-black">Auto-block mapped beacons from camera alerts</h3>
             <div className="mt-5 grid gap-3 md:grid-cols-3">
-              <label className="rounded-2xl border border-[#e4e4e7] p-4 dark:border-[#27272a]"><span className="text-[10px] font-black uppercase tracking-[0.18em] text-[#71717a] dark:text-[#a1a1aa]">Hazard Type</span><select value={hazardType} onChange={(event) => setHazardType(event.target.value as "smoke" | "fire" | "obstruction")} className="mt-3 w-full rounded-2xl border border-[#e4e4e7] bg-[#fafafa] px-4 py-3 text-sm dark:border-[#27272a] dark:bg-[#111827]"><option value="smoke">Smoke</option><option value="fire">Fire</option><option value="obstruction">Obstruction</option></select></label>
-              <label className="rounded-2xl border border-[#e4e4e7] p-4 dark:border-[#27272a]"><span className="text-[10px] font-black uppercase tracking-[0.18em] text-[#71717a] dark:text-[#a1a1aa]">Confidence</span><input type="range" min="0.5" max="0.99" step="0.01" value={detectionConfidence} onChange={(event) => setDetectionConfidence(Number(event.target.value))} className="mt-4 w-full accent-[#bc000a]" /><p className="mt-2 text-sm font-bold">{Math.round(detectionConfidence * 100)}%</p></label>
-              <label className="rounded-2xl border border-[#e4e4e7] p-4 dark:border-[#27272a]"><span className="text-[10px] font-black uppercase tracking-[0.18em] text-[#71717a] dark:text-[#a1a1aa]">Repeated Frames</span><input type="range" min="1" max="5" step="1" value={detectionFrames} onChange={(event) => setDetectionFrames(Number(event.target.value))} className="mt-4 w-full accent-[#175ead]" /><p className="mt-2 text-sm font-bold">{detectionFrames} consecutive hits</p></label>
+              <label className="rounded-2xl border border-slate-200 p-4 dark:border-zinc-800/80"><span className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500 dark:text-zinc-400">Hazard Type</span><select value={hazardType} onChange={(event) => setHazardType(event.target.value as "smoke" | "fire" | "obstruction")} className="mt-3 w-full rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm dark:border-zinc-800/80 dark:bg-[#111827]"><option value="smoke">Smoke</option><option value="fire">Fire</option><option value="obstruction">Obstruction</option></select></label>
+              <label className="rounded-2xl border border-slate-200 p-4 dark:border-zinc-800/80"><span className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500 dark:text-zinc-400">Confidence</span><input type="range" min="0.5" max="0.99" step="0.01" value={detectionConfidence} onChange={(event) => setDetectionConfidence(Number(event.target.value))} className="mt-4 w-full accent-[#bc000a]" /><p className="mt-2 text-sm font-bold">{Math.round(detectionConfidence * 100)}%</p></label>
+              <label className="rounded-2xl border border-slate-200 p-4 dark:border-zinc-800/80"><span className="text-[10px] font-black uppercase tracking-[0.18em] text-slate-500 dark:text-zinc-400">Repeated Frames</span><input type="range" min="1" max="5" step="1" value={detectionFrames} onChange={(event) => setDetectionFrames(Number(event.target.value))} className="mt-4 w-full accent-[#175ead]" /><p className="mt-2 text-sm font-bold">{detectionFrames} consecutive hits</p></label>
             </div>
             <div className="mt-5 space-y-3">
               {CAMERAS.map((camera) => {
                 const latestDetection = state.cameraDetections.find((entry) => entry.cameraId === camera.id);
                 const impact = resolveCameraImpact(camera.id, { confidence: detectionConfidence, frameCount: detectionFrames, hazardType });
                 return (
-                  <div key={camera.id} className="rounded-[1.5rem] border border-[#e4e4e7] p-4 dark:border-[#27272a]">
+                  <div key={camera.id} className="rounded-[1.5rem] border border-slate-200 p-4 dark:border-zinc-800/80">
                     <div className="flex items-start justify-between gap-4">
                       <div>
                         <p className="text-sm font-bold">{camera.label}</p>
-                        <p className="mt-1 text-xs text-[#71717a] dark:text-[#a1a1aa]">{camera.floorId.replace("_", " ")} | covers {camera.coverageNodeIds.length} nodes</p>
-                        {impact && <p className="mt-2 text-xs text-[#71717a] dark:text-[#a1a1aa]">Zone {impact.zoneId} | {impact.status.toUpperCase()} | block {impact.blockedNodeIds.length} nodes | avoid {impact.avoidNodeIds.length} nodes | close {impact.blockedEdgeIds.length} edges</p>}
+                        <p className="mt-1 text-xs text-slate-500 dark:text-zinc-400">{camera.floorId.replace("_", " ")} | covers {camera.coverageNodeIds.length} nodes</p>
+                        {impact && <p className="mt-2 text-xs text-slate-500 dark:text-zinc-400">Zone {impact.zoneId} | {impact.status.toUpperCase()} | block {impact.blockedNodeIds.length} nodes | avoid {impact.avoidNodeIds.length} nodes | close {impact.blockedEdgeIds.length} edges</p>}
                         {latestDetection && <p className="mt-2 text-xs text-[#bc000a] dark:text-[#ffb4aa]">Latest detection: {latestDetection.label}</p>}
                       </div>
                       <div className="flex flex-col gap-2">
@@ -622,7 +622,7 @@ export default function AdminCameras() {
                           className={`rounded-2xl border px-4 py-3 text-[11px] font-black uppercase tracking-[0.18em] ${
                             focusedCameraId === camera.id
                               ? "border-[#175ead] bg-[#175ead]/10 text-[#175ead] dark:text-[#9cc8ff]"
-                              : "border-[#e4e4e7] text-[#09090b] dark:border-[#27272a] dark:text-white"
+                              : "border-slate-200 text-slate-900 dark:border-zinc-800/80 dark:text-white"
                           }`}
                         >
                           Focus Map

@@ -103,14 +103,12 @@ export default function GuestDashboard() {
   });
 
   useEffect(() => {
-    const guestProfileId = dbUser?.profileId || dbUser?.id;
-    if (!guestProfileId) return;
-
-    void fetch(`/api/guest/details?id=${guestProfileId}`, { cache: "no-store" })
+    if (!dbUser?.id) return;
+    void fetch(`/api/guest/details?id=${dbUser.id}`, { cache: "no-store" })
       .then(r => r.json())
       .then(data => { if (data.success && data.guest?.roomStatus) setRoomStatus(data.guest.roomStatus); })
       .catch(() => {});
-  }, [dbUser?.id, dbUser?.profileId]);
+  }, [dbUser?.id]);
 
   const roomStatusInfo = roomStatus ? getRoomStatusStyle(roomStatus) : null;
   const graph = useMemo(() => createGraphSnapshot(state.graphNodes, state.graphEdges), [state.graphEdges, state.graphNodes]);
@@ -174,10 +172,10 @@ export default function GuestDashboard() {
 
           <div className="mb-8 flex flex-col gap-1">
             <h1 className="text-3xl sm:text-4xl font-light tracking-tight text-gray-900 dark:text-white">
-              Hi, {firstName}.
+              Welcome back, {firstName}.
             </h1>
-            <p className="text-sm text-gray-500 dark:text-[#a1a1aa]">
-              Checkout {checkoutLabel}.
+            <p className="text-sm text-gray-500 dark:text-zinc-400">
+              Your stay is confirmed through {checkoutLabel}.
             </p>
           </div>
 
@@ -186,7 +184,7 @@ export default function GuestDashboard() {
             {/* TOP IDENTITY BLOCK */}
             <div className="lg:col-span-8 dashboard-card rounded-[20px] p-8 flex flex-col justify-between">
               <div>
-                <p className="text-[10px] font-bold tracking-widest text-gray-400 dark:text-[#a1a1aa] uppercase mb-1">Aegis Smart Hotel</p>
+                <p className="text-[10px] font-bold tracking-widest text-gray-400 dark:text-zinc-400 uppercase mb-1">Aegis Smart Hotel</p>
                 <h2 className="text-4xl sm:text-5xl font-light tracking-tighter text-gray-900 dark:text-white mb-10">
                   {guestName.toUpperCase()}
                 </h2>
@@ -194,21 +192,21 @@ export default function GuestDashboard() {
               <div className="flex flex-col sm:flex-row gap-4">
                 {/* Inner Box */}
                 <div className="bg-[#f8f9fa] dark:bg-[#1c202e] p-5 rounded-[15px] flex-1">
-                  <p className="text-[10px] text-gray-500 dark:text-[#a1a1aa] uppercase font-bold tracking-widest mb-2 flex items-center gap-2">
+                  <p className="text-[10px] text-gray-500 dark:text-zinc-400 uppercase font-bold tracking-widest mb-2 flex items-center gap-2">
                     <span className="material-symbols-outlined text-[16px] text-gray-400 dark:text-gray-500">meeting_room</span> Room
                   </p>
                   <p className="text-3xl font-light text-gray-900 dark:text-white">{roomNumber}</p>
                 </div>
                 {/* Inner Box */}
                 <div className="bg-[#f8f9fa] dark:bg-[#1c202e] p-5 rounded-[15px] flex-1">
-                  <p className="text-[10px] text-gray-500 dark:text-[#a1a1aa] uppercase font-bold tracking-widest mb-2 flex items-center gap-2">
+                  <p className="text-[10px] text-gray-500 dark:text-zinc-400 uppercase font-bold tracking-widest mb-2 flex items-center gap-2">
                     <span className="material-symbols-outlined text-[16px] text-gray-400 dark:text-gray-500">verified_user</span> Status
                   </p>
                   <p className="text-3xl font-light text-emerald-500 dark:text-emerald-400">{statusLabel}</p>
                 </div>
                 {roomStatusInfo && (
                   <div className="bg-[#f8f9fa] dark:bg-[#1c202e] p-5 rounded-[15px] flex-1">
-                    <p className="text-[10px] text-gray-500 dark:text-[#a1a1aa] uppercase font-bold tracking-widest mb-2 flex items-center gap-2">
+                    <p className="text-[10px] text-gray-500 dark:text-zinc-400 uppercase font-bold tracking-widest mb-2 flex items-center gap-2">
                       <span className="material-symbols-outlined text-[16px] text-gray-400 dark:text-gray-500">door_front</span> Room Status
                     </p>
                     <p className={`text-3xl font-light ${roomStatusInfo.cls}`}>{roomStatusInfo.label}</p>
@@ -222,7 +220,7 @@ export default function GuestDashboard() {
                 <span className="font-['Space_Grotesk'] font-bold text-[10px] tracking-[0.2em] mb-0.5">SOS</span>
                 <span className="font-['Space_Grotesk'] font-black text-2xl tracking-[0.1em]">SOS</span>
               </Link>
-              <p className="text-[10px] text-gray-400 uppercase tracking-widest mt-8 relative z-10 font-bold">Emergency only</p>
+              <p className="text-[10px] text-gray-400 uppercase tracking-widest mt-8 relative z-10 font-bold">Press for immediate assistance</p>
             </div>
 
             {/* SERVICES BLOCK */}
@@ -260,8 +258,8 @@ export default function GuestDashboard() {
                     <span className="material-symbols-outlined" style={{ fontVariationSettings: '"FILL" 1' }}>check_circle</span>
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-gray-900 dark:text-white mb-1">Room Monitoring</p>
-                    <p className="text-xs text-gray-500 dark:text-[#a1a1aa] leading-relaxed">Sensors live and stable.</p>
+                    <p className="text-sm font-bold text-gray-900 dark:text-white mb-1">Active Room Monitoring</p>
+                    <p className="text-xs text-gray-500 dark:text-zinc-400 leading-relaxed">Your stay is secured by Aegis AI. Environmental sensors are fully operational.</p>
                   </div>
                 </div>
               </div>
@@ -271,7 +269,7 @@ export default function GuestDashboard() {
               <DashboardMessagingCard
                 eyebrow="Guest Messaging"
                 title="Concierge Channel"
-                description="Direct line and announcements."
+                description="Your direct admin line and hotel announcements now surface inside the guest dashboard so you can jump into the right conversation without leaving this view."
                 recentThreads={recentMessageThreads}
                 totalThreads={totalMessageThreads}
                 activeThreads={activeMessageThreads}
@@ -305,7 +303,7 @@ export default function GuestDashboard() {
             <div className="lg:col-span-12 dashboard-card rounded-[20px] p-6">
               <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <p className="text-[10px] font-bold tracking-widest text-gray-400 dark:text-[#a1a1aa] uppercase">
+                  <p className="text-[10px] font-bold tracking-widest text-gray-400 dark:text-zinc-400 uppercase">
                     Live Route Guidance
                   </p>
                   <h3 className="mt-1 text-2xl font-light text-gray-900 dark:text-white">
@@ -335,28 +333,28 @@ export default function GuestDashboard() {
 
                 <div className="space-y-4">
                   <div className="rounded-[18px] bg-[#f8f9fa] p-5 dark:bg-[#1c202e]">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-gray-500 dark:text-[#a1a1aa]">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-gray-500 dark:text-zinc-400">
                       Tracking
                     </p>
                     <p className="mt-2 text-sm font-semibold text-gray-900 dark:text-white">
                       {guestCurrentNode?.label || "Position unknown"}
                     </p>
-                    <p className="mt-2 text-xs leading-relaxed text-gray-500 dark:text-[#a1a1aa]">
+                    <p className="mt-2 text-xs leading-relaxed text-gray-500 dark:text-zinc-400">
                       {guestTrackingStatus
-                        ? `${guestTrackingStatus.trackingMode} | confidence ${Math.round(guestTrackingStatus.confidence * 100)}%`
+                        ? `${guestTrackingStatus.trackingMode} • confidence ${Math.round(guestTrackingStatus.confidence * 100)}%`
                         : "Build the admin tactical map first to unlock live guest routing."}
                     </p>
                   </div>
 
                   <div className="rounded-[18px] bg-[#f8f9fa] p-5 dark:bg-[#1c202e]">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-gray-500 dark:text-[#a1a1aa]">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-gray-500 dark:text-zinc-400">
                       Command Bridge
                     </p>
                     <p className="mt-2 text-sm font-semibold text-gray-900 dark:text-white">
                       {guestOccupant?.lastBeaconSignal?.address ?? beaconCopy.pendingLockLabel}
                     </p>
-                    <p className="mt-2 text-xs leading-relaxed text-gray-500 dark:text-[#a1a1aa]">
-                      Channel: {activeCommandChannel || "No guest bridge assigned yet"} | Confidence {Math.round((guestOccupant?.trackingConfidence ?? 0) * 100)}%
+                    <p className="mt-2 text-xs leading-relaxed text-gray-500 dark:text-zinc-400">
+                      Channel: {activeCommandChannel || "No guest bridge assigned yet"} • Confidence {Math.round((guestOccupant?.trackingConfidence ?? 0) * 100)}%
                     </p>
                     <button
                       type="button"
@@ -371,7 +369,7 @@ export default function GuestDashboard() {
                   </div>
 
                   <div className="rounded-[18px] bg-[#f8f9fa] p-5 dark:bg-[#1c202e]">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-gray-500 dark:text-[#a1a1aa]">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-gray-500 dark:text-zinc-400">
                       {beaconCopy.routeListLabel}
                     </p>
                     <div className="mt-3 flex flex-wrap gap-2">
@@ -385,7 +383,7 @@ export default function GuestDashboard() {
                           </span>
                         ))
                       ) : (
-                        <p className="text-xs text-gray-500 dark:text-[#a1a1aa]">
+                        <p className="text-xs text-gray-500 dark:text-zinc-400">
                           {beaconCopy.routeSequencePending}
                         </p>
                       )}
@@ -393,7 +391,7 @@ export default function GuestDashboard() {
                   </div>
 
                   <div className="rounded-[18px] bg-[#f8f9fa] p-5 dark:bg-[#1c202e]">
-                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-gray-500 dark:text-[#a1a1aa]">
+                    <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-gray-500 dark:text-zinc-400">
                       Next Steps
                     </p>
                     <div className="mt-3 space-y-2">
@@ -404,7 +402,7 @@ export default function GuestDashboard() {
                           </div>
                         ))
                       ) : (
-                        <p className="text-xs text-gray-500 dark:text-[#a1a1aa]">
+                        <p className="text-xs text-gray-500 dark:text-zinc-400">
                           No safe route is active right now.
                         </p>
                       )}
